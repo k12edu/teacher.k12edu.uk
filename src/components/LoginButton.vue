@@ -31,7 +31,6 @@
     methods:{
       changeLightBoxDisplay(){
         this.lightBoxDisplay=!this.lightBoxDisplay;
-        console.log('Lightbox display changed');
       },
     }
   }
