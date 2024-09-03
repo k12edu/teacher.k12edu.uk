@@ -66,6 +66,7 @@
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
   }
+  #eye-icon-
   #eye-icon {
     position: absolute;
     top:40px;
