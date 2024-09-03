@@ -3,14 +3,15 @@
       <div id="login-lightbox-content">
         <h1 style="margin-bottom: 15px; margin-top: 25px;">登入帳號</h1>
         <div class="input-content">
-          <input placeholder="帳號">
+          <input placeholder="帳號" v-model="userName">
         </div>
         <div class="input-content">
-          <input :type="passwordType()" placeholder="密碼">
+          <input :type="passwordType()" placeholder="密碼" v-model="userPassword">
           <div id="eye-icon-div">
             <img :src="require(`@/assets/${eyeIconPath}`)" alt="" @click="ChangePasswordDisplay()" id="eye-icon">
           </div>
         </div>
+        <button id="log-in-button"><h2>登入</h2></button>
       </div>
     </div>
   </template>
@@ -23,7 +24,9 @@
     data(){
       return {
         passwordDisplay: false,
-        eyeIconPath : 'eye2.png'
+        eyeIconPath : 'eye2.png',
+        userName: "",
+        userPassword: "",
       }
     },
     props: {},
@@ -71,13 +74,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top:36px;
+    top:38px;
     margin-left: 85%;
     cursor: pointer;
   }
   #eye-icon {
     width: 1.5rem;
     height:1.5rem;
+  }
+  #log-in-button {
+    width: 30%;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    border: 2px solid rgb(93, 153, 175);
+    margin-top: 40px;
+    color: rgb(93, 153, 175);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #log-in-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  #log-in-button:active {
+    background-color: rgba(0, 0, 0, 0.15);
   }
   .input-content {
     position: relative;
@@ -88,6 +108,9 @@
     color: rgb(93, 153, 175);
     margin: 5px;
   }
+  h2 {
+    margin: 0px;
+  }
   input {
     width: 100%;
     height: 36px;
@@ -95,10 +118,10 @@
     margin-top: 30px;
     font-size: 18px;
     border: 2px solid rgb(93, 153, 175);
-    padding-left: 100px;
+    padding-left: 10px;
     color: rgb(104, 104, 104);
     user-select: none;
-    box-sizing: border-box;
+    
   }
   input::placeholder {
     padding-left: 2px;
