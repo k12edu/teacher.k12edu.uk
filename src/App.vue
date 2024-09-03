@@ -17,9 +17,19 @@ export default {
   },
   data(){
     return {
-      
+      userName: "Hank",
     }
   },
+  provide(){
+    return {
+      ChangeUserName : this.ChangeUserName,
+    }
+  }, 
+  methods: {
+    ChangeUserName(newUserName){
+      this.userName = newUserName;
+    },
+  }
 }
 </script>
 

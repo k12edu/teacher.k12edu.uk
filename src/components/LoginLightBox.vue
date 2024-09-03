@@ -11,7 +11,7 @@
             <img :src="require(`@/assets/${eyeIconPath}`)" alt="" @click="ChangePasswordDisplay()" id="eye-icon">
           </div>
         </div>
-        <button id="log-in-button"><h2>登入</h2></button>
+        <button id="log-in-button" @click="UpdateUserName"><h2>登入</h2></button>
       </div>
     </div>
   </template>
@@ -40,8 +40,12 @@
       },
       passwordType(){
         return this.passwordDisplay ? 'text' : 'password';
+      },
+      UpdateUserName(){
+        this.ChangeUserName(this.userName);
       }
-    }
+    },
+    inject:['ChangeUserName'],
   }
   </script>
   
