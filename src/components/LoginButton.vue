@@ -1,8 +1,8 @@
   <template>
-    <LoginLightBox :style="LightBoxDisplayState" @changeLightBoxDisplay="changeLightBoxDisplay"></LoginLightBox>
+    <LoginLightBox :style="LightBoxDisplayState" @ChangeLightBoxDisplay="ChangeLightBoxDisplay()"></LoginLightBox>
     <div class="login-area">
       <ul>
-        <li id="login-button" @click="changeLightBoxDisplay"><p>登入</p></li>
+        <li id="login-button" @click="ChangeLightBoxDisplay"><p>登入</p></li>
         <li id="register-button"><p>註冊</p></li>    
       </ul>
     </div>
@@ -29,7 +29,7 @@
       },
     },
     methods:{
-      changeLightBoxDisplay(){
+      ChangeLightBoxDisplay(){
         this.lightBoxDisplay=!this.lightBoxDisplay;
       },
     }

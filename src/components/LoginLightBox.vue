@@ -1,9 +1,16 @@
 <template>
-    <div id="login-light-box" @click.self="$emit('changeLightBoxDisplay')">
+    <div id="login-light-box" @click.self="$emit('ChangeLightBoxDisplay')">
       <div id="login-lightbox-content">
         <h1 style="margin-bottom: 15px; margin-top: 25px;">登入帳號</h1>
-        <input placeholder="帳號">
-        <input placeholder="密碼">
+        <div class="input-content">
+          <input placeholder="帳號">
+        </div>
+        <div class="input-content">
+          <input :type="passwordType()" placeholder="密碼">
+          <div id="eye-icon-div">
+            <img :src="require(`@/assets/${eyeIconPath}`)" alt="" @click="ChangePasswordDisplay()" id="eye-icon">
+          </div>
+        </div>
       </div>
     </div>
   </template>
@@ -14,9 +21,24 @@
     components:{
     },
     data(){
-      return {}
+      return {
+        passwordDisplay: false,
+        eyeIconPath : 'eye2.svg'
+      }
     },
-    props: {}
+    props: {},
+    computed: {
+      
+    },
+    methods: {
+      ChangePasswordDisplay(){
+        this.passwordDisplay=!this.passwordDisplay;
+        this.eyeIconPath = this.passwordDisplay ? 'eye1.svg' :'eye2.svg';
+      },
+      passwordType(){
+        return this.passwordDisplay ? 'text' : 'password';
+      }
+    }
   }
   </script>
   
@@ -40,23 +62,36 @@
     align-items: center;
     padding: 20px;
     height: 40%;
-    width: 20%;
+    width: 18%;
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
+  }
+  #eye-icon {
+    position: absolute;
+    top:40px;
+    margin-left: 85%;
+    height:18px;
+  }
+  .input-content {
+    position: relative;
+    display: flex;
+    width: 80%;
   }
   h1 {
     color: rgb(93, 153, 175);
     margin: 5px;
   }
   input {
-    width: 80%;
+    width: 100%;
     height: 36px;
     border-radius: 10px;
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 18px;
     border: 2px solid rgb(93, 153, 175);
     padding-left: 10px;
     color: rgb(104, 104, 104);
+    user-select: none;
+    box-sizing: border-box;
   }
   input::placeholder {
     padding-left: 2px;
