@@ -23,7 +23,7 @@
     data(){
       return {
         passwordDisplay: false,
-        eyeIconPath : 'eye2.svg'
+        eyeIconPath : 'eye2.png'
       }
     },
     props: {},
@@ -33,7 +33,7 @@
     methods: {
       ChangePasswordDisplay(){
         this.passwordDisplay=!this.passwordDisplay;
-        this.eyeIconPath = this.passwordDisplay ? 'eye1.svg' :'eye2.svg';
+        this.eyeIconPath = this.passwordDisplay ? 'eye1.png' :'eye2.png';
       },
       passwordType(){
         return this.passwordDisplay ? 'text' : 'password';
@@ -66,12 +66,18 @@
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
   }
-  #eye-icon-
-  #eye-icon {
+  #eye-icon-div {
     position: absolute;
-    top:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:36px;
     margin-left: 85%;
-    height:18px;
+    cursor: pointer;
+  }
+  #eye-icon {
+    width: 1.5rem;
+    height:1.5rem;
   }
   .input-content {
     position: relative;
@@ -89,7 +95,7 @@
     margin-top: 30px;
     font-size: 18px;
     border: 2px solid rgb(93, 153, 175);
-    padding-left: 10px;
+    padding-left: 100px;
     color: rgb(104, 104, 104);
     user-select: none;
     box-sizing: border-box;
