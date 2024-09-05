@@ -1,8 +1,8 @@
 <template>
     <div id="main-body">
-      <p>Page1</p>
-        <Body id="body"></Body>
-        <RightSidebar id="right-sidebar"></RightSidebar>
+      <p>Page3</p>
+      <Body id="body"></Body>
+      <RightSidebar id="right-sidebar"></RightSidebar>
     </div>
   </template>
   
@@ -10,7 +10,7 @@
   import Body from "./Body.vue"
   import RightSidebar from "./RightSidebar.vue"
   export default {
-    name: 'MainBody',
+    name: 'MainBody3',
     components:{
       Body,
       RightSidebar

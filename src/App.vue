@@ -51,9 +51,9 @@ header {
 }
 
 footer {
-  border: 2px solid black;
-  border-radius: 30px;
-  margin: 20px;
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 h1 {

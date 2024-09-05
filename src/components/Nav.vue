@@ -1,11 +1,11 @@
 <template>
     <div class="nav">
       <ul>
-        <li><p>選項一</p></li>
-        <li><p>選項二</p></li>
-        <li><p>選項三</p></li>
-        <li><p>選項四</p></li>
-        <li><p>選項五</p></li>
+        <RouterLink to="/Page2" class="no-style"><li><p>題目列表</p></li></RouterLink>
+        <RouterLink to="/Page3" class="no-style"><li><p>課程內容</p></li></RouterLink>
+        <RouterLink to="/Page4" class="no-style"><li><p>使用者列表</p></li></RouterLink>
+        <RouterLink to="/Page5" class="no-style"><li><p>常見問題</p></li></RouterLink>
+        <RouterLink to="/Page6" class="no-style"><li><p>聯絡我們</p></li></RouterLink>
       </ul>
       <LoginButton></LoginButton>
     </div>
@@ -32,6 +32,10 @@ import LoginButton from './LoginButton.vue';
     display: flex;
     justify-content: center;
   } 
+  .no-style {
+    color: inherit;
+    text-decoration: none;
+  }
   h3 {
     margin: 40px 0 0;
   }

@@ -1,23 +1,28 @@
   <template>
     <LoginLightBox :style="LightBoxDisplayState" @ChangeLightBoxDisplay="ChangeLightBoxDisplay()"></LoginLightBox>
+    <RegisterLightBox :style="LightBox2DisplayState" @ChangeLightBox2Display="ChangeLightBox2Display()"></RegisterLightBox>
     <div class="login-area">
       <ul>
         <li id="login-button" @click="ChangeLightBoxDisplay"><p>登入</p></li>
-        <li id="register-button"><p>註冊</p></li>    
+        <li id="register-button" @click="ChangeLightBox2Display"><p>註冊</p></li>    
       </ul>
     </div>
   </template>
   
   <script>
   import LoginLightBox from './LoginLightBox.vue'
+  import RegisterLightBox from './RegisterLightBox.vue';
+  
   export default {
     name: 'LoginButton',
     components:{
-      LoginLightBox
+      LoginLightBox,
+      RegisterLightBox
     },
     data(){
       return {
         lightBoxDisplay: false,
+        lightBox2Display: false,
       }
     },
     props: {},
@@ -27,10 +32,18 @@
           display: this.lightBoxDisplay ? "" : "none"
         };
       },
+      LightBox2DisplayState(){
+        return {
+          display: this.lightBox2Display ? "" : "none"
+        };
+      },
     },
     methods:{
       ChangeLightBoxDisplay(){
         this.lightBoxDisplay=!this.lightBoxDisplay;
+      },
+      ChangeLightBox2Display(){
+        this.lightBox2Display=!this.lightBox2Display;
       },
     }
   }
