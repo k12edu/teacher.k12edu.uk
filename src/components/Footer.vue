@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-      <h1>footer</h1>
+      <h4>&copy; 2024 Po-Hao Chen</h4>
     </div>
   </template>
   
