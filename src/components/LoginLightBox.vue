@@ -78,7 +78,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top:38px;
+    top:1.5rem;
     margin-left: 85%;
     cursor: pointer;
   }
@@ -119,7 +119,7 @@
     width: 100%;
     height: 36px;
     border-radius: 10px;
-    margin-top: 30px;
+    margin-top: 1rem;
     font-size: 18px;
     border: 2px solid rgb(93, 153, 175);
     padding-left: 10px;
