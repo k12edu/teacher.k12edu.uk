@@ -64,7 +64,7 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    height: 55%;
+    height: 52%;
     width: 18%;
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
@@ -102,7 +102,7 @@
     width: 100%;
     height: 36px;
     border-radius: 10px;
-    margin-top: 1rem;
+    margin-top: 30px;
     font-size: 18px;
     border: 2px solid rgb(93, 153, 175);
     padding-left: 10px;
