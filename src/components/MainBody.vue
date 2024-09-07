@@ -1,7 +1,6 @@
 <template>
     <div id="main-body">
-      <p>Page1</p>
-        <Body id="body"></Body>
+        <Body id="body" :Title="bodyTitle"></Body>
         <RightSidebar id="right-sidebar"></RightSidebar>
     </div>
   </template>
@@ -16,7 +15,9 @@
       RightSidebar
     },
     data(){
-      return {}
+      return {
+        bodyTitle: 'Home Page',
+      }
     },
     props: {
 

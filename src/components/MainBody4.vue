@@ -1,7 +1,6 @@
 <template>
     <div id="main-body">
-      <p>Page4</p>
-      <Body id="body"></Body>
+      <Body id="body" :Title="bodyTitle"></Body>
       <RightSidebar id="right-sidebar"></RightSidebar>
     </div>
   </template>
@@ -16,7 +15,9 @@
       RightSidebar
     },
     data(){
-      return {}
+      return {
+        bodyTitle: '使用者列表',
+      }
     },
     props: {}
   }
@@ -30,15 +31,13 @@
     justify-content: center;
     margin: 20px;
   }
-  #body {
-    border: 2px solid black;
-    border-radius: 50px;
+  #body {  
     margin: 20px;
-    width: 40%;
+    margin-right: 0px;
+    border-right: 2px solid rgba(128, 128, 128, 0.2);
+    width: 45%;
     }
   #right-sidebar {
-    border: 2px solid black;
-    border-radius: 30px;
     margin: 20px;
     width: 20%;
   }

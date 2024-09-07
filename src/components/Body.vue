@@ -1,6 +1,6 @@
 <template>
     <div class="body">
-      <h1>body</h1>
+      <h1>{{Title}}</h1>
       <p>測試內容</p>
       <p>測試內容</p>
       <p>測試內容</p>
@@ -30,7 +30,12 @@
     data(){
       return {}
     },
-    props: {}
+    props: {
+      Title:{
+        type:String,
+        default:'Title',
+      }
+    }
   }
   </script>
   
