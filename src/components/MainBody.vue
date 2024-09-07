@@ -18,11 +18,14 @@
     data(){
       return {}
     },
-    props: {}
+    props: {
+
+    }
   }
   </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
+   
   <style scoped>
   #main-body {
     display: flex;
@@ -31,14 +34,13 @@
     margin: 20px;
   }
   #body {
-    border: 2px solid black;
-    border-radius: 50px;
+    
     margin: 20px;
-    width: 40%;
+    margin-right: 0px;
+    border-right: 2px solid rgba(128, 128, 128, 0.2);
+    width: 45%;
     }
   #right-sidebar {
-    border: 2px solid black;
-    border-radius: 30px;
     margin: 20px;
     width: 20%;
   }
