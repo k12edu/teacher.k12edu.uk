@@ -1,18 +1,15 @@
 <template>
     <div id="main-body">
-      <Body id="body" :Title="bodyTitle"></Body>
-      <RightSidebar id="right-sidebar"></RightSidebar>
+      <UserListBody id="body" :Title="bodyTitle"></UserListBody>
     </div>
   </template>
   
   <script>
-  import Body from "./Body.vue"
-  import RightSidebar from "./RightSidebar.vue"
+  import UserListBody from './UserListBody.vue';
   export default {
     name: 'MainBody4',
     components:{
-      Body,
-      RightSidebar
+      UserListBody,
     },
     data(){
       return {
@@ -31,14 +28,10 @@
     justify-content: center;
     margin: 20px;
   }
-  #body {  
+  #body {
     margin: 20px;
-    margin-right: 0px;
+    border-left: 2px solid rgba(128, 128, 128, 0.2);
     border-right: 2px solid rgba(128, 128, 128, 0.2);
-    width: 45%;
+    width: 70%;
     }
-  #right-sidebar {
-    margin: 20px;
-    width: 20%;
-  }
   </style>

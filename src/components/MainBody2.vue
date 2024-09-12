@@ -1,18 +1,15 @@
 <template>
     <div id="main-body">
-      <Body id="body" :Title="bodyTitle"></Body>
-      <RightSidebar id="right-sidebar"></RightSidebar>
+      <ProblemListBody id="body" :Title="bodyTitle"></ProblemListBody>
     </div>
   </template>
   
   <script>
-  import Body from "./Body.vue"
-  import RightSidebar from "./RightSidebar.vue"
+  import ProblemListBody from "./ProblemListBody.vue";
   export default {
     name: 'MainBody2',
     components:{
-      Body,
-      RightSidebar
+      ProblemListBody,
     },
     data(){
       return {
@@ -33,12 +30,8 @@
   }
   #body {
     margin: 20px;
-    margin-right: 0px;
+    border-left: 2px solid rgba(128, 128, 128, 0.2);
     border-right: 2px solid rgba(128, 128, 128, 0.2);
-    width: 45%;
+    width: 70%;
     }
-  #right-sidebar {
-    margin: 20px;
-    width: 20%;
-  }
   </style>
