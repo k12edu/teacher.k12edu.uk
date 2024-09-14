@@ -37,6 +37,7 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
+  
   .course-content_body {
     display: flex;
     flex-direction: column;
@@ -60,14 +61,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 85%;
+    width: 80%;
   }
   .course-item {
     margin: 8px;
     border: 2px solid lightblue;
     border-radius :10px;
-    width: 40%;
+    width: 45%;
     height: 10rem;
+  }
+  @media (max-width: 1050px){
+    .course-item {
+    width: 100%;
+  }
   }
   </style>
   

@@ -1,7 +1,7 @@
 <template>
     <div id="header">
       <RouterLink :to="{name:'MainPage'}"><div><h1>教師題目上傳平台</h1></div></RouterLink>
-      <Nav></Nav>
+      <Nav class="Nav"></Nav>
     </div>
   </template>
   
@@ -30,5 +30,10 @@
   }
   a {
     text-decoration: none;
+  }
+  @media (max-width: 1050px){
+    .Nav{
+      display: none;
+    }
   }
   </style>

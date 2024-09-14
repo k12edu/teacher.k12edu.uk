@@ -30,8 +30,6 @@
   }
   #body {
     margin: 20px;
-    border-left: 2px solid rgba(128, 128, 128, 0.2);
-    border-right: 2px solid rgba(128, 128, 128, 0.2);
     width: 70%;
     }
   </style>
