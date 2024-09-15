@@ -2,15 +2,18 @@
     <div id="header">
       <RouterLink :to="{name:'MainPage'}"><div><h1>教師題目上傳平台</h1></div></RouterLink>
       <Nav class="Nav"></Nav>
+      <ChoiceList id="choice-list"></ChoiceList>
     </div>
   </template>
   
   <script>
   import Nav from "./Nav.vue"
+  import ChoiceList from "./ChoiceList.vue";
   export default {
     name: 'MainHeader',
     components:{
       Nav,
+      ChoiceList,
     },
     data(){
       return {}
@@ -23,6 +26,8 @@
   <style scoped>
   #header {
     display: flex;
+    position: relative;
+    overflow: hidden;
     justify-content: space-around;
   }
   h1 {
@@ -31,9 +36,15 @@
   a {
     text-decoration: none;
   }
+  #choice-list{
+    display: none;
+  }
   @media (max-width: 1050px){
     .Nav{
       display: none;
+    }
+    #choice-list{
+      display: block;
     }
   }
   </style>

@@ -13,7 +13,6 @@
   
   <script>
 import LoginButton from './LoginButton.vue';
-
   export default {
     name: 'MainNav',
     components:{
@@ -69,5 +68,6 @@ import LoginButton from './LoginButton.vue';
   a {
     color: #42b983;
   }
+  
   </style>
   

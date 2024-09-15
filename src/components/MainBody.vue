@@ -1,18 +1,15 @@
 <template>
     <div id="main-body">
         <Body id="body" :Title="bodyTitle"></Body>
-        <RightSidebar id="right-sidebar"></RightSidebar>
     </div>
   </template>
   
   <script>
   import Body from "./Body.vue"
-  import RightSidebar from "./RightSidebar.vue"
   export default {
     name: 'MainBody',
     components:{
-      Body,
-      RightSidebar
+      Body
     },
     data(){
       return {
@@ -38,11 +35,6 @@
     
     margin: 20px;
     margin-right: 0px;
-    border-right: 2px solid rgba(128, 128, 128, 0.2);
-    width: 45%;
+    width: 65%;
     }
-  #right-sidebar {
-    margin: 20px;
-    width: 20%;
-  }
   </style>
