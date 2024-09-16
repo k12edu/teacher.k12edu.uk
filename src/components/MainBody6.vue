@@ -1,18 +1,15 @@
 <template>
     <div id="main-body">
       <Body id="body" :Title="bodyTitle"></Body>
-      <RightSidebar id="right-sidebar"></RightSidebar>
     </div>
   </template>
   
   <script>
   import Body from "./Body.vue"
-  import RightSidebar from "./RightSidebar.vue"
   export default {
     name: 'MainBody6',
     components:{
       Body,
-      RightSidebar
     },
     data(){
       return {

@@ -1,18 +1,35 @@
 <template>
     <div id="choice-list">
-      <img :src="require('@/assets/choice_list_icon.png')" alt="選單" class="choice-list-icon">
+      <img :src="require('@/assets/choice_list_icon.png')" alt="選單" class="choice-list-icon" @click="ChangeDropListDisplay">
+      <DropDownList class="drop-down-list" :style="IsDropListDisplay" @ChangeDropListDisplay="ChangeDropListDisplay"></DropDownList>
     </div>
   </template>
   
   <script>
+  import DropDownList from "./DropDownList.vue";
   export default {
-    name: 'MainHeader',
+    name: 'ChoiceList',
     components:{
+      DropDownList
     },
     data(){
-      return {}
+      return {
+        DropListDisplay : false,
+      }
     },
-    props: {}
+    props: {},
+    computed:{
+      IsDropListDisplay(){
+        return {
+          display : this.DropListDisplay ? 'block' : 'none',
+        };
+      }
+    },
+    methods:{
+      ChangeDropListDisplay(){
+        this.DropListDisplay = !this.DropListDisplay;
+      },
+    }
   }
   </script>
   
@@ -21,13 +38,14 @@
   #choice-list {
     position: absolute;
     top:20%;
-    right:3%;
+    right:1%;
     height: 60%;
     width: auto;
   }
   .choice-list-icon{
-    height:100%;
-    width: 100%;
+    height: 100%;
+    width: auto;
     opacity: 0.35;
   }
+
   </style>

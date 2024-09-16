@@ -7,7 +7,7 @@
   </template>
   
   <script>
-  import Nav from "./Nav.vue"
+  import Nav from "./Nav.vue";
   import ChoiceList from "./ChoiceList.vue";
   export default {
     name: 'MainHeader',
@@ -27,7 +27,6 @@
   #header {
     display: flex;
     position: relative;
-    overflow: hidden;
     justify-content: space-around;
   }
   h1 {

@@ -12,24 +12,31 @@
     name: 'ProblemListBody',
     data(){
       return {
-        items: [
-          { id: 1, title: 'Title1'},
-          { id: 2, title: 'Title2'},
-          { id: 3, title: 'Title3'},
-          { id: 4, title: 'Title4'},
-          { id: 5, title: 'Title5'},
-          { id: 6, title: 'Title6'},
-          { id: 7, title: 'Title7'},
-          { id: 8, title: 'Title8'},
-          { id: 9, title: 'Title9'},
-          { id: 10, title: 'Title10'},
-        ]
+        items:[],
       }
     },
     props: {
       Title:{
         type:String,
         default:'Title',
+      }
+    },
+    methods:{
+      generateItems() {
+        const items = [];
+        for (let i = 1; i <= 30; i++) {
+          items.push({
+            id: i,
+            title: `Item ${i}`
+          });
+        }
+        // 將生成的陣列轉換為 JSON 字串並回傳
+        return items;
+      }
+    },
+    mounted() {
+      if (this.items.length === 0) {
+        this.items = this.generateItems();
       }
     }
   }
