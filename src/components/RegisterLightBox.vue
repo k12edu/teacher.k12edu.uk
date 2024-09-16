@@ -64,8 +64,8 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    height: 55%;
-    width: 18%;
+    height: 420px;
+    width: 250px;
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
   }

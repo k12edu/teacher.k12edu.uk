@@ -82,13 +82,14 @@
   #login-button {
     color: white;
     background-color: rgb(126, 191, 214);
-    left: 25px;
+    left: 13px;
     z-index: 1;
     border-radius :20000px;
   }
   #register-button {
     background-color: rgb(189, 230, 245);
     border-radius :0px 2000px 2000px 0px;
+    right:13px
   }
   #login-button:hover {
     background-color: rgb(103, 178, 206); 

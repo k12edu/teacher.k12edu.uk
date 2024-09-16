@@ -2,8 +2,13 @@
     <div class="problem-list-body">
       <h1>{{Title}}</h1>
       <div class="problem-list">
-        <div class="problem-item" v-for="item in items" :key="item.id"><p>{{ item.title }}</p></div>
+        <div class="problem-item" v-for="item in itemsOnPage" :key="item.id"><p>{{ item.title }}</p></div>
       </div>
+      <div class="switch-page-div">
+        <input type="number" name="" id="" v-model="inputPage">
+        <button @click="applyInput" id="applyButton"><p>前往</p></button>
+      </div>
+      <p>{{ page }}</p>
     </div>
   </template>
   
@@ -13,6 +18,8 @@
     data(){
       return {
         items:[],
+        page:1,
+        inputPage:0,
       }
     },
     props: {
@@ -21,18 +28,31 @@
         default:'Title',
       }
     },
+    computed:{
+      itemsOnPage(){
+        const res_item = [];
+        for(let i=this.page*20-20;i<this.page*20;i++){
+          res_item.push(this.items[i]);
+        }
+        if(res_item[0] == undefined) return {};
+        return res_item;
+      },
+    },
     methods:{
       generateItems() {
         const items = [];
-        for (let i = 1; i <= 30; i++) {
+        for (let i = 1; i <= 100; i++) {
           items.push({
             id: i,
             title: `Item ${i}`
           });
         }
-        // 將生成的陣列轉換為 JSON 字串並回傳
         return items;
-      }
+      },
+      applyInput(){
+        this.page=this.inputPage;
+      },
+      
     },
     mounted() {
       if (this.items.length === 0) {
@@ -44,6 +64,22 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
+  input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield;      /* Chrome, Safari, Edge */
+}
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+  .switch-page-div{
+    display: flex;
+  }
+  #applyButton{
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
   .problem-list-body {
     display: flex;
     flex-direction: column;

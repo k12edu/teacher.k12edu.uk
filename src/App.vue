@@ -1,6 +1,6 @@
 <template>
-  <header><Header></Header></header>
-  <RouterView></RouterView>
+  <header><Header ></Header></header>
+  <RouterView ></RouterView>
   <footer><Footer></Footer></footer>
 </template>
 

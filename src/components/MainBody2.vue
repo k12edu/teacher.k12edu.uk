@@ -30,7 +30,6 @@
   }
   #body {
     margin: 20px;
-
     width: 70%;
     }
   </style>

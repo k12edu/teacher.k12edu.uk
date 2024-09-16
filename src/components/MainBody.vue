@@ -34,7 +34,6 @@
   #body {
     
     margin: 20px;
-    margin-right: 0px;
     width: 65%;
     }
   </style>

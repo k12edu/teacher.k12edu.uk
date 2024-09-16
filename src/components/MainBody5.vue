@@ -30,8 +30,6 @@
   }
   #body {  
     margin: 20px;
-    margin-right: 0px;
-    border-right: 2px solid rgba(128, 128, 128, 0.2);
     width: 45%;
     }
   #right-sidebar {
