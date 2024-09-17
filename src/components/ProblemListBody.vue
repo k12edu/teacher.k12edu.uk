@@ -82,6 +82,14 @@
           this.inputPage=this.page;
         }
       },
+      toFirstPage(){
+        this.inputPage=1;
+        this.applyInput();
+      },
+      toLastPage(){
+        this.inputPage=Math.ceil(this.items.length/20);
+        this.applyInput();
+      }
     },
     mounted() {
       if (this.items.length === 0) {

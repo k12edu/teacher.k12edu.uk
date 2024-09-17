@@ -31,6 +31,7 @@
   }
   h1 {
     color: rgb(93, 153, 175);
+    text-wrap: nowrap;
   }
   a {
     text-decoration: none;
