@@ -1,5 +1,6 @@
 <template>
     <div class="body">
+      <Announcement></Announcement>
       <h1>{{Title}}</h1>
       <p>測試內容</p>
       <p>測試內容</p>
@@ -25,10 +26,14 @@
   </template>
   
   <script>
+  import Announcement from './Announcement.vue'
   export default {
     name: 'MainBody',
     data(){
       return {}
+    },
+    components:{
+      Announcement,
     },
     props: {
       Title:{

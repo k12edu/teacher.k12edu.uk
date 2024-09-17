@@ -58,8 +58,6 @@ import LoginButton from './LoginButton.vue';
     padding: 0 20px;
     cursor: pointer;
     user-select: none;
-    transition: background-color;
-    transition: color;
   }
   li:hover{
     background-color: rgb(156, 200, 216);

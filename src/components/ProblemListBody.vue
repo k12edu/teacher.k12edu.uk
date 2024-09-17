@@ -5,10 +5,15 @@
         <div class="problem-item" v-for="item in itemsOnPage" :key="item.id"><p>{{ item.title }}</p></div>
       </div>
       <div class="switch-page-div">
-        <input type="number" name="" id="" v-model="inputPage">
-        <button @click="applyInput" id="applyButton"><p>前往</p></button>
+        <button class="button" @click="toFirstPage" id="applyButton"><p>第一頁</p></button>
+        <button class="button" @click="previousPage" id="applyButton"><p>上一頁</p></button>
+        <p style="color:rgb(93, 153, 175);">第</p>
+        <input @change="applyInput" class="input-box" type="number" name="" id="" v-model="inputPage">
+        <p style="color:rgb(93, 153, 175);">頁</p>
+         <!-- <button class="button" style="margin :0px 6px;" @click="applyInput" id="applyButton"><p>前往</p></button> -->
+        <button class="button" @click="nextPage" id="applyButton"><p>下一頁</p></button>
+        <button class="button" @click="toLastPage" id="applyButton"><p>最後一頁</p></button>
       </div>
-      <p>{{ page }}</p>
     </div>
   </template>
   
@@ -19,7 +24,7 @@
       return {
         items:[],
         page:1,
-        inputPage:0,
+        inputPage:1,
       }
     },
     props: {
@@ -32,6 +37,7 @@
       itemsOnPage(){
         const res_item = [];
         for(let i=this.page*20-20;i<this.page*20;i++){
+          if(this.items[i]==undefined) break;
           res_item.push(this.items[i]);
         }
         if(res_item[0] == undefined) return {};
@@ -41,7 +47,7 @@
     methods:{
       generateItems() {
         const items = [];
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 10000; i++) {
           items.push({
             id: i,
             title: `Item ${i}`
@@ -51,8 +57,31 @@
       },
       applyInput(){
         this.page=this.inputPage;
+        if(this.page<=0)
+        {
+          this.page=1;
+          this.inputPage=this.page;
+        }
+        else if(this.page>Math.ceil(this.items.length/20))
+        {
+          this.page=Math.ceil(this.items.length/20);
+          this.inputPage=this.page;
+        }
       },
-      
+      nextPage(){
+        if(this.page<Math.ceil(this.items.length/20))
+        {
+          this.page+=1;
+          this.inputPage=this.page;
+        }
+      },
+      previousPage(){
+        if(this.page>1)
+        {
+          this.page-=1;
+          this.inputPage=this.page;
+        }
+      },
     },
     mounted() {
       if (this.items.length === 0) {
@@ -64,16 +93,49 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
+  p{
+    margin: 0px;
+  }
   input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
-  appearance: textfield;      /* Chrome, Safari, Edge */
-}
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;      /* Chrome, Safari, Edge */
+    text-align: center;
+
+  }
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .input-box{
+    border: 2px solid rgba(93, 153, 175, 0);
+    width: 40px;
+    border-radius: 4px;
+    color:rgb(93, 153, 175);
+    font-size: medium;
+  }
+  input:focus {
+    border-color: #007bff !important; /* 強制應用藍色邊框顏色 */
+  }
+  .button{
+    border: 2px solid rgba(93, 153, 175, 0);
+    background-color: rgb(213, 225, 230);
+    margin :0px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    color:rgb(93, 153, 175);
+    white-space: nowrap;
+  }
+  .button:hover{
+    background-color: rgb(156, 200, 216);
+    color: white;
+  }
+  .button:active{
+    background-color: rgb(175, 208, 221);
+    transition: background-color 0.2s ease;
+  }
   .switch-page-div{
     display: flex;
+    align-items: center;
   }
   #applyButton{
     height: 30px;
@@ -103,6 +165,10 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 85%;
   }
   .problem-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
     margin: 8px;
     border: 2px solid lightblue;
     border-radius :10px;
