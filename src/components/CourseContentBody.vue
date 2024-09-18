@@ -2,7 +2,17 @@
     <div class="course-content_body">
       <h1>{{Title}}</h1>
       <div class="course-list">
-        <div class="course-item" v-for="item in items" :key="item.id"><p>{{ item.title }}</p></div>
+        <div class="course-item" v-for="item in itemsOnPage" :key="item.id"><p>{{ item.title }}</p></div>
+      </div>
+      <div class="switch-page-div">
+        <button class="button" @click="toFirstPage" id="applyButton"><p>第一頁</p></button>
+        <button class="button" @click="previousPage" id="applyButton"><p>上一頁</p></button>
+        <p style="color:rgb(93, 153, 175);">第</p>
+        <input @change="applyInput" class="input-box" type="number" name="" id="" v-model="inputPage">
+        <p style="color:rgb(93, 153, 175);">頁</p>
+         <!-- <button class="button" style="margin :0px 6px;" @click="applyInput" id="applyButton"><p>前往</p></button> -->
+        <button class="button" @click="nextPage" id="applyButton"><p>下一頁</p></button>
+        <button class="button" @click="toLastPage" id="applyButton"><p>最後一頁</p></button>
       </div>
     </div>
   </template>
@@ -12,24 +22,79 @@
     name: 'CourseContentBody',
     data(){
       return {
-        items: [
-          { id: 1, title: 'Title1'},
-          { id: 2, title: 'Title2'},
-          { id: 3, title: 'Title3'},
-          { id: 4, title: 'Title4'},
-          { id: 5, title: 'Title5'},
-          { id: 6, title: 'Title6'},
-          { id: 7, title: 'Title7'},
-          { id: 8, title: 'Title8'},
-          { id: 9, title: 'Title9'},
-          { id: 10, title: 'Title10'},
-        ]
+        items: [],
+        page:1,
+        inputPage:1,
+        itemPerPage:20,
       }
     },
     props: {
       Title:{
         type:String,
         default:'Title',
+      }
+    },
+    computed:{
+      itemsOnPage(){
+        const res_item = [];
+        for(let i=this.page*this.itemPerPage-this.itemPerPage;i<this.page*this.itemPerPage;i++){
+          if(this.items[i]==undefined) break;
+          res_item.push(this.items[i]);
+        }
+        if(res_item[0] == undefined) return {};
+        return res_item;
+      },
+    },
+    methods:{
+      generateItems() {
+        const items = [];
+        for (let i = 1; i <= 10000; i++) {
+          items.push({
+            id: i,
+            title: `Item ${i}`
+          });
+        }
+        return items;
+      },
+      applyInput(){
+        this.page=this.inputPage;
+        if(this.page<=0)
+        {
+          this.page=1;
+          this.inputPage=this.page;
+        }
+        else if(this.page>Math.ceil(this.items.length/this.itemPerPage))
+        {
+          this.page=Math.ceil(this.items.length/this.itemPerPage);
+          this.inputPage=this.page;
+        }
+      },
+      nextPage(){
+        if(this.page<Math.ceil(this.items.length/this.itemPerPage))
+        {
+          this.page+=1;
+          this.inputPage=this.page;
+        }
+      },
+      previousPage(){
+        if(this.page>1)
+        {
+          this.page-=1;
+          this.inputPage=this.page;
+        }
+      },
+      toFirstPage(){
+        this.inputPage=1;
+        this.applyInput();
+      },
+      toLastPage(){
+        this.inputPage=Math.ceil(this.items.length/this.itemPerPage);
+        this.applyInput();
+      }
+    },
+    mounted() {
+      if (this.items.length === 0) {
+        this.items = this.generateItems();
       }
     }
   }
@@ -69,6 +134,61 @@
     border-radius :10px;
     width: 45%;
     height: 10rem;
+  }
+  .course-content_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  p{
+    margin: 0px;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;      /* Chrome, Safari, Edge */
+    text-align: center;
+
+  }
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .input-box{
+    border: 2px solid rgba(93, 153, 175, 0);
+    width: 40px;
+    border-radius: 4px;
+    color:rgb(93, 153, 175);
+    font-size: medium;
+  }
+  input:focus {
+    border-color: #007bff !important; /* 強制應用藍色邊框顏色 */
+  }
+  .button{
+    border: 2px solid rgba(93, 153, 175, 0);
+    background-color: rgb(213, 225, 230);
+    margin :0px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    color:rgb(93, 153, 175);
+    white-space: nowrap;
+  }
+  .button:hover{
+    background-color: rgb(156, 200, 216);
+    color: white;
+  }
+  .button:active{
+    background-color: rgb(175, 208, 221);
+    transition: background-color 0.2s ease;
+  }
+  .switch-page-div{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  #applyButton{
+    height: 30px;
+    display: flex;
+    align-items: center;
   }
   @media (max-width: 1050px){
     .course-item {

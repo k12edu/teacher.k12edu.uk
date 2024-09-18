@@ -25,6 +25,7 @@
         items:[],
         page:1,
         inputPage:1,
+        itemPerPage:30,
       }
     },
     props: {
@@ -36,7 +37,7 @@
     computed:{
       itemsOnPage(){
         const res_item = [];
-        for(let i=this.page*20-20;i<this.page*20;i++){
+        for(let i=this.page*this.itemPerPage-this.itemPerPage;i<this.page*this.itemPerPage;i++){
           if(this.items[i]==undefined) break;
           res_item.push(this.items[i]);
         }
@@ -62,14 +63,14 @@
           this.page=1;
           this.inputPage=this.page;
         }
-        else if(this.page>Math.ceil(this.items.length/20))
+        else if(this.page>Math.ceil(this.items.length/this.itemPerPage))
         {
-          this.page=Math.ceil(this.items.length/20);
+          this.page=Math.ceil(this.items.length/this.itemPerPage);
           this.inputPage=this.page;
         }
       },
       nextPage(){
-        if(this.page<Math.ceil(this.items.length/20))
+        if(this.page<Math.ceil(this.items.length/this.itemPerPage))
         {
           this.page+=1;
           this.inputPage=this.page;
@@ -87,7 +88,7 @@
         this.applyInput();
       },
       toLastPage(){
-        this.inputPage=Math.ceil(this.items.length/20);
+        this.inputPage=Math.ceil(this.items.length/this.itemPerPage);
         this.applyInput();
       }
     },
@@ -144,6 +145,7 @@
   .switch-page-div{
     display: flex;
     align-items: center;
+    margin-top: 10px;
   }
   #applyButton{
     height: 30px;
