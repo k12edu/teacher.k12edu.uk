@@ -1,19 +1,19 @@
 <template>
     <div id="main-body">
-      <FrequentlyAskedQuestionsBody id="body" :Title="bodyTitle"></FrequentlyAskedQuestionsBody>
+      <AnnouncementListBody id="body" :Title="bodyTitle"></AnnouncementListBody>
     </div>
   </template>
   
   <script>
-  import FrequentlyAskedQuestionsBody from './FrequentlyAskedQuestionsBody.vue';
+  import AnnouncementListBody from './AnnouncementListBody.vue';
   export default {
-    name: 'MainBody5',
+    name: 'MainBody7',
     components:{
-      FrequentlyAskedQuestionsBody,
+      AnnouncementListBody,
     },
     data(){
       return {
-        bodyTitle: '常見問題',
+        bodyTitle: '公告',
       }
     },
     props: {}

@@ -1,7 +1,9 @@
 <template>
-  <header><Header ></Header></header>
-  <RouterView ></RouterView>
-  <footer><Footer></Footer></footer>
+  <div id="main-app">
+    <header><Header ></Header></header>
+    <RouterView ></RouterView>
+    <footer><Footer></Footer></footer>
+  </div>
 </template>
 
 <script>
@@ -34,7 +36,14 @@ export default {
 </script>
 
 <style>
+h1{
+  text-wrap: nowrap;
+}
+#main-app{
+  overflow: hidden;
+}
 #app {
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

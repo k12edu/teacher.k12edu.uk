@@ -1,5 +1,5 @@
 <template>
-    <div class="course-content_body">
+    <div class="announcement-list-body">
       <h1>{{Title}}</h1>
       <div class="switch-page-div">
         <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
@@ -9,8 +9,8 @@
           </option>
         </select>
       </div>
-      <div class="course-list">
-        <div class="course-item" v-for="item in itemsOnPage" :key="item.id"><p>{{ item.title }}</p></div>
+      <div class="announcement-list">
+        <div class="announcement-item" v-for="item in itemsOnPage" :key="item.id"><p>{{ item.title }}</p></div>
       </div>
       <div class="switch-page-div">
         <button class="button" @click="toFirstPage" id="applyButton"><p>第一頁</p></button>
@@ -27,10 +27,10 @@
   
   <script>
   export default {
-    name: 'CourseContentBody',
+    name: 'AnnouncementListBody',
     data(){
       return {
-        items: [],
+        items:[],
         page:1,
         inputPage:1,
         itemPerPage:20,
@@ -40,7 +40,7 @@
           { value: 30, text: '30' },
           { value: 50, text: '50' },
           { value: 100, text: '100' },
-        ],
+        ]
       }
     },
     props: {
@@ -66,7 +66,7 @@
         for (let i = 1; i <= 10000; i++) {
           items.push({
             id: i,
-            title: `Course ${i}`
+            title: `Title ${i}`
           });
         }
         return items;
@@ -117,44 +117,6 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
-  
-  .course-content_body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  h3 {
-    margin: 40px 0 0;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
-  .course-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 80%;
-  }
-  .course-item {
-    margin: 8px;
-    border: 2px solid lightblue;
-    border-radius :10px;
-    width: 45%;
-    height: 10rem;
-  }
-  .course-content_body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   p{
     margin: 0px;
   }
@@ -205,10 +167,36 @@
     display: flex;
     align-items: center;
   }
-  @media (max-width: 1050px){
-    .course-item {
-    width: 100%;
+  .announcement-list-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  h3 {
+    margin: 40px 0 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+  .announcement-list {
+    width: 85%;
+  }
+  .announcement-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    margin: 8px;
+    border: 2px solid lightblue;
+    border-radius :10px;
   }
   </style>
   

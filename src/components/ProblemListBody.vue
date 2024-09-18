@@ -1,6 +1,14 @@
 <template>
     <div class="problem-list-body">
       <h1>{{Title}}</h1>
+      <div class="switch-page-div">
+        <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
+        <select id="select" v-model="itemPerPage" @change="handleChange">
+          <option v-for="option in options" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
+      </div>
       <div class="problem-list">
         <div class="problem-item" v-for="item in itemsOnPage" :key="item.id"><p>{{ item.title }}</p></div>
       </div>
@@ -26,6 +34,13 @@
         page:1,
         inputPage:1,
         itemPerPage:30,
+        options: [
+          { value: 10, text: '10' },
+          { value: 20, text: '20' },
+          { value: 30, text: '30' },
+          { value: 50, text: '50' },
+          { value: 100, text: '100' },
+        ],
       }
     },
     props: {
@@ -51,7 +66,7 @@
         for (let i = 1; i <= 10000; i++) {
           items.push({
             id: i,
-            title: `Item ${i}`
+            title: `Problem ${i}`
           });
         }
         return items;
@@ -128,7 +143,7 @@
   .button{
     border: 2px solid rgba(93, 153, 175, 0);
     background-color: rgb(213, 225, 230);
-    margin :0px 10px;
+    margin :0px 4px;
     border-radius: 4px;
     font-weight: bold;
     color:rgb(93, 153, 175);

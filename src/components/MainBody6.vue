@@ -1,15 +1,15 @@
 <template>
     <div id="main-body">
-      <Body id="body" :Title="bodyTitle"></Body>
+      <ContactUsBody id="body" :Title="bodyTitle"></ContactUsBody>
     </div>
   </template>
   
   <script>
-  import Body from "./Body.vue"
+  import ContactUsBody from './ContactUsBody.vue';
   export default {
     name: 'MainBody6',
     components:{
-      Body,
+      ContactUsBody,
     },
     data(){
       return {
