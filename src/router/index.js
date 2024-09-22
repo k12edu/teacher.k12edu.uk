@@ -6,6 +6,7 @@ import MainPage4 from '../components/MainBody4.vue'
 import MainPage5 from '../components/MainBody5.vue'
 import MainPage6 from '../components/MainBody6.vue'
 import MainPage7 from '../components/MainBody7.vue'
+import MainPage8 from '@/components/MainBody8.vue'
 const routes = [
   {
     path: '/',
@@ -54,6 +55,13 @@ const routes = [
     name: 'MainPage7',
     components: {
       default: MainPage7,
+    }
+  },
+  {
+    path: '/Page8',
+    name: 'MainPage8',
+    components: {
+      default: MainPage8,
     }
   },
   /*{

@@ -7,21 +7,31 @@
         <RouterLink to="/Page5" class="no-style"><li><p>常見問題</p></li></RouterLink>
         <RouterLink to="/Page6" class="no-style"><li><p>聯絡我們</p></li></RouterLink>
       </ul>
-      <LoginButton></LoginButton>
+      <LoginButton v-if="showLoginButton"></LoginButton>
+      <UserProfileButton v-if="!showLoginButton"></UserProfileButton>
     </div>
 </template>
   
   <script>
-import LoginButton from './LoginButton.vue';
+  import LoginButton from './LoginButton.vue';
+  import UserProfileButton from './UserProfileButton.vue';
   export default {
     name: 'MainNav',
     components:{
       LoginButton,
+      UserProfileButton,
     },
     data(){
-      return {}
+      return {
+      }
     },
-    props: {}
+    computed:{
+      showLoginButton(){
+        return this.isLogIn ? false : true;
+      },
+    },
+    props: {},
+    inject:['isLogIn']
   }
   </script>
   
@@ -39,6 +49,8 @@ import LoginButton from './LoginButton.vue';
     margin: 40px 0 0;
   }
   ul {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     list-style-type: none;

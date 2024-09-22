@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import Header from './components/Header.vue';
 import Footer from './components/Footer';
 
@@ -20,16 +21,19 @@ export default {
   data(){
     return {
       userName: "Hank",
+      isLogIn:false,
     }
   },
   provide(){
     return {
       ChangeUserName : this.ChangeUserName,
+      isLogIn : computed(() => this.isLogIn),
     }
   }, 
   methods: {
     ChangeUserName(newUserName){
       this.userName = newUserName;
+      this.isLogIn = true;
     },
   }
 }

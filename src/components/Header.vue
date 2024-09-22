@@ -1,6 +1,6 @@
 <template>
     <div id="header">
-      <RouterLink :to="{name:'MainPage'}"><div><h1>教師題目上傳平台</h1></div></RouterLink>
+      <RouterLink :to="{name:'MainPage'}" style="z-index: 2;"><div><h1>教師題目上傳平台</h1></div></RouterLink>
       <Nav class="Nav"></Nav>
       <ChoiceList id="choice-list"></ChoiceList>
     </div>
