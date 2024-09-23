@@ -2,7 +2,7 @@
     <div class="problemManagement-list-body">
       <h1>{{Title}}</h1>
       <div class="radio-group">
-        <label v-for="option in sujectOptions" :key="option.value" class="radio-option">
+        <label style="user-select: none;" v-for="option in sujectOptions" :key="option.value" class="radio-option">
           <input
           type="radio"
           :value="option.value"
@@ -15,14 +15,15 @@
       </div>
       <div class="switch-page-div">
         <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
-        <select id="select" v-model="itemPerPage" @change="handleChange">
-          <option v-for="option in options" :key="option.value" :value="option.value">
+        <select id="select" v-model="itemPerPage" >
+          <option  v-for="option in options" :key="option.value" :value="option.value">
             {{ option.text }}
           </option>
         </select>
       </div>
       <div class="problemManagement-list">
         <div class="problemManagement-item">
+          <h3>科目</h3>
           <h3>題號</h3>
           <h3>標題</h3>
           <h3>作者</h3>
@@ -31,6 +32,7 @@
           <h3>最後編輯</h3>
         </div>
         <div class="problemManagement-item" v-for="item in itemsOnPage" :key="item.id">
+          <p>{{ item.chineseType }}</p>
           <p>{{ item.id }}</p>
           <p>{{ item.title }}</p>
           <p>{{ item.author }}</p>
@@ -70,11 +72,12 @@
           { value: 100, text: '100' },
         ],
         sujectOptions: [
+          { value: 'all', text: '全部顯示' },
           { value: 'program', text: '程式' },
           { value: 'math', text: '數學' },
           { value: 'natural', text: '自然' },
         ],
-        selectedOption: 'program',
+        selectedOption: 'all',
       }
     },
     props: {
@@ -88,7 +91,7 @@
         const res_item = [];
         for(let i=this.page*this.itemPerPage-this.itemPerPage;i<this.page*this.itemPerPage;i++){
           if(this.itemsWithType[i]==undefined) break;
-          if(this.itemsWithType[i].type==this.selectedOption){
+          if(this.itemsWithType[i].type==this.selectedOption || this.selectedOption=='all'){
             res_item.push(this.itemsWithType[i]);
           }
         }
@@ -101,7 +104,7 @@
         const res_item = [];
         for(let i=0;i<this.items.length;i++){
           if(this.items[i]==undefined) break;
-          if(this.items[i].type==this.selectedOption){
+          if(this.items[i].type==this.selectedOption || this.selectedOption=='all'){
             res_item.push(this.items[i]);
           }
         }
@@ -122,7 +125,7 @@
         for (let i = 1; i <= 10000; i++) {
           const idx=this.getRandomInt(0,3);
           const sujectArray=["program","math","natural"];
-          
+          const ChinesesujectArray=["程式","數學","自然"];
           items.push({
             id: i,
             title: `Title ${i}`,
@@ -131,6 +134,7 @@
             createDate: dateString,
             state:'編輯中',
             type: sujectArray[idx],
+            chineseType: ChinesesujectArray[idx],
           });
         }
         return items;
@@ -259,7 +263,7 @@
   }
   .problemManagement-item {
     display: grid;
-    grid-template-columns: 2fr 8fr 4fr 3fr 4fr 4fr;
+    grid-template-columns: 2fr 2fr 6fr 4fr 3fr 4fr 4fr;
     min-height: 40px;
     border-bottom: 1px solid rgb(175, 175, 175);
     align-items: center;
