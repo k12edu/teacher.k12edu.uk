@@ -69,15 +69,15 @@ const routes = [
   {
     path: '/problem-edit/program/:id(\\d+)',  // :id 參數只接受數字
     name: 'ProgramProblemEdit',
-    component:{
+    components:{
       default: ProblemEditPage,
     },
-    props: true,
+    props: true
   },
   {
     path: '/problem-edit/math/:id(\\d+)',  // :id 參數只接受數字
     name: 'MathProblemEdit',
-    component:{
+    components:{
       default: ProblemEditPage,
     },
     props: true,
@@ -85,19 +85,11 @@ const routes = [
   {
     path: '/problem-edit/natural/:id(\\d+)',  // :id 參數只接受數字
     name: 'NaturalProblemEdit',
-    component:{
+    components:{
       default: ProblemEditPage,
     },
     props: true,
   },
-  /*{
-    path: '/test2',
-    name: 'test2',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('../views/testComp2.vue')
-  }*/
 
 ]
 

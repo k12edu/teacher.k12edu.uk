@@ -34,7 +34,7 @@
         <div class="problemManagement-item" v-for="item in itemsOnPage" :key="item.id">
           <p>{{ item.chineseType }}</p>
           <p>{{ item.id }}</p>
-          <p>{{ item.title }}</p>
+          <p @click="switchToEditPage(item)">{{ item.title }}</p>
           <p>{{ item.author }}</p>
           <p>{{ item.state }}</p>
           <p>{{ item.createDate }}</p>
@@ -174,8 +174,8 @@
         this.inputPage=Math.ceil(this.itemsWithType.length/this.itemPerPage);
         this.applyInput();
       },
-      switchToEditPage(){
-        this.$router.push({ name: 'ProgramProblemEdit', params: { id: 123 } });
+      switchToEditPage(item){
+        this.$router.push({ name: 'ProgramProblemEdit', params: { id: item.id } });
       },
     },
     mounted() {
