@@ -7,6 +7,8 @@ import MainPage5 from '../components/MainBody5.vue'
 import MainPage6 from '../components/MainBody6.vue'
 import MainPage7 from '../components/MainBody7.vue'
 import MainPage8 from '@/components/MainBody8.vue'
+import ProblemEditPage from '@/components/ProblemEditPage.vue'
+
 const routes = [
   {
     path: '/',
@@ -63,6 +65,30 @@ const routes = [
     components: {
       default: MainPage8,
     }
+  },
+  {
+    path: '/problem-edit/program/:id(\\d+)',  // :id 參數只接受數字
+    name: 'ProgramProblemEdit',
+    component:{
+      default: ProblemEditPage,
+    },
+    props: true,
+  },
+  {
+    path: '/problem-edit/math/:id(\\d+)',  // :id 參數只接受數字
+    name: 'MathProblemEdit',
+    component:{
+      default: ProblemEditPage,
+    },
+    props: true,
+  },
+  {
+    path: '/problem-edit/natural/:id(\\d+)',  // :id 參數只接受數字
+    name: 'NaturalProblemEdit',
+    component:{
+      default: ProblemEditPage,
+    },
+    props: true,
   },
   /*{
     path: '/test2',

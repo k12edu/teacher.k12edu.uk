@@ -173,7 +173,10 @@
       toLastPage(){
         this.inputPage=Math.ceil(this.itemsWithType.length/this.itemPerPage);
         this.applyInput();
-      }
+      },
+      switchToEditPage(){
+        this.$router.push({ name: 'ProgramProblemEdit', params: { id: 123 } });
+      },
     },
     mounted() {
       if (this.items.length === 0) {
