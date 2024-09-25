@@ -45,6 +45,8 @@ h1{
 }
 #main-app{
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 #app {
 

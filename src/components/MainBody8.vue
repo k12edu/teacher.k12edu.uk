@@ -30,7 +30,7 @@
   }
   #body {  
     margin: 20px;
-    width: 75%;
+    width: 100%;
     }
   #right-sidebar {
     margin: 20px;
