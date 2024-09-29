@@ -360,6 +360,9 @@
     background-color: rgba(149, 196, 211, 0.7);
     color: white;
   }
+  label{
+    font-weight: bold;
+  }
   @media (max-width: 1050px){
     .problemManagement-list-main{
       width: 100% !important;
@@ -380,6 +383,7 @@
     h3{
       font-size: medium;
     }
+    
   }
   </style>
   
