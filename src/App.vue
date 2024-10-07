@@ -20,7 +20,7 @@ export default {
   },
   data(){
     return {
-      userName: "Hank",
+      userName: "",
       isLogIn:false,
     }
   },

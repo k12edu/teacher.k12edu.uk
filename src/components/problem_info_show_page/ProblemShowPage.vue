@@ -4,60 +4,31 @@
         <div class="edit-div">
           <h3>題目編號: {{ itemId }}</h3>
         </div>
-
         <div class="edit-div">
-          <h3>題目名稱</h3>
-          <div class="edit-item"> 
-            <input class="title-input" type="text" v-model="title">
-          </div>
+          <h3>題目名稱: {{ title }}</h3>
         </div>
         <div class="edit-div">
-          <h3>科目</h3>
-          <div class="edit-item">
-            <label style="user-select: none;" v-for="option in sujectOptions" :key="option.value" class="radio-option">
-            <input
-            type="radio"
-            :value="option.value"
-            v-model="suject"
-            name="options"
-            />
-            {{ option.text }}
-            </label>
-          </div>
+          <h3>科目: {{ showSuject }}</h3>
         </div>
         
         <div class="edit-div">
           <h3>題目敘述</h3>
           <div class="edit-item">
-            <textarea name="" class="problem-describe" v-model="describe"></textarea>
+            <p>{{describe}}</p>
           </div>
         </div>
         
         <div class="edit-div">
-          <h3>題目類型</h3>
-          <div class="edit-item">
-            <label style="user-select: none;" v-for="option in problemTypeOptions" :key="option.value" class="radio-option">
-            <input
-            type="radio"
-            :value="option.value"
-            v-model="problemType"
-            name="problemTypeOptions"
-            />
-            {{ option.text }}
-            </label>
-          </div>
+          <h3>題目類型: {{ showProblemType }}</h3>
         </div>
-        
         <div class="edit-div">
           <div class="edit-item">
             <h3 style="margin-top: 16px;">選項</h3>
-            <button @click="addAnswerOption" style="margin-left: 10px"> <h3 style="margin: 0;">+</h3></button>
           </div>
           
           <div class="edit-item2">
             <div v-for="(item,idx) in optionList" :key="idx" class="option-items">
-             <input type="text" v-model="item.optionName">
-             <button style="margin-left: 10px; width: 30px; height: 30px;" @click="removeAnswerOption(idx)"><h3 style="margin: 0;">-</h3></button>
+             <p>{{ item.optionName }}</p>
             </div>
           </div>
         </div>
@@ -65,24 +36,10 @@
         <div class="edit-div">
           <h3>答案</h3>
           <div class="edit-item2" v-if="problemType=='single'">
-            <label v-for="(item,idx) in optionList" :key="idx" class="option-items">
-            <input 
-              type="radio" 
-              :value="item.optionName+'_'+idx" 
-              v-model="answerForSingle" 
-            />
-            {{ item.optionName }}
-            </label>
+            <p>{{ answerForSingle }}</p>
           </div>
           <div class="edit-item2" v-if="problemType=='multiple'">
-            <label v-for="(item,idx) in optionList" :key="idx" class="option-items">
-            <input 
-              type="checkbox" 
-              :value="item.optionName+'_'+idx" 
-              v-model="answerForMutiple" 
-            />
-            {{ item.optionName }}
-            </label>
+            <p>{{ answerForMutiple }}</p>
           </div>
         </div>
         
@@ -103,16 +60,9 @@
         itemId:-1,
         title:'',
         suject:'none',
-        sujectOptions: [
-          { value: 'program', text: '程式' },
-          { value: 'math', text: '數學' },
-          { value: 'natural', text: '自然' },
-        ],
-        problemTypeOptions:[
-          { value: 'single', text: '單選題' },
-          { value: 'multiple', text: '多選題' },
-        ],
+        showSuject:'none',
         problemType:'single',
+        showProblemType:'單選題',
         describe:'',
         optionList:[],
         answerForSingle:'',
@@ -125,20 +75,30 @@
       },
       removeAnswerOption(idx){
         this.optionList.splice(idx,1);
-        
+      },
+      changeData(){
+        const mapForSuject = new Map([
+        ['program','程式'],
+        ['math','數學'],
+        ['natural','自然'],
+        ]);
+        const mapForProblemType = new Map([
+          ['single','單選題'],
+          ['multiple','多選題'],
+        ])
+        this.showSuject=mapForSuject.get(this.suject);
+        this.showProblemType=mapForProblemType.get(this.problemType);
       }
-
     },
     computed:{
-      
     },
     props: {},
     inject:[],
     mounted(){
-      console.log(this.$route.params);
       this.itemId = this.$route.params.id;
       this.title = this.$route.query.title;
       this.suject = this.$route.query.suject;
+      this.changeData();
     }
   }
   </script>
