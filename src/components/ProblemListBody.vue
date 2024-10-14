@@ -171,8 +171,6 @@
 
           const result = await response.json();
           this.items = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
-          console.log(this.items)
-          console.log('hihi')
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
@@ -205,8 +203,7 @@
         this.applyInput();
       },
       toLastPage(){
-        //暫時沒作用
-        this.inputPage=Math.ceil(this.itemsWithType.length/this.itemPerPage);
+        //暫時沒有功能，之後跟後端請求頁數
         this.applyInput();
       },
       switchToShowPage(item){

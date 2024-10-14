@@ -10,7 +10,7 @@
       </select>
     </div>
     <div class="User-list">
-      <div class="User-item" v-for="item in itemsOnPage" :key="item.id"><p>{{ item.title }}</p></div>
+      <div class="User-item" v-for="item in items" :key="item.id"><p>{{ item.title }}</p></div>
     </div>
     <div class="switch-page-div">
       <button class="button" @click="toFirstPage" id="applyButton"><p>第一頁</p></button>
@@ -50,52 +50,47 @@ export default {
     }
   },
   computed:{
-    itemsOnPage(){
-      const res_item = [];
-      for(let i=this.page*this.itemPerPage-this.itemPerPage;i<this.page*this.itemPerPage;i++){
-        if(this.items[i]==undefined) break;
-        res_item.push(this.items[i]);
-      }
-      if(res_item[0] == undefined) return {};
-      return res_item;
-    },
   },
   methods:{
-    generateItems() {
-      const items = [];
-      for (let i = 1; i <= 10000; i++) {
-        items.push({
-          id: i,
-          title: `User ${i}`
-        });
-      }
-      return items;
-    },
+    async fetchData() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_page: this.page,
+            request_count: this.itemPerPage,
+          }).toString();
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/user-info-list/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.items = result.user_list; // 將獲取的問題列表存儲到 itemsWithType
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
     applyInput(){
       this.page=this.inputPage;
-      if(this.page<=0)
-      {
-        this.page=1;
-        this.inputPage=this.page;
-      }
-      else if(this.page>Math.ceil(this.items.length/this.itemPerPage))
-      {
-        this.page=Math.ceil(this.items.length/this.itemPerPage);
-        this.inputPage=this.page;
-      }
+      this.fetchData();
     },
     nextPage(){
-      if(this.page<Math.ceil(this.items.length/this.itemPerPage))
+      if(this.items.length>0)
       {
-        this.page+=1;
-        this.inputPage=this.page;
+        this.inputPage+=1;
+        applyInput();
       }
     },
     previousPage(){
       if(this.page>1)
       {
-        this.page-=1;
-        this.inputPage=this.page;
+        this.inputPage-=1;
+        applyInput();
       }
     },
     toFirstPage(){
@@ -103,7 +98,8 @@ export default {
       this.applyInput();
     },
     toLastPage(){
-      this.inputPage=Math.ceil(this.items.length/this.itemPerPage);
+      //暫時沒有功能
+
       this.applyInput();
     }
   },
