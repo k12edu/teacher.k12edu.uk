@@ -24,20 +24,20 @@
     </div>
     <div class="problemList-list">
       <div class="problemList-item">
-        <h3>科目</h3>
         <h3>題號</h3>
+        <h3>題型</h3>
         <h3>標題</h3>
         <h3>作者</h3>
         <h3>答題次數</h3>
         <h3>正確次數</h3>
       </div>
       <div class="problemList-item" v-for="item in itemsOnPage" :key="item.id">
-        <p>{{ item.chineseType }}</p>
-        <p>{{ item.id }}</p>
+        <p>{{ item.problem_id }}</p>
+        <p>{{ item.problem_type }}</p>
         <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
         <p>{{ item.author }}</p>
-        <p>{{ item.submitCount }}</p>
-        <p>{{ item.acCount }}</p>
+        <p>{{ item.submit_count }}</p>
+        <p>{{ item.AC_count }}</p>
       </div>
     </div>
     <div class="switch-page-div">
@@ -75,14 +75,14 @@
     </div>
     <div class="problemList-list">
       <div class="problemList-item">
-        <h3>科目</h3>
         <h3>題號</h3>
+        <h3>題型</h3>
         <h3>標題</h3>
         <h3>作者</h3>
       </div>
       <div class="problemList-item" v-for="item in itemsOnPage" :key="item.id">
-        <p>{{ item.chineseType }}</p>
-        <p>{{ item.id }}</p>
+        <p>{{ item.problem_id }}</p>
+        <p>{{ item.problem_type }}</p>
         <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
         <p>{{ item.author }}</p>
       </div>
@@ -119,7 +119,6 @@
           { value: 100, text: '100' },
         ],
         sujectOptions: [
-          { value: 'all', text: '全部顯示' },
           { value: 'program', text: '程式' },
           { value: 'math', text: '數學' },
           { value: 'natural', text: '自然' },
@@ -128,7 +127,7 @@
           'request_page': 1,
           'request_count': 10 
         },
-        selectedOption: 'all',
+        selectedOption: 'program',
         isMobile:false,
       }
     },
@@ -141,7 +140,7 @@
     computed:{
       itemsOnPage(){
         const res_item = [];
-        for(let i=this.page*this.itemPerPage-this.itemPerPage;i<this.page*this.itemPerPage;i++){
+        for(let i=0;this.itemPerPage;i++){
           if(this.itemsWithType[i]==undefined) break;
           if(this.itemsWithType[i].type==this.selectedOption || this.selectedOption=='all'){
             res_item.push(this.itemsWithType[i]);
@@ -171,44 +170,19 @@
           }
 
           const result = await response.json();
-          this.itemsWithType = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
-          console.log(result);
+          this.items = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
+          for(let i = 0;i<this.items.length;i++){
+
+          }
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
       },
       updateItems(){
-        const res_item = [];
-        for(let i=0;i<this.items.length;i++){
-          if(this.items[i]==undefined) break;
-          if(this.items[i].type==this.selectedOption || this.selectedOption=='all'){
-            res_item.push(this.items[i]);
-          }
-        }
-        this.itemsWithType=res_item;
-        this.page=1;
+        this.fetchData();
       },
       getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
-      },
-      generateItems() {
-        const items = [];
-
-        for (let i = 1; i <= 10000; i++) {
-          const idx=this.getRandomInt(0,3);
-          const sujectArray=["program","math","natural"];
-          const ChinesesujectArray=["程式","數學","自然"];
-          items.push({
-            id: i,
-            title: `Title ${i}`,
-            author: `Author ${i}`,
-            submitCount: 0,
-            acCount: 0,
-            type: sujectArray[idx],
-            chineseType: ChinesesujectArray[idx],
-          });
-        }
-        return items;
       },
       applyInput(){
         this.page=this.inputPage;
@@ -253,7 +227,7 @@
           this.$router.push({ name: 'ProgramProblemShow', params: { id: item.id} ,query:{title:item.title,suject:item.type}});
         }
         else if(item.type=='natural'){
-          this.$router.push({ name: 'ProgramProblemShow', params: { id: item.id},query:{title:item.title,suject:item.type} });
+          this.$router.push({ name: 'ProgramProblemShow', params: { id: item.id},query:{title:item.title,suject:item.type}});
         }
       },
       checkScreenSize() {
@@ -262,10 +236,9 @@
       }
     },
     mounted() {
-      this.fetchData();
+      
       if (this.items.length === 0) {
-        this.items = this.generateItems();
-        this.updateItems();
+        this.fetchData();
       }
       this.checkScreenSize();
       window.addEventListener('resize', this.checkScreenSize);
