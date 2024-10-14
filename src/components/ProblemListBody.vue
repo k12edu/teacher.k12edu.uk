@@ -8,7 +8,7 @@
         type="radio"
         :value="option.value"
         v-model="selectedOption"
-        @change="updateItems"
+        @change="fetchData"
         name="options"
       />
       {{ option.text }}
@@ -59,7 +59,7 @@
         type="radio"
         :value="option.value"
         v-model="selectedOption"
-        @change="updateItems"
+        @change="fetchData"
         name="options"
       />
       {{ option.text }}
@@ -185,29 +185,19 @@
       },
       applyInput(){
         this.page=this.inputPage;
-        if(this.page<=0)
-        {
-          this.page=1;
-          this.inputPage=this.page;
-        }
-        else if(this.page>Math.ceil(this.itemsWithType.length/this.itemPerPage))
-        {
-          this.page=Math.ceil(this.itemsWithType.length/this.itemPerPage);
-          this.inputPage=this.page;
-        }
+        this.updateItems();
       },
       nextPage(){
-        if(this.page<Math.ceil(this.itemsWithType.length/this.itemPerPage))
-        {
+        if(this.items.length>0){
           this.page+=1;
-          this.inputPage=this.page;
+          this.updateItems();
         }
       },
       previousPage(){
         if(this.page>1)
         {
           this.page-=1;
-          this.inputPage=this.page;
+          this.updateItems();
         }
       },
       toFirstPage(){
@@ -215,6 +205,7 @@
         this.applyInput();
       },
       toLastPage(){
+        //暫時沒作用
         this.inputPage=Math.ceil(this.itemsWithType.length/this.itemPerPage);
         this.applyInput();
       },
