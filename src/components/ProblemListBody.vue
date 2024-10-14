@@ -189,15 +189,15 @@
       },
       nextPage(){
         if(this.items.length>0){
-          this.page+=1;
-          this.updateItems();
+          this.inputPage+=1;
+          this.applyInput();
         }
       },
       previousPage(){
         if(this.page>1)
         {
-          this.page-=1;
-          this.updateItems();
+          this.inputPage-=1;
+          this.applyInput();
         }
       },
       toFirstPage(){
