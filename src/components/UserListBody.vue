@@ -10,7 +10,7 @@
       </select>
     </div>
     <div class="User-list">
-      <div class="User-item" v-for="item in items" :key="item.id"><p>{{ item.title }}</p></div>
+      <div class="User-item" v-for="item in items" :key="item.id"><p>{{ item.user_name }}</p></div>
     </div>
     <div class="switch-page-div">
       <button class="button" @click="toFirstPage" id="applyButton"><p>第一頁</p></button>
@@ -71,7 +71,6 @@ export default {
 
           const result = await response.json();
           this.items = result.user_list; // 將獲取的問題列表存儲到 itemsWithType
-          console.log(this.items);
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
