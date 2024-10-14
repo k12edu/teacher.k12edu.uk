@@ -171,9 +171,6 @@
 
           const result = await response.json();
           this.items = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
-          for(let i = 0;i<this.items.length;i++){
-
-          }
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
