@@ -157,8 +157,8 @@
             request_page: this.page,
             request_count: this.itemPerPage,
           }).toString();
-
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-problem-info-list/?${queryParams}`, {
+          const request_type = this.selectedOption;
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
