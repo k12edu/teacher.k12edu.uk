@@ -124,6 +124,10 @@
           { value: 'math', text: '數學' },
           { value: 'natural', text: '自然' },
         ],
+        requestBody: {
+          'request_page': 1,
+          'request_count': 10 
+        },
         selectedOption: 'all',
         isMobile:false,
       }
@@ -148,6 +152,31 @@
       },
     },
     methods:{
+      async fetchData() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_page: this.page,
+            request_count: this.itemPerPage,
+          }).toString();
+
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-problem-info-list/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.itemsWithType = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
+          console.log(result);
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
       updateItems(){
         const res_item = [];
         for(let i=0;i<this.items.length;i++){
@@ -233,6 +262,7 @@
       }
     },
     mounted() {
+      this.fetchData();
       if (this.items.length === 0) {
         this.items = this.generateItems();
         this.updateItems();
