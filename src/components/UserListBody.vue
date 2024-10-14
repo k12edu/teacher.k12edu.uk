@@ -98,7 +98,7 @@ export default {
       this.applyInput();
     },
     toLastPage(){
-      //暫時沒有功能
+      //暫時沒有功能，之後跟後端請求頁數
 
       this.applyInput();
     }
