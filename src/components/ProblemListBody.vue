@@ -121,7 +121,7 @@
         sujectOptions: [
           { value: 'program', text: '程式' },
           { value: 'math', text: '數學' },
-          { value: 'natural', text: '自然' },
+          { value: 'science', text: '自然' },
         ],
         requestBody: {
           'request_page': 1,
