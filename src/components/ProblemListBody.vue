@@ -31,7 +31,7 @@
         <h3>答題次數</h3>
         <h3>正確次數</h3>
       </div>
-      <div class="problemList-item" v-for="item in itemsOnPage" :key="item.id">
+      <div class="problemList-item" v-for="item in items" :key="item.id">
         <p>{{ item.problem_id }}</p>
         <p>{{ item.problem_type }}</p>
         <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
@@ -80,7 +80,7 @@
         <h3>標題</h3>
         <h3>作者</h3>
       </div>
-      <div class="problemList-item" v-for="item in itemsOnPage" :key="item.id">
+      <div class="problemList-item" v-for="item in items" :key="item.id">
         <p>{{ item.problem_id }}</p>
         <p>{{ item.problem_type }}</p>
         <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
