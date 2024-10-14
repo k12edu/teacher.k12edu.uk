@@ -71,6 +71,7 @@ export default {
 
           const result = await response.json();
           this.items = result.user_list; // 將獲取的問題列表存儲到 itemsWithType
+          console.log(this.items);
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
