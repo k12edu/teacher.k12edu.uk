@@ -83,14 +83,14 @@ export default {
       if(this.items.length>0)
       {
         this.inputPage+=1;
-        applyInput();
+        this.applyInput();
       }
     },
     previousPage(){
       if(this.page>1)
       {
         this.inputPage-=1;
-        applyInput();
+        this.applyInput();
       }
     },
     toFirstPage(){
