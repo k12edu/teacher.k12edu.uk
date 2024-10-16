@@ -16,7 +16,7 @@
     </div>
     <div class="switch-page-div" v-if="!isMobile">
       <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
-      <select id="select" v-model="itemPerPage" >
+      <select id="select" v-model="itemPerPage" @change="fetchData">
         <option  v-for="option in options" :key="option.value" :value="option.value">
           {{ option.text }}
         </option>
@@ -67,7 +67,7 @@
     </div>
     <div class="switch-page-div">
       <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
-      <select id="select" v-model="itemPerPage" >
+      <select id="select" v-model="itemPerPage" @change="fetchData">
         <option  v-for="option in options" :key="option.value" :value="option.value">
           {{ option.text }}
         </option>
