@@ -50,26 +50,30 @@
       }
     },
     computed:{
-      itemsOnPage(){
-        const res_item = [];
-        for(let i=this.page*this.itemPerPage-this.itemPerPage;i<this.page*this.itemPerPage;i++){
-          if(this.items[i]==undefined) break;
-          res_item.push(this.items[i]);
-        }
-        if(res_item[0] == undefined) return {};
-        return res_item;
-      },
     },
     methods:{
-      generateItems() {
-        const items = [];
-        for (let i = 1; i <= 10000; i++) {
-          items.push({
-            id: i,
-            title: `Title ${i}`
+      async fetchData() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_page: 1,
+            request_count: 5,
+          }).toString();
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }, 
           });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.items = result.announcement_list;
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
         }
-        return items;
       },
       applyInput(){
         this.page=this.inputPage;
@@ -83,12 +87,14 @@
           this.page=Math.ceil(this.items.length/this.itemPerPage);
           this.inputPage=this.page;
         }
+        this.fetchData();
       },
       nextPage(){
-        if(this.page<Math.ceil(this.items.length/this.itemPerPage))
+        if(this.items.length>0)
         {
           this.page+=1;
           this.inputPage=this.page;
+          this.fetchData();
         }
       },
       previousPage(){
@@ -96,6 +102,7 @@
         {
           this.page-=1;
           this.inputPage=this.page;
+          this.fetchData();
         }
       },
       toFirstPage(){
@@ -103,13 +110,13 @@
         this.applyInput();
       },
       toLastPage(){
-        this.inputPage=Math.ceil(this.items.length/this.itemPerPage);
+        this.inputPage=1; //暫時沒功能
         this.applyInput();
       }
     },
     mounted() {
       if (this.items.length === 0) {
-        this.items = this.generateItems();
+        this.fetchData();
       }
     }
   }
