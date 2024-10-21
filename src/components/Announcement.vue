@@ -86,6 +86,7 @@
   .no-style {
     color: inherit;
     text-decoration: none;
+    font-size: large;
   }
   p{
     margin: 10px;
