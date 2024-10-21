@@ -19,31 +19,42 @@
     },
     data(){
       return {
-        items:[
-          {
-            id:1,
-            title:'Title 1',
-          },
-          {
-            id:2,
-            title:'Title 2',
-          },
-          {
-            id:3,
-            title:'Title 3',
-          },
-          {
-            id:4,
-            title:'Title 4',
-          },
-          {
-            id:5,
-            title:'Title 5',
-          },
-        ],
+        items:[],
       }
     },
-    props: {}
+    props: {},
+    methods:{
+      async fetchData() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_page: 1,
+            request_count: 5,
+          }).toString();
+          const request_type = this.selectedOption;
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.items = result.announcement_list;
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
+    },
+    mounted() {
+      
+      if (this.items.length === 0) {
+        this.fetchData();
+      }
+    },
   }
   </script>
   
