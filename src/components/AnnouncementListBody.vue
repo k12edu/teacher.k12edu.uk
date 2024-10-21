@@ -55,8 +55,8 @@
       async fetchData() {
         try {
           const queryParams = new URLSearchParams({
-            request_page: 1,
-            request_count: 5,
+            request_page: this.page,
+            request_count: this.itemPerPage,
           }).toString();
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
             method: 'GET',
