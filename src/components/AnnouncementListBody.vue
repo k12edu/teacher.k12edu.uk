@@ -82,11 +82,6 @@
           this.page=1;
           this.inputPage=this.page;
         }
-        else if(this.page>Math.ceil(this.items.length/this.itemPerPage))
-        {
-          this.page=Math.ceil(this.items.length/this.itemPerPage);
-          this.inputPage=this.page;
-        }
         this.fetchData();
       },
       nextPage(){
