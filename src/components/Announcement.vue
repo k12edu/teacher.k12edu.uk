@@ -3,10 +3,10 @@
       <h1>公告</h1>
       <div id="announcement-list">
         <div class="problem-list">
-          <div class="problem-item" v-for="item in items" :key="item.id"><p>{{ item.title }}</p></div>
+          <div class="problem-item" v-for="item in items" :key="item.id"><h4>{{ item.title }}</h4></div>
         </div>
         <div class="switch-button">
-          <RouterLink to="/Page7" class="no-style"><h3>更多公告</h3></RouterLink>
+          <RouterLink to="/Page7" class="no-style"><p>更多公告</p></RouterLink>
         </div>
       </div>
     </div>
@@ -86,7 +86,6 @@
   .no-style {
     color: inherit;
     text-decoration: none;
-    font-size: large;
   }
   p{
     margin: 10px;
