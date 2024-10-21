@@ -30,7 +30,6 @@
             request_page: 1,
             request_count: 5,
           }).toString();
-          const request_type = this.selectedOption;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
             method: 'GET',
             headers: {
