@@ -85,6 +85,7 @@
         this.fetchData();
       },
       nextPage(){
+        if(this.items == undefined) return;
         if(this.items.length>0)
         {
           this.page+=1;
