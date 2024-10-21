@@ -6,7 +6,7 @@
           <div class="problem-item" v-for="item in items" :key="item.id"><p>{{ item.title }}</p></div>
         </div>
         <div class="switch-button">
-          <RouterLink to="/Page7" class="no-style"><p>更多公告</p></RouterLink>
+          <RouterLink to="/Page7" class="no-style"><h3>更多公告</h3></RouterLink>
         </div>
       </div>
     </div>
