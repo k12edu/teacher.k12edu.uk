@@ -1,6 +1,6 @@
 <template>
     <div class="problem-edit-main">
-      <div class="problem-edit-body" v-if="item">
+      <div class="problem-edit-body">
         <div class="edit-div">
           <h3>標題: {{ item.title }}</h3>
         </div>
