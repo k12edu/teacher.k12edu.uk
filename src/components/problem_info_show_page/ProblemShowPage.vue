@@ -28,7 +28,7 @@
           
           <div class="edit-item2">
             <div v-for="(item,idx) in optionList" :key="idx" class="option-items">
-             <p>{{ item.optionName }}</p>
+             <p>{{ item.question_options }}</p>
             </div>
           </div>
         </div>
@@ -57,13 +57,38 @@
     },
     data(){
       return {
-        item:'',
+        item:{},
         showSuject:'none',
         showProblemType:'單選題',
         optionList:[],
       }
     },
     methods:{
+      async fetchData() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_page: this.page,
+            request_count: this.itemPerPage,
+          }).toString();
+          const request_type = this.suject;
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
+          this.changeData();
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
       changeData(){
         const mapForSuject = new Map([
         ['program','程式'],
@@ -83,9 +108,10 @@
     props: {},
     inject:[],
     mounted(){
-      this.item = this.$route.query.item;
       this.suject = this.$route.query.suject;
-      this.changeData();
+      if (this.items.length === 0) {
+        this.fetchData();
+      }
     }
   }
   </script>
