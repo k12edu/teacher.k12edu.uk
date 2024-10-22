@@ -94,7 +94,7 @@
     margin: 10px;
   }
   .title{
-    padding: 8px;
+    padding: 3px;
     margin: 3px;
     border-radius: 10px;
   }
