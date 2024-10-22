@@ -92,7 +92,7 @@ const routes = [
   },
   {
     path: '/problem-show/problem/:id(\\d+)',  // :id 參數只接受數字
-    name: 'ProgramProblemShow',
+    name: 'ProgramProblemShow' ,
     components:{
       default: ProblemShowPage,
     },
