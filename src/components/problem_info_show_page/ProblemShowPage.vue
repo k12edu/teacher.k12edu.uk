@@ -57,7 +57,7 @@
     },
     data(){
       return {
-        item:{},
+        item:undefined,
         showSuject:'none',
         showProblemType:'單選題',
         optionList:[],
@@ -109,7 +109,7 @@
     inject:[],
     mounted(){
       this.suject = this.$route.query.suject;
-      if (this.items.length === 0) {
+      if (this.items == undefined) {
         this.fetchData();
       }
     }
