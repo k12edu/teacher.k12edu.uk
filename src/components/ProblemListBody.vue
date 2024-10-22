@@ -211,10 +211,10 @@
           this.$router.push({ name: 'ProgramProblemShow', params: { id:item.problem_id} ,query:{suject:this.selectedOption}});
         }
         else if(this.selectedOption=='math'){
-          this.$router.push({ name: 'ProgramProblemShow', params: { id: item.problem_id} ,query:{suject:this.selectedOption}});
+          this.$router.push({ name: 'MathProblemShow', params: { id: item.problem_id} ,query:{suject:this.selectedOption}});
         }
-        else if(this.selectedOption=='natural'){
-          this.$router.push({ name: 'ProgramProblemShow', params: { id: item.problem_id},query:{suject:this.selectedOption}});
+        else if(this.selectedOption=='science'){
+          this.$router.push({ name: 'NaturalProblemEdit', params: { id: item.problem_id},query:{suject:this.selectedOption}});
         }
       },
       checkScreenSize() {
