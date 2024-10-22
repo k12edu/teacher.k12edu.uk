@@ -80,7 +80,6 @@
     props: {},
     inject:[],
     mounted(){
-      this.suject = this.$route.query.suject;
       if (this.items == undefined) {
         this.fetchData();
       }
