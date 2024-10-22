@@ -27,7 +27,7 @@
           </div>
           
           <div class="edit-item2">
-            <div v-for="(item,idx) in optionList" :key="idx" class="option-items">
+            <div class="option-items">
              <p>{{ item.question_options }}</p>
             </div>
           </div>
@@ -35,10 +35,7 @@
         
         <div class="edit-div">
           <h3>答案</h3>
-          <div class="edit-item2" v-if="problemType=='single'">
-            <p>{{ item.answer }}</p>
-          </div>
-          <div class="edit-item2" v-if="problemType=='multiple'">
+          <div class="edit-item2">
             <p>{{ item.answer }}</p>
           </div>
         </div>
@@ -92,7 +89,7 @@
         const mapForSuject = new Map([
         ['program','程式'],
         ['math','數學'],
-        ['natural','自然'],
+        ['science','自然'],
         ]);
         const mapForProblemType = new Map([
           ['single','單選題'],
