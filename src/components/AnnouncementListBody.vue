@@ -10,7 +10,7 @@
         </select>
       </div>
       <div class="announcement-list">
-        <div class="announcement-item" v-for="item in items" :key="item.id"><p @click="switchToPage(item)">{{ item.title }}</p></div>
+        <div class="announcement-item" v-for="item in items" :key="item.id"><p class="title" @click="switchToShowPage(item)">{{ item.title }}</p></div>
       </div>
       <div class="switch-page-div">
         <button class="button" @click="toFirstPage" id="applyButton"><p>第一頁</p></button>
@@ -76,7 +76,7 @@
         }
       },
       switchToShowPage(item){
-          this.$router.push({ name: 'AnnouncementShow', params: { id:item.announcement_id}});
+        this.$router.push({ name: 'AnnouncementShow', params: { id:item.announcement_id}});
       },
       applyInput(){
         this.page=this.inputPage;
@@ -203,6 +203,15 @@
     margin: 8px;
     border: 2px solid lightblue;
     border-radius :10px;
+  }
+  .title{
+    padding: 8px;
+    margin: 3px;
+    border-radius: 10px;
+  }
+  .title:hover{
+    background-color: rgba(149, 196, 211, 0.7);
+    color: white;
   }
   </style>
   
