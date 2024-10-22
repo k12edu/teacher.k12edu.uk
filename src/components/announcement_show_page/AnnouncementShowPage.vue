@@ -1,6 +1,6 @@
 <template>
     <div class="problem-edit-main">
-      <div class="problem-edit-body">
+      <div class="problem-edit-body" v-if="item">
         <div class="edit-div">
           <h3>標題: {{ item.title }}</h3>
         </div>
@@ -51,7 +51,7 @@
           }
 
           const result = await response.json();
-          this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
+          this.item = result.announcement_list; // 將獲取的問題列表存儲到 itemsWithType
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
