@@ -19,7 +19,7 @@
         </div>
         
         <div class="edit-div">
-          <h3>題目類型: {{ item.problem_type }}</h3>
+          <h3>題目類型222: {{ item.problem_type }}</h3>
         </div>
         <div class="edit-div">
           <div class="edit-item">
