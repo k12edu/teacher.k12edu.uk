@@ -9,6 +9,7 @@ import MainPage7 from '../components/MainBody7.vue'
 import MainPage8 from '@/components/MainBody8.vue'
 import ProblemEditPage from '@/components/ProblemEditPage.vue'
 import ProblemShowPage from '@/components/problem_info_show_page/ProblemShowPage.vue'
+import AnnouncementShowPage from '@/components/announcement_show_page/AnnouncementShowPage.vue'
 const routes = [
   {
     path: '/',
@@ -111,6 +112,14 @@ const routes = [
     name: 'NaturalProblemShow',
     components:{
       default: ProblemShowPage,
+    },
+    props: true,
+  },
+  {
+    path: '/announcement-show/:id(\\d+)',  // :id 參數只接受數字
+    name: 'AnnouncementShow',
+    components:{
+      default: AnnouncementShowPage,
     },
     props: true,
   },

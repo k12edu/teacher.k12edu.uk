@@ -2,45 +2,21 @@
     <div class="problem-edit-main">
       <div class="problem-edit-body" v-if="item">
         <div class="edit-div">
-          <h3>題目編號: {{ item.problem_id }}</h3>
+          <h3>標題: {{ item.title }}</h3>
         </div>
         <div class="edit-div">
-          <h3>題目名稱: {{ item.title }}</h3>
+          <h3>發布時間: {{ item.create_time }}</h3>
         </div>
         <div class="edit-div">
-          <h3>科目: {{ showSuject }}</h3>
+          <h3>作者: {{ item.author }}</h3>
         </div>
         
         <div class="edit-div">
-          <h3>題目敘述</h3>
+          <h3>內容</h3>
           <div class="edit-item">
-            <p>{{item.problem_description}}</p>
+            <p>{{item.announcement_description}}</p>
           </div>
         </div>
-        
-        <div class="edit-div">
-          <h3>題目類型: {{ item.problem_type }}</h3>
-        </div>
-        <div class="edit-div">
-          <div class="edit-item">
-            <h3 style="margin-top: 16px;">選項</h3>
-          </div>
-          
-          <div class="edit-item2">
-            <div class="option-items">
-             <p>{{ item.question_options }}</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="edit-div">
-          <h3>答案</h3>
-          <div class="edit-item2">
-            <p>{{ item.answer }}</p>
-          </div>
-        </div>
-        
-        
       </div>
     </div>
 </template>
@@ -67,7 +43,7 @@
             request_id: this.$route.params.id,
           }).toString();
           const request_type = this.suject;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

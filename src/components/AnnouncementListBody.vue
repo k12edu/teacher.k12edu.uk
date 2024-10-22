@@ -10,7 +10,7 @@
         </select>
       </div>
       <div class="announcement-list">
-        <div class="announcement-item" v-for="item in items" :key="item.id"><p>{{ item.title }}</p></div>
+        <div class="announcement-item" v-for="item in items" :key="item.id"><p @click="switchToPage(item)">{{ item.title }}</p></div>
       </div>
       <div class="switch-page-div">
         <button class="button" @click="toFirstPage" id="applyButton"><p>第一頁</p></button>
@@ -74,6 +74,9 @@
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
+      },
+      switchToShowPage(item){
+          this.$router.push({ name: 'AnnouncementShow', params: { id:item.announcement_id}});
       },
       applyInput(){
         this.page=this.inputPage;
