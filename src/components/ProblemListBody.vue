@@ -207,13 +207,13 @@
         this.applyInput();
       },
       switchToShowPage(item){
-        if(item.type=='program'){
+        if(this.selectedOption=='program'){
           this.$router.push({ name: 'ProgramProblemShow', params: { id:item.id} ,query:{title:item.title,suject:item.type}});
         }
-        else if(item.type=='math'){
+        else if(this.selectedOption=='math'){
           this.$router.push({ name: 'ProgramProblemShow', params: { id: item.id} ,query:{title:item.title,suject:item.type}});
         }
-        else if(item.type=='natural'){
+        else if(this.selectedOption=='natural'){
           this.$router.push({ name: 'ProgramProblemShow', params: { id: item.id},query:{title:item.title,suject:item.type}});
         }
       },
