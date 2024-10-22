@@ -67,8 +67,7 @@
       async fetchData() {
         try {
           const queryParams = new URLSearchParams({
-            request_page: this.page,
-            request_count: this.itemPerPage,
+            request_id: this.$route.params.id,
           }).toString();
           const request_type = this.suject;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
