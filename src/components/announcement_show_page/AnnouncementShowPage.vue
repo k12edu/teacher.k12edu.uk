@@ -39,7 +39,6 @@
           const queryParams = new URLSearchParams({
             request_id: this.$route.params.id,
           }).toString();
-          const request_type = this.suject;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
             method: 'GET',
             headers: {
