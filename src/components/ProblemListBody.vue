@@ -208,13 +208,13 @@
       },
       switchToShowPage(item){
         if(this.selectedOption=='program'){
-          this.$router.push({ name: 'ProgramProblemShow', params: { id:item.problem_id} ,query:{title:item.title,suject:item.type}});
+          this.$router.push({ name: 'ProgramProblemShow', params: { id:item.problem_id} ,query:{item:item,suject:item.type}});
         }
         else if(this.selectedOption=='math'){
-          this.$router.push({ name: 'ProgramProblemShow', params: { id: item.problem_id} ,query:{title:item.title,suject:item.type}});
+          this.$router.push({ name: 'ProgramProblemShow', params: { id: item.problem_id} ,query:{item:item,suject:item.type}});
         }
         else if(this.selectedOption=='natural'){
-          this.$router.push({ name: 'ProgramProblemShow', params: { id: item.problem_id},query:{title:item.title,suject:item.type}});
+          this.$router.push({ name: 'ProgramProblemShow', params: { id: item.problem_id},query:{item:item,suject:item.type}});
         }
       },
       checkScreenSize() {

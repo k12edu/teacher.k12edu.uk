@@ -2,10 +2,10 @@
     <div class="problem-edit-main">
       <div class="problem-edit-body">
         <div class="edit-div">
-          <h3>題目編號: {{ itemId }}</h3>
+          <h3>題目編號: {{ item.problem_id }}</h3>
         </div>
         <div class="edit-div">
-          <h3>題目名稱: {{ title }}</h3>
+          <h3>題目名稱: {{ item.title }}</h3>
         </div>
         <div class="edit-div">
           <h3>科目: {{ showSuject }}</h3>
@@ -14,7 +14,7 @@
         <div class="edit-div">
           <h3>題目敘述</h3>
           <div class="edit-item">
-            <p>{{describe}}</p>
+            <p>{{item.problem_description}}</p>
           </div>
         </div>
         
@@ -36,10 +36,10 @@
         <div class="edit-div">
           <h3>答案</h3>
           <div class="edit-item2" v-if="problemType=='single'">
-            <p>{{ answerForSingle }}</p>
+            <p>{{ item.answer }}</p>
           </div>
           <div class="edit-item2" v-if="problemType=='multiple'">
-            <p>{{ answerForMutiple }}</p>
+            <p>{{ item.answer }}</p>
           </div>
         </div>
         
@@ -57,25 +57,13 @@
     },
     data(){
       return {
-        itemId:-1,
-        title:'',
-        suject:'none',
+        item:'',
         showSuject:'none',
-        problemType:'single',
         showProblemType:'單選題',
-        describe:'',
         optionList:[],
-        answerForSingle:'',
-        answerForMutiple:[],
       }
     },
     methods:{
-      addAnswerOption(){
-        this.optionList.push({optionName:'新選項 '+String(this.optionList.length+1)});
-      },
-      removeAnswerOption(idx){
-        this.optionList.splice(idx,1);
-      },
       changeData(){
         const mapForSuject = new Map([
         ['program','程式'],
@@ -87,7 +75,7 @@
           ['multiple','多選題'],
         ])
         this.showSuject=mapForSuject.get(this.suject);
-        this.showProblemType=mapForProblemType.get(this.problemType);
+        this.showProblemType=mapForProblemType.get(this.item.problem_type);
       }
     },
     computed:{
@@ -95,8 +83,7 @@
     props: {},
     inject:[],
     mounted(){
-      this.itemId = this.$route.params.id;
-      this.title = this.$route.query.title;
+      this.item = this.$route.query.item;
       this.suject = this.$route.query.suject;
       this.changeData();
     }
