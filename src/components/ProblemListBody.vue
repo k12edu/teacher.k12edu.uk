@@ -214,7 +214,7 @@
           this.$router.push({ name: 'MathProblemShow', params: { id: item.problem_id} ,query:{suject:this.selectedOption}});
         }
         else if(this.selectedOption=='science'){
-          this.$router.push({ name: 'NaturalProblemEdit', params: { id: item.problem_id},query:{suject:this.selectedOption}});
+          this.$router.push({ name: 'NaturalProblemShow', params: { id: item.problem_id},query:{suject:this.selectedOption}});
         }
       },
       checkScreenSize() {
