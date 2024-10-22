@@ -31,9 +31,6 @@
     data(){
       return {
         item:undefined,
-        showSuject:'none',
-        showProblemType:'單選題',
-        optionList:[],
       }
     },
     methods:{
@@ -56,24 +53,10 @@
 
           const result = await response.json();
           this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
-          this.changeData();
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
       },
-      changeData(){
-        const mapForSuject = new Map([
-        ['program','程式'],
-        ['math','數學'],
-        ['science','自然'],
-        ]);
-        const mapForProblemType = new Map([
-          ['single','單選題'],
-          ['multiple','多選題'],
-        ])
-        this.showSuject=mapForSuject.get(this.suject);
-        this.showProblemType=mapForProblemType.get(this.item.problem_type);
-      }
     },
     computed:{
     },
