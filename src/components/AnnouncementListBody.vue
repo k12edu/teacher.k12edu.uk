@@ -205,7 +205,7 @@
     border-radius :10px;
   }
   .title{
-    padding: 8px;
+    padding: 2px;
     margin: 3px;
     border-radius: 10px;
   }
