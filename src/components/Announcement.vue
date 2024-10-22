@@ -3,7 +3,7 @@
       <h1>公告</h1>
       <div id="announcement-list">
         <div class="problem-list">
-          <div class="problem-item" v-for="item in items" :key="item.id"><h4>{{ item.title }}</h4></div>
+          <div class="problem-item title" @click="switchToShowPage(item)" v-for="item in items" :key="item.id"><h4>{{ item.title }}</h4></div>
         </div>
         <div class="switch-button">
           <RouterLink to="/Page7" class="no-style"><p>更多公告</p></RouterLink>
@@ -24,6 +24,9 @@
     },
     props: {},
     methods:{
+      switchToShowPage(item){
+        this.$router.push({ name: 'AnnouncementShow', params: { id:item.announcement_id}});
+      },
       async fetchData() {
         try {
           const queryParams = new URLSearchParams({
@@ -89,5 +92,14 @@
   }
   p{
     margin: 10px;
+  }
+  .title{
+    padding: 8px;
+    margin: 3px;
+    border-radius: 10px;
+  }
+  .title:hover{
+    background-color: rgba(149, 196, 211, 0.7);
+    color: white;
   }
   </style>
