@@ -43,9 +43,9 @@
         <p>{{ item.problem_id }}</p>
         <p>{{ item.problem_type }}</p>
         <p class="title" @click="switchToShowPage(item)">{{ item.problem_id }}</p>
-        <p>{{ item.contributor_id }}</p>
-        <p>{{ item.submission_count }}</p>
-        <p>{{ item.correct_count }}</p>
+        <p>{{ item.author }}</p>
+        <p>{{ item.submit_count }}</p>
+        <p>{{ item.AC_count }}</p>
       </div>
     </div>
     <div class="switch-page-div">
