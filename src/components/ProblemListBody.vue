@@ -38,9 +38,10 @@
         <p v-if="selectedOption!='program'">{{ item.contributor_id }}</p>
         <p v-if="selectedOption!='program'">{{ item.submission_count }}</p>
         <p v-if="selectedOption!='program'">{{ item.correct_count }}</p>
-        <p v-if="selectedOption=='program'">{{ item.title }}</p>
+
+        <p v-if="selectedOption=='program'">{{ item.problem_id }}</p>
         <p v-if="selectedOption=='program'">{{ item.problem_type }}</p>
-        <p v-if="selectedOption=='program'" class="title" @click="switchToShowPage(item)">{{ item.problem_id }}</p>
+        <p v-if="selectedOption=='program'" class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
         <p v-if="selectedOption=='program'">{{ item.author }}</p>
         <p v-if="selectedOption=='program'">{{ item.submit_count }}</p>
         <p v-if="selectedOption=='program'">{{ item.AC_count }}</p>
