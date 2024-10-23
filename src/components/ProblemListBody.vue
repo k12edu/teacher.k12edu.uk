@@ -31,7 +31,15 @@
         <h3>答題次數</h3>
         <h3>正確次數</h3>
       </div>
-      <div class="problemList-item" v-for="item in items" :key="item.id">
+      <div class="problemList-item" v-for="item in items" :key="item.id" v-if="selectedOption!='program'">
+        <p>{{ item.problem_id }}</p>
+        <p>{{ item.problem_type }}</p>
+        <p class="title" @click="switchToShowPage(item)">{{ item.problem_id }}</p>
+        <p>{{ item.contributor_id }}</p>
+        <p>{{ item.submission_count }}</p>
+        <p>{{ item.correct_count }}</p>
+      </div>
+      <div class="problemList-item" v-for="item in items" :key="item.id" v-if="selectedOption=='program'">
         <p>{{ item.problem_id }}</p>
         <p>{{ item.problem_type }}</p>
         <p class="title" @click="switchToShowPage(item)">{{ item.problem_id }}</p>
