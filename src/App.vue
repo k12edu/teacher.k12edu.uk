@@ -1,5 +1,6 @@
 <template>
   <div id="main-app">
+    {{ access_token }}
     <header><Header ></Header></header>
     <RouterView style="min-height: 100vh;"></RouterView>
     <footer><Footer></Footer></footer>
