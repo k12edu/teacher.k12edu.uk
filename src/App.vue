@@ -40,7 +40,7 @@ export default {
       this.isLogIn = true;
     },
     googleLogin() {
-      test_msg="try to ligin";
+      this.test_msg="try to ligin";
       const client = google.accounts.oauth2.initTokenClient({
         client_id: '63473080805-na5r3r5d4m3ibnk1f7kvjgp7n1grnaoe.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
         scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
