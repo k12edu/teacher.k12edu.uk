@@ -7,6 +7,7 @@
 </template>
 
 <script>
+/* global google */
 import { computed } from 'vue';
 import Header from './components/Header.vue';
 import Footer from './components/Footer';
