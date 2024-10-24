@@ -25,6 +25,7 @@ export default {
       test_msg: "hello",
       userName: "",
       isLogIn:false,
+      access_token:"",
     }
   },
   provide(){
@@ -32,6 +33,7 @@ export default {
       ChangeUserName : this.ChangeUserName,
       isLogIn : computed(() => this.isLogIn),
       googleLogin : this.googleLogin,
+      access_token: this.access_token,
     }
   }, 
   methods: {

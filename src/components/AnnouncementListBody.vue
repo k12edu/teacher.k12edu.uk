@@ -62,6 +62,7 @@
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.access_token}`
             }, 
           });
 
@@ -117,7 +118,8 @@
       if (this.items.length === 0) {
         this.fetchData();
       }
-    }
+    },
+    inject:['access_token'],
   }
   </script>
   
