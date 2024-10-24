@@ -67,10 +67,12 @@
             request_id: this.$route.params.id,
           }).toString();
           const request_type = this.suject;
+          const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
             }, 
           });
 
@@ -102,7 +104,7 @@
     computed:{
     },
     props: {},
-    inject:[],
+    inject:['access_token'],
     mounted(){
       this.suject = this.$route.query.suject;
       if (this.items == undefined) {

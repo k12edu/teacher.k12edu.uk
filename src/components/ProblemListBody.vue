@@ -165,10 +165,12 @@
             request_count: this.itemPerPage,
           }).toString();
           const request_type = this.selectedOption;
+          const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
             }, 
           });
 
@@ -229,6 +231,7 @@
         this.isMobile = window.innerWidth <= 1050;
       }
     },
+    inject:['access_token'],
     mounted() {
       
       if (this.items.length === 0) {
