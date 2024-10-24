@@ -55,7 +55,6 @@ export default {
         scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
         callback: (response) => {
           if (response.access_token) {
-            this.test_msg=response.access_token;
             // 將 access_token 傳送到 Django 後端進行驗證
             this.sendAccessTokenToBackend(response.access_token);
           } else {
@@ -70,11 +69,12 @@ export default {
 
     sendAccessTokenToBackend(accessToken) {
       fetch('http://127.0.0.1:60000/accounts/api/google-login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ access_token: accessToken }),
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`, // 替換為你的 access token
+          },
+          body: JSON.stringify({ access_token: accessToken }),
       })
         .then(response => response.json())
         .then(data => {
