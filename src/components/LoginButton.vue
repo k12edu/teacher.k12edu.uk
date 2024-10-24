@@ -3,8 +3,8 @@
     <RegisterLightBox :style="LightBox2DisplayState" @ChangeLightBox2Display="ChangeLightBox2Display()"></RegisterLightBox>
     <div class="login-area">
       <ul>
-        <li id="login-button" @click="ChangeLightBoxDisplay"><p>登入</p></li>
-        <li id="register-button" @click="ChangeLightBox2Display"><p>註冊</p></li>    
+        <li id="login-button" @click="ChangeLightBoxDisplay();"><p>登入</p></li>
+        <li id="register-button" @click="ChangeLightBox2Display(); "><p>註冊</p></li>    
       </ul>
     </div>
   </template>
@@ -45,7 +45,8 @@
       ChangeLightBox2Display(){
         this.lightBox2Display=!this.lightBox2Display;
       },
-    }
+    },
+    inject:['googleLogin'],
   }
   </script>
   

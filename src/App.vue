@@ -28,12 +28,52 @@ export default {
     return {
       ChangeUserName : this.ChangeUserName,
       isLogIn : computed(() => this.isLogIn),
+      googleLogin : this.googleLogin,
     }
   }, 
   methods: {
     ChangeUserName(newUserName){
       this.userName = newUserName;
       this.isLogIn = true;
+    },
+    googleLogin() {
+      const client = google.accounts.oauth2.initTokenClient({
+        client_id: '63473080805-na5r3r5d4m3ibnk1f7kvjgp7n1grnaoe.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
+        scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
+        callback: (response) => {
+          if (response.access_token) {
+            // 將 access_token 傳送到 Django 後端進行驗證
+            this.sendAccessTokenToBackend(response.access_token);
+          } else {
+            console.error('Failed to obtain access token');
+          }
+        }
+      });
+
+      // 開始 Google 登入流程
+      client.requestAccessToken();
+    },
+
+    sendAccessTokenToBackend(accessToken) {
+      fetch('\http://127.0.0.1:60000/accounts/api/google-login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ access_token: accessToken }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          // 處理 Django 回傳的 JWT
+          if (data.access) {
+            localStorage.setItem('jwt', data.access);
+            localStorage.setItem('refresh', data.refresh);
+            console.log('JWT token received and stored:', data);
+          } else {
+            console.error('JWT not received:', data);
+          }
+        })
+        .catch(error => console.error('Error sending access token to backend:', error));
     },
   }
 }
