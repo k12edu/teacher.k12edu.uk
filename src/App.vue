@@ -75,6 +75,13 @@ export default {
         })
         .catch(error => console.error('Error sending access token to backend:', error));
     },
+  },
+  mounted(){
+    const script = document.createElement('script');
+    script.src = 'https://apis.google.com/js/platform.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
   }
 }
 </script>
