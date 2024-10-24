@@ -11,7 +11,7 @@
             <img :src="require(`@/assets/${eyeIconPath}`)" alt="" @click="ChangePasswordDisplay()" id="eye-icon">
           </div>
         </div>
-        <button id="log-in-button" @click="UpdateUserName"><h2>登入</h2></button>
+        <button id="log-in-button" @click="UpdateUserName();googleLogin();"><h2>登入</h2></button>
       </div>
     </div>
   </template>
@@ -45,7 +45,7 @@
         this.ChangeUserName(this.userName);
       }
     },
-    inject:['ChangeUserName'],
+    inject:['ChangeUserName','googleLogin'],
   }
   </script>
   

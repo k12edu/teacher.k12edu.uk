@@ -46,7 +46,7 @@
         this.lightBox2Display=!this.lightBox2Display;
       },
     },
-    inject:['googleLogin'],
+    
   }
   </script>
   
