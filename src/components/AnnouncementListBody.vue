@@ -1,6 +1,5 @@
 <template>
     <div class="announcement-list-body">
-      <h1>{{access_token}}</h1>
       <h1>{{Title}}</h1>
       <div class="switch-page-div">
         <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
@@ -59,6 +58,7 @@
             request_page: this.page,
             request_count: this.itemPerPage,
           }).toString();
+          console.log(`Bearer ${this.access_token}`);
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
             method: 'GET',
             headers: {
