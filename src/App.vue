@@ -51,7 +51,7 @@ export default {
       this.test_msg="try to ligin";
       const client = google.accounts.oauth2.initTokenClient({
         client_id: '63473080805-na5r3r5d4m3ibnk1f7kvjgp7n1grnaoe.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
-        redirect_uri: 'http://localhost:8080/',
+        redirect_uri: 'http://127.0.0.1:8080/',
         scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
         callback: (response) => {
           if (response.access_token) {
