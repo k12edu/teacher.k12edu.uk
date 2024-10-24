@@ -1,5 +1,6 @@
 <template>
     <div class="announcement-list-body">
+      <h1>{{access_token}}</h1>
       <h1>{{Title}}</h1>
       <div class="switch-page-div">
         <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
