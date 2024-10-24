@@ -1,6 +1,5 @@
 <template>
   <div id="main-app">
-    {{ test_msg }}
     <header><Header ></Header></header>
     <RouterView style="min-height: 100vh;"></RouterView>
     <footer><Footer></Footer></footer>
@@ -22,7 +21,6 @@ export default {
   },
   data(){
     return {
-      test_msg: "hello",
       userName: "",
       isLogIn:false,
       access_token:"",
@@ -50,14 +48,12 @@ export default {
     },
     googleLogin() {
       this.loadGoogleAPI();
-      this.test_msg="try to ligin";
       const client = google.accounts.oauth2.initTokenClient({
         client_id: '63473080805-na5r3r5d4m3ibnk1f7kvjgp7n1grnaoe.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
         redirect_uri: 'http://localhost:8080/',
         scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
         callback: (response) => {
           if (response.access_token) {
-            this.test_msg=response.access_token;
             // 將 access_token 傳送到 Django 後端進行驗證
             this.sendAccessTokenToBackend(response.access_token);
           } else {
@@ -82,7 +78,7 @@ export default {
         .then(data => {
           // 處理 Django 回傳的 JWT
           if (data.access) {
-            this.test_msg=data.access;
+            this.access_token=data.access;
             localStorage.setItem('jwt', data.access);
             localStorage.setItem('refresh', data.refresh);
             console.log('JWT token received and stored:', data);
