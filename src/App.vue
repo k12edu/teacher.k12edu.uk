@@ -46,7 +46,6 @@ export default {
     ChangeUserName(newUserName){
       this.userName = newUserName;
       this.isLogIn = true;
-      window.location.reload();
     },
     loadGoogleAPI() {
       window.google = window.google || {};
@@ -87,7 +86,7 @@ export default {
         .then(data => {
           // 處理 Django 回傳的 JWT
           if (data.access) {
-            this.$router.push({ name: 'MainPage' });
+            this.$router.replace({ path: this.$route.path });
             this.ChangeUserName('已登入帳號');
             this.access_token=data.access;
             localStorage.setItem('jwt', data.access);
