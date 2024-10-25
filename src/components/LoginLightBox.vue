@@ -74,7 +74,7 @@
     background-color: rgba(255, 255, 255, 0);
     border-radius: 10px;
     border: 2px solid rgb(93, 153, 175);
-    margin-top: 40px;
+    margin-top: 10px;
     color: rgb(93, 153, 175);
     cursor: pointer;
     transition: background-color 0.3s ease;
