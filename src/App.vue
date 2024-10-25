@@ -28,13 +28,20 @@ export default {
   },
   provide(){
     return {
-      ChangeUserName : this.ChangeUserName,
       isLogIn : computed(() => this.isLogIn),
       googleLogin : this.googleLogin,
       access_token:computed(() => this.access_token),
+      logout: this.logout,
     }
   }, 
   methods: {
+    logout(){
+      if(this.isLogIn==false) return;
+      localStorage.removeItem('jwt');
+      localStorage.removeItem('refresh');
+      this.access_token="";
+      isLogIn=false;
+    },
     ChangeUserName(newUserName){
       this.userName = newUserName;
       this.isLogIn = true;
@@ -78,6 +85,7 @@ export default {
         .then(data => {
           // 處理 Django 回傳的 JWT
           if (data.access) {
+            ChangeUserName('已登入帳號');
             this.access_token=data.access;
             localStorage.setItem('jwt', data.access);
             localStorage.setItem('refresh', data.refresh);

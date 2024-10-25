@@ -1,13 +1,14 @@
 <template>
   <div id="drop-down-list">
     <ul>
+      <li v-if="isLogIn"><p>個人資料</p></li>
       <RouterLink to="/Page2" class="no-style" @click="ChangeDropListDisplay"><li><p>題目列表</p></li></RouterLink>
       <RouterLink to="/Page3" class="no-style" @click="ChangeDropListDisplay"><li><p>課程內容</p></li></RouterLink>
       <RouterLink to="/Page4" class="no-style" @click="ChangeDropListDisplay"><li><p>使用者列表</p></li></RouterLink>
       <RouterLink to="/Page5" class="no-style" @click="ChangeDropListDisplay"><li><p>常見問題</p></li></RouterLink>
       <RouterLink to="/Page6" class="no-style" @click="ChangeDropListDisplay"><li><p>聯絡我們</p></li></RouterLink>
       <RouterLink to="/Page8" class="no-style" @click="ChangeDropListDisplay" v-if="isLogIn"><li><p>題目管理</p></li></RouterLink>
-      <li v-if="isLogIn"><p>登出</p></li>
+      <li v-if="isLogIn" @click="logout"><p>登出</p></li>
       <LoginButton v-if="!isLogIn"></LoginButton>
     </ul>
     <div class="close-list-div" @click="ChangeDropListDisplay"></div>
@@ -30,7 +31,7 @@ export default {
       this.$emit("ChangeDropListDisplay")
     }
   },
-  inject:['isLogIn']
+  inject:['isLogIn','logout']
 }
 </script>
 

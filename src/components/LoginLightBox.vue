@@ -2,16 +2,7 @@
     <div id="login-light-box" @click.self="$emit('ChangeLightBoxDisplay')">
       <div id="login-lightbox-content">
         <h1 style="margin-bottom: 15px; margin-top: 25px;">登入帳號</h1>
-        <div class="input-content">
-          <input placeholder="帳號" v-model="userName">
-        </div>
-        <div class="input-content">
-          <input :type="passwordType()" placeholder="密碼" v-model="userPassword">
-          <div id="eye-icon-div">
-            <img :src="require(`@/assets/${eyeIconPath}`)" alt="" @click="ChangePasswordDisplay()" id="eye-icon">
-          </div>
-        </div>
-        <button id="log-in-button" @click="UpdateUserName();googleLogin();"><h2>登入</h2></button>
+        <button id="log-in-button" @click="googleLogin();"><h2>Google登入</h2></button>
       </div>
     </div>
   </template>
@@ -34,18 +25,8 @@
       
     },
     methods: {
-      ChangePasswordDisplay(){
-        this.passwordDisplay=!this.passwordDisplay;
-        this.eyeIconPath = this.passwordDisplay ? 'eye1.png' :'eye2.png';
-      },
-      passwordType(){
-        return this.passwordDisplay ? 'text' : 'password';
-      },
-      UpdateUserName(){
-        this.ChangeUserName(this.userName);
-      }
     },
-    inject:['ChangeUserName','googleLogin'],
+    inject:['googleLogin'],
   }
   </script>
   
