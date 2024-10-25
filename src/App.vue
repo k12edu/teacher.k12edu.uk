@@ -40,7 +40,7 @@ export default {
       localStorage.removeItem('jwt');
       localStorage.removeItem('refresh');
       this.access_token="";
-      isLogIn=false;
+      this.isLogIn=false;
     },
     ChangeUserName(newUserName){
       this.userName = newUserName;
@@ -85,7 +85,7 @@ export default {
         .then(data => {
           // 處理 Django 回傳的 JWT
           if (data.access) {
-            ChangeUserName('已登入帳號');
+            this.ChangeUserName('已登入帳號');
             this.access_token=data.access;
             localStorage.setItem('jwt', data.access);
             localStorage.setItem('refresh', data.refresh);
