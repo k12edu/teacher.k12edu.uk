@@ -2,9 +2,9 @@
     <LoginLightBox :style="LightBoxDisplayState" @ChangeLightBoxDisplay="ChangeLightBoxDisplay()"></LoginLightBox>
     <RegisterLightBox :style="LightBox2DisplayState" @ChangeLightBox2Display="ChangeLightBox2Display()"></RegisterLightBox>
     <div class="login-area">
+      <img src="@/assets/google_icon.png" alt="google_icon">
       <ul>
-        <li id="login-button" @click="ChangeLightBoxDisplay();"><p>登入</p></li>
-        <li id="register-button" @click="ChangeLightBox2Display(); "><p>註冊</p></li>    
+        <li id="login-button" @click="ChangeLightBoxDisplay();"><p>登入</p></li>   
       </ul>
     </div>
   </template>
@@ -83,7 +83,6 @@
   #login-button {
     color: white;
     background-color: rgb(126, 191, 214);
-    left: 13px;
     z-index: 1;
     border-radius :20000px;
   }

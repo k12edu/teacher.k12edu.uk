@@ -41,6 +41,7 @@ export default {
       localStorage.removeItem('refresh');
       this.access_token="";
       this.isLogIn=false;
+      this.$router.push({ name: 'MainPage' });
     },
     ChangeUserName(newUserName){
       this.userName = newUserName;
