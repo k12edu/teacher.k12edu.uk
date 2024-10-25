@@ -68,8 +68,8 @@
     height:1.5rem;
   }
   #log-in-button {
-    width: 30%;
-    height: 36px;
+    width: 70%;
+    height: 42px;
     background-color: rgba(255, 255, 255, 0);
     border-radius: 10px;
     border: 2px solid rgb(93, 153, 175);
