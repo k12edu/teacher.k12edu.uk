@@ -2,6 +2,7 @@
     <div id="login-light-box" @click.self="$emit('ChangeLightBoxDisplay')">
       <div id="login-lightbox-content">
         <h1 style="margin-bottom: 15px; margin-top: 25px;">登入帳號</h1>
+        <img id="icon" src="@/assets/google_icon.webp" alt="google_icon">
         <button id="log-in-button" @click="googleLogin();"><h2>Google登入</h2></button>
       </div>
     </div>
@@ -83,6 +84,9 @@
   }
   #log-in-button:active {
     background-color: rgba(0, 0, 0, 0.15);
+  }
+  #icon{
+    width: 20%;
   }
   .input-content {
     position: relative;

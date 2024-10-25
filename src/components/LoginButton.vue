@@ -2,7 +2,6 @@
     <LoginLightBox :style="LightBoxDisplayState" @ChangeLightBoxDisplay="ChangeLightBoxDisplay()"></LoginLightBox>
     <RegisterLightBox :style="LightBox2DisplayState" @ChangeLightBox2Display="ChangeLightBox2Display()"></RegisterLightBox>
     <div class="login-area">
-      <img src="@/assets/google_icon.webp" alt="google_icon">
       <ul>
         <li id="login-button" @click="ChangeLightBoxDisplay();"><p>登入</p></li>   
       </ul>
