@@ -42,10 +42,12 @@ export default {
       this.access_token="";
       this.isLogIn=false;
       this.$router.push({ name: 'MainPage' });
+      window.location.reload(); 
     },
     ChangeUserName(newUserName){
       this.userName = newUserName;
       this.isLogIn = true;
+      window.location.reload(); 
     },
     loadGoogleAPI() {
       window.google = window.google || {};
@@ -86,7 +88,7 @@ export default {
         .then(data => {
           // 處理 Django 回傳的 JWT
           if (data.access) {
-            this.$router.replace({ path: this.$route.path });
+            this.$router.push({ name: 'MainPage' });
             this.ChangeUserName('已登入帳號');
             this.access_token=data.access;
             localStorage.setItem('jwt', data.access);
@@ -100,6 +102,8 @@ export default {
     },
   },
   mounted(){
+    this.access_token = localStorage.getItem('jwt');
+    if(this.access_token == undefined) this.access_token="";
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/platform.js';
     script.async = true;
