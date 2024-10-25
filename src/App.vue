@@ -86,6 +86,7 @@ export default {
         .then(data => {
           // 處理 Django 回傳的 JWT
           if (data.access) {
+            this.$router.push({ name: 'MainPage' });
             this.ChangeUserName('已登入帳號');
             this.access_token=data.access;
             localStorage.setItem('jwt', data.access);
