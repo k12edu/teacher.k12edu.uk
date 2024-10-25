@@ -1,7 +1,7 @@
 <template>
   <div id="drop-down-list">
     <ul>
-      <li v-if="isLogIn"><p>個人資料</p></li>
+      <RouterLink to="/Page9" class="no-style" @click="ChangeDropListDisplay" v-if="isLogIn"><li><p>個人資料</p></li></RouterLink>
       <RouterLink to="/Page2" class="no-style" @click="ChangeDropListDisplay"><li><p>題目列表</p></li></RouterLink>
       <RouterLink to="/Page3" class="no-style" @click="ChangeDropListDisplay"><li><p>課程內容</p></li></RouterLink>
       <RouterLink to="/Page4" class="no-style" @click="ChangeDropListDisplay"><li><p>使用者列表</p></li></RouterLink>

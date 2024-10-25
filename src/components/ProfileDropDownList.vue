@@ -1,9 +1,9 @@
 <template>
   <div id="drop-down-list">
     <ul>
-      <RouterLink to="/Page9" class="no-style" @click="ChangeDropListDisplay"><li><p>帳號資料</p></li></RouterLink>
+      <RouterLink to="/Page9" class="no-style" @click="ChangeDropListDisplay"><li><p>個人資料</p></li></RouterLink>
       <RouterLink to="/Page8" class="no-style" @click="ChangeDropListDisplay"><li><p>題目管理</p></li></RouterLink>
-      <li><p>登出</p></li>
+      <li @click="logout"><p>登出</p></li>
       <LoginButton v-if="!isLogIn"></LoginButton>
     </ul>
     <div class="close-list-div" @click="ChangeDropListDisplay"></div>
@@ -26,7 +26,7 @@ export default {
       this.$emit("ChangeDropListDisplay")
     }
   },
-  inject:['isLogIn']
+  inject:['isLogIn','logout']
 }
 </script>
 
