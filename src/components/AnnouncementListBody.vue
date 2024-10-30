@@ -125,7 +125,7 @@
         if (this.items.length === 0) {
           this.fetchData();
         }
-        this.waitForMilliSeconds(50);
+        this.waitForMilliSeconds(500);
       }
     },
     inject:['access_token'],
