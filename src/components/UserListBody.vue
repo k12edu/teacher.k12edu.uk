@@ -1,5 +1,5 @@
 <template>
-  <div class="User-list-body" v-if="isLogIn">
+  <div class="User-list-body" v-if="isLogin">
     <h1>{{Title}}</h1>
     <div class="switch-page-div">
       <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
@@ -23,7 +23,7 @@
       <button class="button" @click="toLastPage" id="applyButton"><p>最後一頁</p></button>
     </div>
   </div>
-  <div v-if="isLogIn==false" class="no-data">
+  <div v-if="this.isLogin==false" class="no-data">
     <h3>請登入查看資料</h3>
   </div>
 </template>
