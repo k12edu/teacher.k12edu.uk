@@ -1,5 +1,5 @@
 <template>
-  <div class="problemList-list-main" v-if="isLigIn">
+  <div class="problemList-list-main" v-if="isLogIn">
     <div class="problemList-list-body">
     <h1>{{Title}}</h1>
     <div class="radio-group">
