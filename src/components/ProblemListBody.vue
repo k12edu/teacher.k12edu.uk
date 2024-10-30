@@ -234,7 +234,7 @@
         this.isMobile = window.innerWidth <= 1050;
       }
     },
-    inject:['access_token'],
+    inject:['access_token','isLogIn'],
     mounted() {
       
       if (this.items.length === 0) {
