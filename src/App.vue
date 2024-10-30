@@ -32,7 +32,7 @@ export default {
       googleLogin : this.googleLogin,
       access_token:computed(() => this.access_token),
       logout: this.logout,
-      isLogin: this.isLogin,
+      isLogin: computed(() => this.isLogin),
     }
   }, 
   methods: {
