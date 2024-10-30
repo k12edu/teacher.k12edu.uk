@@ -1,6 +1,4 @@
 <template>
-  <h3>www</h3>
-  {{ this.isLogin }}
   <div class="User-list-body" v-if="isLogin">
     <h1>{{Title}}</h1>
     <div class="switch-page-div">
@@ -112,6 +110,7 @@ export default {
   },
   inject:['access_token','isLogin'],
   mounted() {
+    console.log(this.isLogin);
     if (this.items.length === 0) {
       this.fetchData();
     }
