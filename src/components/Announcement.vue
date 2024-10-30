@@ -64,7 +64,7 @@
         if (this.items.length === 0) {
           this.fetchData();
         }
-        waitForMilliSeconds(50);
+        this.waitForMilliSeconds(50);
       }
      
     },
