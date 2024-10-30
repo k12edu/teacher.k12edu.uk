@@ -1,4 +1,5 @@
 <template>
+  {{ this.isLogin }}
   <div class="User-list-body" v-if="isLogin">
     <h1>{{Title}}</h1>
     <div class="switch-page-div">
