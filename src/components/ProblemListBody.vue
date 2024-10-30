@@ -1,5 +1,5 @@
 <template>
-  <div class="problemList-list-main">
+  <div class="problemList-list-main" v-if="isLigIn">
     <div class="problemList-list-body">
     <h1>{{Title}}</h1>
     <div class="radio-group">
@@ -105,6 +105,9 @@
       <button class="button" @click="toLastPage" id="applyButton"><p>最後一頁</p></button>
     </div>
   </div>  
+  </div>
+  <div v-if="!isLogIn" class="no-data">
+    <h3>請登入查看資料</h3>
   </div>
 </template>
   
@@ -249,6 +252,13 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
+  .no-data{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .problemList-list-main{
     display: flex;
     flex-direction: column;
