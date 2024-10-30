@@ -35,6 +35,9 @@
     components:{
       Announcement,
     },
+    computed:{
+      
+    },
     props: {
       Title:{
         type:String,

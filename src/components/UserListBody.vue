@@ -1,5 +1,5 @@
 <template>
-  <div class="User-list-body">
+  <div class="User-list-body" v-if="isLogIn">
     <h1>{{Title}}</h1>
     <div class="switch-page-div">
       <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
@@ -22,6 +22,9 @@
       <button class="button" @click="nextPage" id="applyButton"><p>下一頁</p></button>
       <button class="button" @click="toLastPage" id="applyButton"><p>最後一頁</p></button>
     </div>
+  </div>
+  <div v-if="isLogIn==false" class="no-data">
+    <h3>請登入查看資料</h3>
   </div>
 </template>
 
@@ -105,7 +108,7 @@ export default {
       this.applyInput();
     }
   },
-  inject:['access_token'],
+  inject:['access_token','isLogin'],
   mounted() {
     if (this.items.length === 0) {
       this.fetchData();
@@ -155,6 +158,13 @@ input:focus {
 .button:active{
   background-color: rgb(175, 208, 221);
   transition: background-color 0.2s ease;
+}
+.no-data{
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .switch-page-div{
   display: flex;
