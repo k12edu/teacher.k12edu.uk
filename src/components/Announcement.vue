@@ -24,6 +24,13 @@
     },
     props: {},
     methods:{
+      waitForMilliSeconds(seconds) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve();
+          }, seconds);
+        });
+      },
       switchToShowPage(item){
         this.$router.push({ name: 'AnnouncementShow', params: { id:item.announcement_id}});
       },
@@ -53,10 +60,13 @@
     },
     inject:['access_token'],
     mounted() {
-      
-      if (this.items.length === 0) {
-        this.fetchData();
+      for(let i=0;i<10;i++){
+        if (this.items.length === 0) {
+          this.fetchData();
+        }
+        waitForMilliSeconds(50);
       }
+     
     },
   }
   </script>

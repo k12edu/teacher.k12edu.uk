@@ -114,8 +114,11 @@
       }
     },
     mounted() {
-      if (this.items.length === 0) {
-        this.fetchData();
+      for(let i=0;i<10;i++){
+        if (this.items.length === 0) {
+          this.fetchData();
+        }
+        waitForMilliSeconds(50);
       }
     },
     inject:['access_token'],
