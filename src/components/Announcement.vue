@@ -24,13 +24,6 @@
     },
     props: {},
     methods:{
-      waitForMilliSeconds(seconds) {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve();
-          }, seconds);
-        });
-      },
       switchToShowPage(item){
         this.$router.push({ name: 'AnnouncementShow', params: { id:item.announcement_id}});
       },
@@ -40,10 +33,12 @@
             request_page: 1,
             request_count: 5,
           }).toString();
+          const token = this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
             }, 
           });
 
@@ -60,13 +55,10 @@
     },
     inject:['access_token'],
     mounted() {
-      for(let i=0;i<10;i++){
-        if (this.items.length === 0) {
-          this.fetchData();
-        }
-        this.waitForMilliSeconds(500);
+      
+      if (this.items.length === 0) {
+        this.fetchData();
       }
-     
     },
   }
   </script>
