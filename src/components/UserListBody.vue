@@ -108,7 +108,7 @@ export default {
       this.applyInput();
     }
   },
-  inject:['access_token','isLogin'],
+  inject:['access_token','isLogIn'],
   mounted() {
     if (this.items.length === 0) {
       this.fetchData();
