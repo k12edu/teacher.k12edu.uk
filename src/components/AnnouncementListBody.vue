@@ -1,5 +1,5 @@
 <template>
-    <div class="announcement-list-body" v-if="isLogIn">
+    <div class="announcement-list-body">
       <h1>{{Title}}</h1>
       <div class="switch-page-div">
         <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
@@ -22,9 +22,6 @@
         <button class="button" @click="nextPage" id="applyButton"><p>下一頁</p></button>
         <button class="button" @click="toLastPage" id="applyButton"><p>最後一頁</p></button>
       </div>
-    </div>
-    <div v-if="!isLogIn" class="no-data">
-      <h3>請登入查看資料</h3>
     </div>
   </template>
   
@@ -123,19 +120,12 @@
         this.fetchData();
       }
     },
-    inject:['access_token','isLogIn'],
+    inject:['access_token'],
   }
   </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
-  .no-data{
-    height: 80%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   p{
     margin: 0px;
   }

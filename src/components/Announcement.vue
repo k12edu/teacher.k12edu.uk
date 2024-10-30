@@ -1,5 +1,5 @@
 <template>
-    <div id="announcement" v-if="isLogIn">
+    <div id="announcement">
       <h1>公告</h1>
       <div id="announcement-list">
         <div class="problem-list">
@@ -9,9 +9,6 @@
           <RouterLink to="/Page7" class="no-style"><p>更多公告</p></RouterLink>
         </div>
       </div>
-    </div>
-    <div v-if="!isLogIn" class="no-data">
-      <h3>請登入查看資料</h3>
     </div>
   </template>
   
@@ -56,7 +53,7 @@
         }
       },
     },
-    inject:['access_token','isLogIn'],
+    inject:['access_token'],
     mounted() {
       
       if (this.items.length === 0) {
@@ -68,13 +65,6 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
-  .no-data{
-    height: 80%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   #announcement{
     display: flex;
     flex-direction: column;
