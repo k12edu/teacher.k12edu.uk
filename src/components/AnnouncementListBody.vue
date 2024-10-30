@@ -58,12 +58,10 @@
             request_page: this.page,
             request_count: this.itemPerPage,
           }).toString();
-          const token = this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
             }, 
           });
 
