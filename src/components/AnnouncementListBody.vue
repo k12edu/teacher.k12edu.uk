@@ -52,6 +52,13 @@
     computed:{
     },
     methods:{
+      waitForMilliSeconds(seconds) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve();
+          }, seconds);
+        });
+      },
       async fetchData() {
         try {
           const queryParams = new URLSearchParams({
