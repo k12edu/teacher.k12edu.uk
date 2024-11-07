@@ -49,6 +49,7 @@ export default {
       this.isLogIn = true;
       this.updateOnlineTime();
       window.location.reload(); 
+      setTimeout(function() {updateOnlineTime();}, 2000);
     },
     loadGoogleAPI() {
       window.google = window.google || {};
