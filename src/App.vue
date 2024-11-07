@@ -25,7 +25,7 @@ export default {
       userName: "",
       isLogIn:false,
       access_token:"",
-      test_result:"",
+      test_result:"www",
     }
   },
   provide(){
