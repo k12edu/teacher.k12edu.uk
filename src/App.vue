@@ -129,6 +129,7 @@ export default {
     this.access_token = localStorage.getItem('jwt');
     if(this.access_token == undefined) this.access_token="";
     else this.isLogIn=true;
+    this.updateOnlineTime();
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/platform.js';
     script.async = true;
