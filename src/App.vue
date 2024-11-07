@@ -94,7 +94,6 @@ export default {
             this.$router.push({ name: 'MainPage' });
             this.access_token=data.access;
             this.ChangeUserName('已登入帳號');
-            console.log("hihihi");
             localStorage.setItem('jwt', data.access);
             localStorage.setItem('refresh', data.refresh);
             console.log('JWT token received and stored:', data);
@@ -105,6 +104,7 @@ export default {
         .catch(error => console.error('Error sending access token to backend:', error));
     },
     async updateOnlineTime() {
+      console.log("hihihi6");
         try {
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
@@ -121,6 +121,7 @@ export default {
           const result = await response.json();
           console.log(result.message);
         } catch (error) {
+          console.log("hihihi5");
           console.error('發送請求時出錯：', error);
         }
       },
