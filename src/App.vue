@@ -1,6 +1,5 @@
 <template>
   <div id="main-app">
-    {{ test_result }}
     <header><Header ></Header></header>
     <RouterView style="min-height: 100vh;"></RouterView>
     <footer><Footer></Footer></footer>
@@ -25,7 +24,6 @@ export default {
       userName: "",
       isLogIn:false,
       access_token:"",
-      test_result:"www",
     }
   },
   provide(){
@@ -94,7 +92,6 @@ export default {
             this.$router.push({ name: 'MainPage' });
             this.access_token=data.access;
             this.ChangeUserName('已登入帳號');
-            this.test_result="bbb";
             localStorage.setItem('jwt', data.access);
             localStorage.setItem('refresh', data.refresh);
             console.log('JWT token received and stored:', data);
@@ -105,7 +102,6 @@ export default {
         .catch(error => console.error('Error sending access token to backend:', error));
     },
     async updateOnlineTime() {
-      this.test_result="aaa";
         try {
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
@@ -115,12 +111,11 @@ export default {
               'Authorization': `Bearer ${token}`
             }, 
           });
-          this.test_result="hhh";
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const result = await response.json();
-          this.test_result = result.message;
+          console.log(result.message);
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
