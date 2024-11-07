@@ -1,5 +1,6 @@
 <template>
   <div id="main-app">
+    {{ test_result }}
     <header><Header ></Header></header>
     <RouterView style="min-height: 100vh;"></RouterView>
     <footer><Footer></Footer></footer>
@@ -24,6 +25,7 @@ export default {
       userName: "",
       isLogIn:false,
       access_token:"",
+      test_result:"",
     }
   },
   provide(){
@@ -100,6 +102,31 @@ export default {
         })
         .catch(error => console.error('Error sending access token to backend:', error));
     },
+    async updateOnlineTime() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_page: this.page,
+            request_count: this.itemPerPage,
+          }).toString();
+          const request_type = this.selectedOption;
+          const token=this.access_token;
+          const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
+          this.test_result = result.message;
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
   },
   mounted(){
     this.access_token = localStorage.getItem('jwt');
