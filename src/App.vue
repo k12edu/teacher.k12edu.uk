@@ -49,6 +49,7 @@ export default {
     ChangeUserName(newUserName){
       this.userName = newUserName;
       this.isLogIn = true;
+      this.updateOnlineTime();
       window.location.reload(); 
     },
     loadGoogleAPI() {
