@@ -104,6 +104,7 @@ export default {
         .catch(error => console.error('Error sending access token to backend:', error));
     },
     async updateOnlineTime() {
+      this.test_result="aaa";
         try {
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
