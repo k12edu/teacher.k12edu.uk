@@ -49,7 +49,7 @@ export default {
       this.isLogIn = true;
       this.updateOnlineTime();
       window.location.reload(); 
-      setTimeout(function() {this.updateOnlineTime();}, 2000);
+      setTimeout(function() {this.updateOnlineTime();}, 5000);
     },
     loadGoogleAPI() {
       window.google = window.google || {};
