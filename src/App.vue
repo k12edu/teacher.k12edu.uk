@@ -94,6 +94,7 @@ export default {
             this.$router.push({ name: 'MainPage' });
             this.access_token=data.access;
             this.ChangeUserName('已登入帳號');
+            this.test_result="bbb";
             localStorage.setItem('jwt', data.access);
             localStorage.setItem('refresh', data.refresh);
             console.log('JWT token received and stored:', data);
