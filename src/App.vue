@@ -104,10 +104,6 @@ export default {
     },
     async updateOnlineTime() {
         try {
-          const queryParams = new URLSearchParams({
-            request_page: this.page,
-            request_count: this.itemPerPage,
-          }).toString();
           const request_type = this.selectedOption;
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
