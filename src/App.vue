@@ -49,7 +49,7 @@ export default {
       this.isLogIn = true;
       this.updateOnlineTime();
       window.location.reload(); 
-      setTimeout(function() {this.updateOnlineTime();}, 5000);
+      this.updateOnlineTime();
     },
     loadGoogleAPI() {
       window.google = window.google || {};
@@ -104,7 +104,6 @@ export default {
     },
     async updateOnlineTime() {
         try {
-          console.log("hihihi6");
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
             method: 'PUT',
@@ -113,15 +112,12 @@ export default {
               'Authorization': `Bearer ${token}`
             }, 
           });
-          console.log("hihihi7");
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-          console.log("hihihi2"); 
           const result = await response.json();
           console.log(result.message);
         } catch (error) {
-          console.log("hihihi5");
           console.error('發送請求時出錯：', error);
         }
       },
