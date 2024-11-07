@@ -104,7 +104,6 @@ export default {
     },
     async updateOnlineTime() {
         try {
-          const request_type = this.selectedOption;
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
             method: 'PUT',
