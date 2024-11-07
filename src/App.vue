@@ -113,7 +113,7 @@ export default {
               'Authorization': `Bearer ${token}`
             }, 
           });
-
+          this.test_result="hhh";
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
