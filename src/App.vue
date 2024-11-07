@@ -47,9 +47,7 @@ export default {
     ChangeUserName(newUserName){
       this.userName = newUserName;
       this.isLogIn = true;
-      console.log("hi3");
       this.updateOnlineTime();
-      console.log("hi4");
       window.location.reload(); 
     },
     loadGoogleAPI() {
@@ -108,7 +106,7 @@ export default {
           console.log("hihihi6");
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
-            method: 'PUT',
+            method: 'GET',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`
