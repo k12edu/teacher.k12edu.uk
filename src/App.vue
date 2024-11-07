@@ -135,7 +135,7 @@ export default {
           }
           const result = await response.json();
           console.log(result.message);
-          console.log(result.online-time);
+          console.log(result.online_time);
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
@@ -147,6 +147,7 @@ export default {
     else this.isLogIn=true;
     const script = document.createElement('script');
     this.updateOnlineTime();
+    this.getOnlineTime();
     script.src = 'https://apis.google.com/js/platform.js';
     script.async = true;
     script.defer = true;
