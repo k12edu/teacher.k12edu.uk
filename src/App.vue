@@ -120,6 +120,26 @@ export default {
           console.error('發送請求時出錯：', error);
         }
       },
+      async getOnlineTime() {
+        try {
+          const token=this.access_token;
+          const response = await fetch(`http://127.0.0.1:60000/accounts/api/online-time/`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
+          console.log(result.message);
+          console.log(result.online-time);
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
   },
   mounted(){
     this.access_token = localStorage.getItem('jwt');
