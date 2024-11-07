@@ -147,7 +147,6 @@ export default {
     else this.isLogIn=true;
     const script = document.createElement('script');
     this.updateOnlineTime();
-    this.getOnlineTime();
     script.src = 'https://apis.google.com/js/platform.js';
     script.async = true;
     script.defer = true;
