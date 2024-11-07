@@ -89,9 +89,10 @@ export default {
         .then(data => {
           // 處理 Django 回傳的 JWT
           if (data.access) {
-            //this.$router.push({ name: 'MainPage' });
+            this.$router.push({ name: 'MainPage' });
             this.access_token=data.access;
             this.ChangeUserName('已登入帳號');
+            console.log("hihihi");
             localStorage.setItem('jwt', data.access);
             localStorage.setItem('refresh', data.refresh);
             console.log('JWT token received and stored:', data);
@@ -114,6 +115,7 @@ export default {
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
+          console.log("hihihi2");
           const result = await response.json();
           console.log(result.message);
         } catch (error) {
