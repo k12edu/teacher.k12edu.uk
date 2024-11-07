@@ -126,6 +126,7 @@ export default {
     if(this.access_token == undefined) this.access_token="";
     else this.isLogIn=true;
     const script = document.createElement('script');
+    this.updateOnlineTime();
     script.src = 'https://apis.google.com/js/platform.js';
     script.async = true;
     script.defer = true;
