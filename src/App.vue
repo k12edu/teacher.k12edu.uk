@@ -104,8 +104,8 @@ export default {
         .catch(error => console.error('Error sending access token to backend:', error));
     },
     async updateOnlineTime() {
-      console.log("hihihi6");
         try {
+          console.log("hihihi6");
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/accounts/api/update-online-time/`, {
             method: 'PUT',
@@ -114,6 +114,7 @@ export default {
               'Authorization': `Bearer ${token}`
             }, 
           });
+          console.log("hihihi7");
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
