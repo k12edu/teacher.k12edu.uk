@@ -47,9 +47,9 @@ export default {
     ChangeUserName(newUserName){
       this.userName = newUserName;
       this.isLogIn = true;
-      console("hi3");
+      console.log("hi3");
       this.updateOnlineTime();
-      console("hi4");
+      console.log("hi4");
       window.location.reload(); 
     },
     loadGoogleAPI() {
@@ -117,7 +117,8 @@ export default {
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-          console.log("hihihi2"); const result = await response.json();
+          console.log("hihihi2"); 
+          const result = await response.json();
           console.log(result.message);
         } catch (error) {
           console.error('發送請求時出錯：', error);
