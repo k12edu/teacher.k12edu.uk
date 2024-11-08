@@ -125,16 +125,16 @@
       },
       uploadProblem(){
         if(this.suject=='natural'){
-          this.uploadNaturaldata();
+          this.uploadNaturalData();
         }
-       /* else if(suject=='math'){
-          this.uploadMathdata();
-        }
+        else if(suject=='math'){
+          this.uploadMathData();
+        }/*
         else{
-          this.uploadProgramdata();
+          this.uploadProgramData();
         }*/
       },
-      async uploadNaturaldata() {
+      async uploadNaturalData() {
         try {
           let answer="";
           if(this.problemType=='single'){
@@ -151,6 +151,40 @@
           }
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/science-problem-info-list/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+            body: JSON.stringify(data) 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
+          console.log(result);
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
+      async uploadMathData() {
+        try {
+          let answer="";
+          if(this.problemType=='single'){
+            answer=this.answerForSingle;
+          }
+          else{
+            answer=this.answerForMutiple;
+          }
+          const data={
+            'problem_description':this.describe,
+            'question_options':this.optionList,
+            'answer':answer,
+            'problem_type':this.problemType,
+          }
+          const token=this.access_token;
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-problem-info-list/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
