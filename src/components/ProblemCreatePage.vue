@@ -127,7 +127,7 @@
         if(this.suject=='natural'){
           this.uploadNaturalData();
         }
-        else if(suject=='math'){
+        else if(this.suject=='math'){
           this.uploadMathData();
         }/*
         else{
