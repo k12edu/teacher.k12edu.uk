@@ -136,16 +136,16 @@
       },
       async uploadNaturaldata() {
         try {
-          const answer="";
+          let answer="";
           if(this.problemType=='single'){
-            answer=answerForSingle;
+            answer=this.answerForSingle;
           }
           else{
-            answer=answerForMutiple;
+            answer=this.answerForMutiple;
           }
-          const body={
-            'problem_description':describe,
-            'question_options':optionList,
+          const data={
+            'problem_description':this.describe,
+            'question_options':this.optionList,
             'answer':answer,
             'problem_type':this.problemType,
           }
