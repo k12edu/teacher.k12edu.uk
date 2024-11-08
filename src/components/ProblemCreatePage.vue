@@ -1,4 +1,5 @@
 <template>
+  {{testCaseInput}}
     <div class="problem-edit-main">
       <div class="problem-edit-body">
         <div class="edit-div">
