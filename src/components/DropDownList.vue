@@ -8,6 +8,7 @@
       <RouterLink to="/Page5" class="no-style" @click="ChangeDropListDisplay"><li><p>常見問題</p></li></RouterLink>
       <RouterLink to="/Page6" class="no-style" @click="ChangeDropListDisplay"><li><p>聯絡我們</p></li></RouterLink>
       <RouterLink to="/Page8" class="no-style" @click="ChangeDropListDisplay" v-if="isLogIn"><li><p>題目管理</p></li></RouterLink>
+      <RouterLink to="/problem-create" class="no-style" @click="ChangeDropListDisplay" v-if="isLogIn"><li><p>創建題目</p></li></RouterLink>
       <li v-if="isLogIn" @click="logout"><p>登出</p></li>
       <LoginButton v-if="!isLogIn"></LoginButton>
     </ul>

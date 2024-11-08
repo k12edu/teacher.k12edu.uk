@@ -3,6 +3,7 @@
     <ul>
       <RouterLink to="/Page9" class="no-style" @click="ChangeDropListDisplay"><li><p>個人資料</p></li></RouterLink>
       <RouterLink to="/Page8" class="no-style" @click="ChangeDropListDisplay"><li><p>題目管理</p></li></RouterLink>
+      <RouterLink to="/problem-create" class="no-style" @click="ChangeDropListDisplay"><li><p>創建題目</p></li></RouterLink>
       <li @click="logout"><p>登出</p></li>
       <LoginButton v-if="!isLogIn"></LoginButton>
     </ul>
