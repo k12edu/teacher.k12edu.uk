@@ -124,7 +124,7 @@
         
       },
       uploadProblem(){
-        if(suject=='natural'){
+        if(this.suject=='natural'){
           this.uploadNaturaldata();
         }
        /* else if(suject=='math'){
