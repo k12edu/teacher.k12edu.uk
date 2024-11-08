@@ -44,41 +44,43 @@
           </div>
         </div>
         
-        <div class="edit-div">
-          <div class="edit-item">
-            <h3 style="margin-top: 16px;">選項(最多五項)</h3>
-            <button @click="addAnswerOption" style="margin-left: 10px"> <h3 style="margin: 0;">+</h3></button>
-          </div>
-          
-          <div class="edit-item2">
-            <div v-for="(item,idx) in optionList" :key="idx" class="option-items">
-             <input type="text" v-model="item.optionName">
-             <button style="margin-left: 10px; width: 30px; height: 30px;" @click="removeAnswerOption(idx)"><h3 style="margin: 0;">-</h3></button>
+        <div v-if="this.suject!='program'">
+          <div class="edit-div">
+            <div class="edit-item">
+              <h3 style="margin-top: 16px;">選項(最多五項)</h3>
+              <button @click="addAnswerOption" style="margin-left: 10px"> <h3 style="margin: 0;">+</h3></button>
+            </div>
+            
+            <div class="edit-item2">
+              <div v-for="(item,idx) in optionList" :key="idx" class="option-items">
+              <input type="text" v-model="item.optionName">
+              <button style="margin-left: 10px; width: 30px; height: 30px;" @click="removeAnswerOption(idx)"><h3 style="margin: 0;">-</h3></button>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="edit-div">
-          <h3>答案</h3>
-          <div class="edit-item2" v-if="problemType=='single'">
-            <label v-for="(item,idx) in optionList" :key="idx" class="option-items">
-            <input 
-              type="radio" 
-              :value="item.optionName+'_'+idx" 
-              v-model="answerForSingle" 
-            />
-            {{ item.optionName }}
-            </label>
-          </div>
-          <div class="edit-item2" v-if="problemType=='multiple'">
-            <label v-for="(item,idx) in optionList" :key="idx" class="option-items">
-            <input 
-              type="checkbox" 
-              :value="item.optionName+'_'+idx" 
-              v-model="answerForMutiple" 
-            />
-            {{ item.optionName }}
-            </label>
+          
+          <div class="edit-div">
+            <h3>答案</h3>
+            <div class="edit-item2" v-if="problemType=='single'">
+              <label v-for="(item,idx) in optionList" :key="idx" class="option-items">
+              <input 
+                type="radio" 
+                :value="item.optionName+'_'+idx" 
+                v-model="answerForSingle" 
+              />
+              {{ item.optionName }}
+              </label>
+            </div>
+            <div class="edit-item2" v-if="problemType=='multiple'">
+              <label v-for="(item,idx) in optionList" :key="idx" class="option-items">
+              <input 
+                type="checkbox" 
+                :value="item.optionName+'_'+idx" 
+                v-model="answerForMutiple" 
+              />
+              {{ item.optionName }}
+              </label>
+            </div>
           </div>
         </div>
         
