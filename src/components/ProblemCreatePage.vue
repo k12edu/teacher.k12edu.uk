@@ -1,5 +1,4 @@
 <template>
-  {{testCaseInput}}
     <div class="problem-edit-main">
       <div class="problem-edit-body">
         <div class="edit-div">
@@ -241,7 +240,7 @@
             'testcase_output':this.testCaseOutput,
           }
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-problem-info-list/`, {
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/program-problem-info-list/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
