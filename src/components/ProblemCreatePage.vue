@@ -85,8 +85,10 @@
         
         <div v-if="this.suject=='program'">
           <div class="edit-div">
-            <h3>標準輸入</h3>
-            <button @click="addAnswerOption" style="margin-left: 10px"> <h3 style="margin: 0;">+</h3></button>
+            <div class="edit-item">
+              <h3 style="margin-top: 16px;">標準輸入</h3>
+              <button @click="addAnswerOption" style="margin-left: 10px"> <h3 style="margin: 0;">+</h3></button>
+            </div>
             <div class="edit-item" v-for="(item, index) in testCaseInput" :key="index">
               <textarea v-model="testCaseInput[index]" class="problem-describe"></textarea>
             </div>
@@ -95,8 +97,8 @@
           <div class="edit-div">
             <h3>標準輸出</h3>
             <div class="edit-item"  v-for="(item, index) in testCaseOutput" :key="index">
-              <button style="margin-left: 10px; width: 30px; height: 30px;" @click="removeTestcase(index)"><h3 style="margin: 0;">-</h3></button>
               <textarea  v-model="testCaseOutput[index]" class="problem-describe"></textarea>
+              <button style="margin-left: 10px; width: 30px; height: 30px;" @click="removeTestcase(index)"><h3 style="margin: 0;">-</h3></button>
             </div>
           </div>
         </div>
