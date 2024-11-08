@@ -29,22 +29,21 @@
           </div>
         </div>
         
-        <div class="edit-div">
-          <h3>題目類型</h3>
-          <div class="edit-item">
-            <label style="user-select: none;" v-for="option in problemTypeOptions" :key="option.value" class="radio-option">
-            <input
-            type="radio"
-            :value="option.value"
-            v-model="problemType"
-            name="problemTypeOptions"
-            />
-            {{ option.text }}
-            </label>
-          </div>
-        </div>
-        
         <div v-if="this.suject!='program'">
+          <div class="edit-div">
+            <h3>題目類型</h3>
+            <div class="edit-item">
+              <label style="user-select: none;" v-for="option in problemTypeOptions" :key="option.value" class="radio-option">
+              <input
+              type="radio"
+              :value="option.value"
+              v-model="problemType"
+              name="problemTypeOptions"
+              />
+              {{ option.text }}
+              </label>
+            </div>
+          </div>
           <div class="edit-div">
             <div class="edit-item">
               <h3 style="margin-top: 16px;">選項(最多五項)</h3>
@@ -84,6 +83,23 @@
           </div>
         </div>
         
+        <div v-if="this.suject=='program'">
+          <div class="edit-div">
+            <h3>標準輸入</h3>
+            <button @click="addAnswerOption" style="margin-left: 10px"> <h3 style="margin: 0;">+</h3></button>
+            <div class="edit-item" v-for="(item, index) in testCaseInput" :key="index">
+              <textarea v-model="testCaseInput[index]" class="problem-describe"></textarea>
+            </div>
+          </div>
+
+          <div class="edit-div">
+            <h3>標準輸出</h3>
+            <div class="edit-item"  v-for="(item, index) in testCaseOutput" :key="index">
+              <button style="margin-left: 10px; width: 30px; height: 30px;" @click="removeTestcase(index)"><h3 style="margin: 0;">-</h3></button>
+              <textarea  v-model="testCaseOutput[index]" class="problem-describe"></textarea>
+            </div>
+          </div>
+        </div>
         <button @click="uploadProblem">上傳題目</button>
       </div>
     </div>
@@ -115,15 +131,26 @@
         optionList:[],
         answerForSingle:'',
         answerForMutiple:[],
+        testCaseInput:[],
+        testCaseOutput:[],
       }
     },
     methods:{
       addAnswerOption(){
-        if(this.optionList.length<5) this.optionList.push({optionName:'新選項 '+String(this.optionList.length+1)});
+        if(this.suject!='program' && this.optionList.length<5){
+          this.optionList.push({optionName:'新選項 '+String(this.optionList.length+1)});
+        }
+        else{
+          this.testCaseInput.push("新標準輸入");
+          this.testCaseOutput.push("新標準輸出");
+        }
+      },
+      removeTestcase(idx){
+        this.testCaseInput.splice(idx,1);
+        this.testCaseOutput.splice(idx,1);
       },
       removeAnswerOption(idx){
         this.optionList.splice(idx,1);
-        
       },
       uploadProblem(){
         if(this.suject=='natural'){
@@ -131,10 +158,10 @@
         }
         else if(this.suject=='math'){
           this.uploadMathData();
-        }/*
+        }
         else{
           this.uploadProgramData();
-        }*/
+        }
       },
       async uploadNaturalData() {
         try {
@@ -184,6 +211,40 @@
             'question_options':this.optionList,
             'answer':answer,
             'problem_type':this.problemType,
+          }
+          const token=this.access_token;
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-problem-info-list/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+            body: JSON.stringify(data) 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
+          console.log(result);
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
+      async uploadProgramData() {
+        try {
+          let answer="";
+          if(this.problemType=='single'){
+            answer=this.answerForSingle;
+          }
+          else{
+            answer=this.answerForMutiple;
+          }
+          const data={
+            'problem_description':this.describe,
+            'title':this.title,
+            'testcase_input':this.testCaseInput,
+            'testcase_output':this.testCaseOutput,
           }
           const token=this.access_token;
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-problem-info-list/`, {
