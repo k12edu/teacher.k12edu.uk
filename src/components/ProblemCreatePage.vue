@@ -233,13 +233,6 @@
       },
       async uploadProgramData() {
         try {
-          let answer="";
-          if(this.problemType=='single'){
-            answer=this.answerForSingle;
-          }
-          else{
-            answer=this.answerForMutiple;
-          }
           const data={
             'problem_description':this.describe,
             'title':this.title,
