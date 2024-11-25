@@ -238,7 +238,7 @@ export default {
     uploadProblem(){
       console.log(this.suject);
       this.publish_status='publish';
-      if(this.suject=='natural'){
+      if(this.suject=='science'){
         this.uploadNaturalData();
       }
       else if(this.suject=='math'){
@@ -251,7 +251,7 @@ export default {
     },
     uploadProblem2(){
       this.publish_status='draft';
-      if(this.suject=='natural'){
+      if(this.suject=='science'){
         this.uploadNaturalData();
       }
       else if(this.suject=='math'){
