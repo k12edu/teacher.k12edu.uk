@@ -138,7 +138,7 @@ export default {
         this.problemType=this.item.problem_type;
         let l=Object.keys(this.item.question_options).length;
         console.log(l);
-        console.log(Object.keys(this.item.question_options));
+        console.log(this.item.question_options);
         for(let i=0;i<l;i++){
           this.optionList.push({optionName:this.item.question_options[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
         }
@@ -174,7 +174,7 @@ export default {
           }
 
           const result = await response.json();
-          this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
+          this.item = result.problem_list; 
           this.changeData();
         } catch (error) {
           console.error('發送請求時出錯：', error);
