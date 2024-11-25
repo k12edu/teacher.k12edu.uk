@@ -145,6 +145,7 @@ export default {
         }
         if(this.problemType=='single'){
           this.answerForSingle=obj[ans_obj[0]];
+          console.log(this.answerForSingle);
         }
         else{
           let new_arr=[]
