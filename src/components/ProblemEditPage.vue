@@ -2,7 +2,6 @@
   <div class="problem-edit-main">
     <div class="problem-edit-body">
       <div class="edit-div">
-        {{ problemType }}
         <h3>題目編號 {{id}}</h3>
         <h3>題目名稱</h3>
         <div class="edit-item"> 
@@ -138,6 +137,7 @@ export default {
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
         let l=Object.keys(this.item.question_options).length;
+        console.log(l);
         for(let i=0;i<l;i++){
           this.optionList.push({optionName:this.item.question_options[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
         }
