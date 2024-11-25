@@ -132,11 +132,6 @@ export default {
         this.title=this.item.title;
         this.describe=this.item.problem_description;
         this.getTestCaseData();
-        console.log(this.testCaseDataArray.length);
-        for(let i=0;i<this.testCaseDataArray.length;i++){
-          this.testCaseInput.push(this.testCaseDataArray[i]['stand_input']);
-          this.testCaseOutput.push(this.testCaseDataArray[i]['stand_output']);
-        }
       }
       else{
         this.title=this.item.title;
@@ -193,13 +188,13 @@ export default {
           console.error('發送請求時出錯：', error);
         }
       },
-      getTestCaseData() {
+      async getTestCaseData() {
         try {
           const queryParams = new URLSearchParams({
             request_id: this.$route.params.id,
           }).toString();
           const token=this.access_token;
-          const response = fetch(`http://127.0.0.1:60000/teacher-platform/program-problem-test-data/?${queryParams}`, {
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/program-problem-test-data/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -211,10 +206,12 @@ export default {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
 
-          const result = response.json();
-          console.log(result);
+          const result = await response.json();
           this.testCaseDataArray = result['data_list']; 
-          console.log(this.testCaseDataArray.length);
+          for(let i=0;i<this.testCaseDataArray.length;i++){
+          this.testCaseInput.push(this.testCaseDataArray[i]['stand_input']);
+          this.testCaseOutput.push(this.testCaseDataArray[i]['stand_output']);
+        }
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
