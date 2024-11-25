@@ -2,14 +2,14 @@
   <div class="problem-edit-main">
     <div class="problem-edit-body">
       <div class="edit-div">
-        <h3>題目編號 {id}</h3>
+        <h3>題目編號 {{id}}</h3>
         <h3>題目名稱</h3>
         <div class="edit-item"> 
           <input class="title-input" type="text" v-model="title">
         </div>
       </div>
       <div class="edit-div">
-        <h3>科目 {suject}</h3>
+        <h3>科目 {{suject}}</h3>
       </div>
 
       <div class="edit-div">
