@@ -236,6 +236,7 @@ export default {
       
     },
     uploadProblem(){
+      console.log(this.suject);
       this.publish_status='publish';
       if(this.suject=='natural'){
         this.uploadNaturalData();
@@ -310,6 +311,7 @@ export default {
           answer=this.answerForMutiple;
         }
         const data={
+          'id':this.id,
           'problem_description':this.describe,
           'question_options':this.optionList,
           'answer':answer,
@@ -341,6 +343,7 @@ export default {
     async uploadProgramData() {
       try {
         const data={
+          'id':this.id,
           'problem_description':this.describe,
           'title':this.title,
           'testcase_input':this.testCaseInput,
