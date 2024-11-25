@@ -110,12 +110,6 @@ export default {
       publish_status:'',
       itemId:-1,
       title:'',
-      suject:'program',
-      sujectOptions: [
-        { value: 'program', text: '程式' },
-        { value: 'math', text: '數學' },
-        { value: 'natural', text: '自然' },
-      ],
       problemTypeOptions:[
         { value: 'single', text: '單選題' },
         { value: 'multiple', text: '多選題' },
