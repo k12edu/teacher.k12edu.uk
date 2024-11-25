@@ -137,16 +137,17 @@ export default {
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
         let obj = JSON.parse(this.item.question_options);
+        let ans_obj = JSON.parse(this.item.answer);
         let l=Object.keys(obj).length;
         console.log(l);
         for(let i=0;i<l;i++){
           this.optionList.push({optionName:obj[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
         }
         if(this.problemType=='single'){
-          this.answerForSingle=this.item.answer[0];
+          this.answerForSingle=ans_obj[0];
         }
         else{
-          this.answerForSingle=this.item.answer;
+          this.answerForSingle=ans_obj;
         }
       }
     },
