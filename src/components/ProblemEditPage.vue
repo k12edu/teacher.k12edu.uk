@@ -48,7 +48,7 @@
             </div>
           </div>
         </div>
-        
+        {{answerForSingle}}
         <div class="edit-div">
           <h3>答案</h3>
           <div class="edit-item2" v-if="problemType=='single'">
