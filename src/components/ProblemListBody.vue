@@ -113,7 +113,7 @@
   
   <script>
   export default {
-    name: 'AnnouncementListBody',
+    name: 'ProblemListBody',
     data(){
       return {
         items:[],
