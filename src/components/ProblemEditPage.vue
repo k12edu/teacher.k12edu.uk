@@ -48,7 +48,6 @@
             </div>
           </div>
         </div>
-        {{answerForSingle}}
         <div class="edit-div">
           <h3>答案</h3>
           <div class="edit-item2" v-if="problemType=='single'">
@@ -124,6 +123,7 @@ export default {
       answerForMutiple:[],
       testCaseInput:[],
       testCaseOutput:[],
+      testCaseDataArray:[]
     }
   },
   methods:{
@@ -131,6 +131,11 @@ export default {
       if(this.suject=='program'){
         this.title=this.item.title;
         this.describe=this.item.problem_description;
+        this.getTestCaseData();
+        for(let i=0;i<this.testCaseDataArray.length;i++){
+          this.testCaseInput.push(this.testCaseDataArray[i].stand_input);
+          this.testCaseOutput.push(this.testCaseDataArray[i].stand_output);
+        }
       }
       else{
         this.title=this.item.title;
@@ -182,6 +187,36 @@ export default {
 
           const result = await response.json();
           this.item = result.problem_list; 
+          this.changeData();
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
+      async getTestCaseData() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_id: this.$route.params.id,
+          }).toString();
+          const request_type = this.suject;
+          const token=this.access_token;
+          let keyword='problem';
+          if(this.publish_status=='draft'){
+            keyword='draft';
+          }
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/'program-problem-test-data/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.testCaseDataArray = result.data_list; 
           this.changeData();
         } catch (error) {
           console.error('發送請求時出錯：', error);
