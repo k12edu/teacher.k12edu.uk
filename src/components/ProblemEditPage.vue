@@ -138,8 +138,8 @@ export default {
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
         let obj,ans_obj;
-        console.log(this.item.question_options)
-        console.log(this.item.answer)
+        console.log(typeof this.item.question_options)
+        console.log(typeof this.item.answer)
         try {
             obj = JSON.parse(this.item.question_options);
             ans_obj = JSON.parse(this.item.answer);
