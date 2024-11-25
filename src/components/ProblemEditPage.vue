@@ -137,7 +137,7 @@ export default {
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
         let obj = this.item.question_options;
-        let l=Object.keys(obj).length;
+        let l=Object.entries(obj).length;
         console.log(l);
         
         for(let i=0;i<l;i++){
