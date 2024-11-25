@@ -212,7 +212,6 @@ export default {
 
           const result = await response.json();
           this.testCaseDataArray = result.data_list; 
-          this.changeData();
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
