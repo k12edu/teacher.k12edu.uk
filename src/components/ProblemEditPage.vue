@@ -139,7 +139,7 @@ export default {
         let obj = JSON.parse(this.item.question_options);
         let ans_obj = JSON.parse(this.item.answer);
         let l=Object.keys(obj).length;
-        console.log(l);
+        console.log(ans_obj);
         for(let i=0;i<l;i++){
           this.optionList.push({optionName:obj[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
         }
