@@ -140,6 +140,7 @@ export default {
         let ans_obj = JSON.parse(this.item.answer);
         let l=Object.keys(obj).length;
         console.log(ans_obj);
+        console.log(this.problemType);
         for(let i=0;i<l;i++){
           this.optionList.push({optionName:obj[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
         }
@@ -153,6 +154,7 @@ export default {
             new_arr.push(obj[ans_obj[i]]);
           }
           this.answerForMutiple=new_arr;
+          console.log(this.answerForMutiple);
         }
       }
     },
