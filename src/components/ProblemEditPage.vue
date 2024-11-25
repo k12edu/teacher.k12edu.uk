@@ -197,12 +197,7 @@ export default {
           const queryParams = new URLSearchParams({
             request_id: this.$route.params.id,
           }).toString();
-          const request_type = this.suject;
           const token=this.access_token;
-          let keyword='problem';
-          if(this.publish_status=='draft'){
-            keyword='draft';
-          }
           const response = await fetch(`http://127.0.0.1:60000/teacher-platform/'program-problem-test-data/?${queryParams}`, {
             method: 'GET',
             headers: {
