@@ -1,6 +1,6 @@
 <template>
     <div class="problem-edit-main">
-      <div class="problem-edit-body" v-if="item">
+      <div class="problem-edit-body" v-if=" item && suject!='program'">
         <div class="edit-div">
           <h3>題目編號: {{ item.problem_id }}</h3>
         </div>
