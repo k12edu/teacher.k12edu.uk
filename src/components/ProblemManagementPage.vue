@@ -14,6 +14,18 @@
       {{ option.text }}
       </label>
     </div>
+    <div class="radio-group">
+      <label style="user-select: none;" v-for="option in publishOptions" :key="option.value" class="radio-option">
+        <input
+        type="radio"
+        :value="option.value"
+        v-model="publishOption"
+        @change="fetchData"
+        name="options"
+      />
+      {{ option.text }}
+      </label>
+    </div>
     <div class="switch-page-div" v-if="!isMobile">
       <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
       <select id="select" v-model="itemPerPage" @change="fetchData">
@@ -28,23 +40,20 @@
         <h3>題型</h3>
         <h3>標題</h3>
         <h3>作者</h3>
-        <h3>答題次數</h3>
-        <h3>正確次數</h3>
+        <h3>狀態</h3>
       </div>
       <div class="problemList-item" v-for="item in items" :key="item.id">
         <p v-if="selectedOption!='program'">{{ item.problem_id }}</p>
         <p v-if="selectedOption!='program'">{{ item.problem_type }}</p>
         <p v-if="selectedOption!='program'" class="title" @click="switchToShowPage(item)">{{ item.problem_id }}</p>
         <p v-if="selectedOption!='program'">{{ item.contributor_id }}</p>
-        <p v-if="selectedOption!='program'">{{ item.submission_count }}</p>
-        <p v-if="selectedOption!='program'">{{ item.correct_count }}</p>
+        <p v-if="selectedOption!='program'">{{ item.publish_status }}</p>
 
         <p v-if="selectedOption=='program'">{{ item.problem_id }}</p>
         <p v-if="selectedOption=='program'">{{ item.problem_type }}</p>
         <p v-if="selectedOption=='program'" class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
         <p v-if="selectedOption=='program'">{{ item.author }}</p>
-        <p v-if="selectedOption=='program'">{{ item.submit_count }}</p>
-        <p v-if="selectedOption=='program'">{{ item.AC_count }}</p>
+        <p v-if="selectedOption=='program'">{{ item.publish_status }}</p>
       </div>
     </div>
     <div class="switch-page-div">
@@ -128,6 +137,10 @@
           { value: 50, text: '50' },
           { value: 100, text: '100' },
         ],
+        publishOptions: [
+          { value: 'publish', text: '公開' },
+          { value: 'draft', text: '草稿' },
+        ],
         sujectOptions: [
           { value: 'program', text: '程式' },
           { value: 'math', text: '數學' },
@@ -138,6 +151,7 @@
           'request_count': 10 
         },
         selectedOption: 'program',
+        publishOption: 'program',
         isMobile:false,
       }
     },
@@ -166,10 +180,15 @@
           const queryParams = new URLSearchParams({
             request_page: this.page,
             request_count: this.itemPerPage,
+            publish_status: this.publishOption
           }).toString();
           const request_type = this.selectedOption;
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
+          const keyword='problem'
+          if(this.publishOption=='draft'){
+            keyword='draft';
+          }
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-${keyword}-info-list/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -348,7 +367,7 @@
   }
   .problemList-item {
     display: grid;
-    grid-template-columns: 2fr 2fr 6fr 4fr 2fr 2fr;
+    grid-template-columns: 2fr 2fr 6fr 4fr 3fr;
     min-height: 40px;
     border-bottom: 1px solid rgb(175, 175, 175);
     align-items: center;

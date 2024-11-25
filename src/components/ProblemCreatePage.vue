@@ -103,6 +103,7 @@
           </div>
         </div>
         <button @click="uploadProblem">上傳題目</button>
+        <button @click="uploadProblem">暫存為草稿</button>
       </div>
     </div>
 </template>
@@ -164,6 +165,7 @@
         else{
           this.uploadProgramData();
         }
+        this.$router.push({ name: 'MainPage' });
       },
       async uploadNaturalData() {
         try {
