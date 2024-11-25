@@ -132,6 +132,7 @@ export default {
         this.title=this.item.title;
         this.describe=this.item.problem_description;
         this.getTestCaseData();
+        console.log(this.testCaseDataArray);
         for(let i=0;i<this.testCaseDataArray.length;i++){
           this.testCaseInput.push(this.testCaseDataArray[i].stand_input);
           this.testCaseOutput.push(this.testCaseDataArray[i].stand_output);
