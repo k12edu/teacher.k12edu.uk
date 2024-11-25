@@ -193,13 +193,13 @@ export default {
           console.error('發送請求時出錯：', error);
         }
       },
-      async getTestCaseData() {
+      getTestCaseData() {
         try {
           const queryParams = new URLSearchParams({
             request_id: this.$route.params.id,
           }).toString();
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/program-problem-test-data/?${queryParams}`, {
+          const response = fetch(`http://127.0.0.1:60000/teacher-platform/program-problem-test-data/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -211,7 +211,7 @@ export default {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
 
-          const result = await response.json();
+          const result = response.json();
           console.log(result);
           this.testCaseDataArray = result['data_list']; 
           console.log(this.testCaseDataArray.length);
