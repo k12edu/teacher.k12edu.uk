@@ -192,7 +192,8 @@
           const queryParams = new URLSearchParams({
             request_page: this.page,
             request_count: this.itemPerPage,
-            publish_status: this.publishOption
+            publish_status: this.publishOption,
+            request_only_by_self:1
           }).toString();
           const request_type = this.selectedOption;
           const token=this.access_token;
