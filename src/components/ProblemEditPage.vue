@@ -107,6 +107,7 @@ export default {
   },
   data(){
     return {
+      suject:'program',
       publish_status:'',
       itemId:-1,
       title:'',
@@ -280,9 +281,10 @@ export default {
   computed:{
     
   },
-  props: ['id', 'suject'],
+  props: ['id'],
   inject:['access_token'],
   mounted(){
+    this.suject=this.$route.query.suject;
   }
 }
 </script>
