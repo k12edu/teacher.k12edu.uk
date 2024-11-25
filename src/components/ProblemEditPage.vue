@@ -271,6 +271,7 @@ export default {
           answer=this.answerForMutiple;
         }
         const data={
+          'id':this.id,
           'problem_description':this.describe,
           'question_options':this.optionList,
           'answer':answer,
