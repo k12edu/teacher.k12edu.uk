@@ -138,15 +138,13 @@ export default {
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
         let obj,ans_obj;
-        console.log(typeof this.item.question_options)
-        console.log(typeof this.item.answer)
-        try {
-            obj = JSON.parse(this.item.question_options);
-            ans_obj = JSON.parse(this.item.answer);
-        } catch (error) {
-            console.error("JSON 解析失敗:", error);
-            obj = {};
-            ans_obj = {};
+        if(typeof this.item.question_options === 'object'){
+          obj = this.item.question_options;
+          ans_obj = this.item.answer;
+        }
+        else{
+          obj = JSON.parse(this.item.question_options);
+          ans_obj = JSON.parse(this.item.answer);
         }
         let l=Object.keys(obj).length;
         for(let i=0;i<l;i++){
