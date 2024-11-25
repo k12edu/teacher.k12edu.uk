@@ -21,7 +21,7 @@
         :value="option.value"
         v-model="publishOption"
         @change="fetchData"
-        name="options"
+        name="options2"
       />
       {{ option.text }}
       </label>
