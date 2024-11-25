@@ -163,7 +163,7 @@
           'request_count': 10 
         },
         selectedOption: 'program',
-        publishOption: 'program',
+        publishOption: 'publish',
         isMobile:false,
       }
     },
