@@ -144,10 +144,14 @@ export default {
           this.optionList.push({optionName:obj[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
         }
         if(this.problemType=='single'){
-          this.answerForSingle=ans_obj[0];
+          this.answerForSingle=obj[ans_obj[0]];
         }
         else{
-          this.answerForSingle=ans_obj;
+          let new_arr=[]
+          for(let i=0;i<ans_obj.length;i++){
+            new_arr.push(obj[ans_obj[i]]);
+          }
+          this.answerForSingle=new_arr;
         }
       }
     },
