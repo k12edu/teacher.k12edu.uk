@@ -151,7 +151,7 @@ export default {
           for(let i=0;i<ans_obj.length;i++){
             new_arr.push(obj[ans_obj[i]]);
           }
-          this.answerForSingle=new_arr;
+          this.answerForMutiple=new_arr;
         }
       }
     },
