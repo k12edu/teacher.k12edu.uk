@@ -129,7 +129,8 @@ export default {
   methods:{
     changeData(){
       if(this.suject=='program'){
-
+        this.title=this.item.title;
+        this.describe=this.item.problem_description;
       }
       else{
         this.title=this.item.title;
