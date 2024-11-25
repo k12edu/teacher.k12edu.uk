@@ -214,7 +214,7 @@ export default {
           const result = await response.json();
           console.log(result);
           this.testCaseDataArray = result['data_list']; 
-          console.log(this.testCaseDataArray);
+          console.log(this.testCaseDataArray.length);
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
