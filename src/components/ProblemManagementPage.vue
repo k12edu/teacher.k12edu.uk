@@ -184,7 +184,7 @@
           }).toString();
           const request_type = this.selectedOption;
           const token=this.access_token;
-          const keyword='problem'
+          let keyword='problem'
           if(this.publishOption=='draft'){
             keyword='draft';
           }
