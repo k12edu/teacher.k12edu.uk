@@ -81,6 +81,18 @@
       {{ option.text }}
       </label>
     </div>
+    <div class="radio-group">
+      <label style="user-select: none;" v-for="option in publishOptions" :key="option.value" class="radio-option">
+        <input
+        type="radio"
+        :value="option.value"
+        v-model="publishOption"
+        @change="fetchData"
+        name="options2"
+      />
+      {{ option.text }}
+      </label>
+    </div>
     <div class="switch-page-div">
       <label for="select" style="text-wrap: nowrap;">每頁資料筆數：</label>
       <select id="select" v-model="itemPerPage" @change="fetchData">

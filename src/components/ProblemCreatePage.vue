@@ -103,7 +103,7 @@
           </div>
         </div>
         <button @click="uploadProblem">上傳題目</button>
-        <button @click="uploadProblem">暫存為草稿</button>
+        <button @click="uploadProblem2">暫存為草稿</button>
       </div>
     </div>
 </template>
@@ -117,6 +117,7 @@
     },
     data(){
       return {
+        publish_status:'',
         itemId:-1,
         title:'',
         suject:'program',
@@ -156,6 +157,20 @@
         this.optionList.splice(idx,1);
       },
       uploadProblem(){
+        this.publish_status='publish';
+        if(this.suject=='natural'){
+          this.uploadNaturalData();
+        }
+        else if(this.suject=='math'){
+          this.uploadMathData();
+        }
+        else{
+          this.uploadProgramData();
+        }
+        this.$router.push({ name: 'MainPage' });
+      },
+      uploadProblem2(){
+        this.publish_status='draft';
         if(this.suject=='natural'){
           this.uploadNaturalData();
         }
@@ -183,7 +198,11 @@
             'problem_type':this.problemType,
           }
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/science-problem-info-list/`, {
+          let keyword='problem';
+          if(this.publish_status=='draft'){
+            keyword='draft';
+          }
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/science-${keyword}-info-list/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -217,7 +236,11 @@
             'problem_type':this.problemType,
           }
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-problem-info-list/`, {
+          let keyword='problem';
+          if(this.publish_status=='draft'){
+            keyword='draft';
+          }
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-${keyword}-info-list/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -244,7 +267,11 @@
             'testcase_output':this.testCaseOutput,
           }
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/program-problem-info-list/`, {
+          let keyword='problem';
+          if(this.publish_status=='draft'){
+            keyword='draft';
+          }
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/program-${keyword}-info-list/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
