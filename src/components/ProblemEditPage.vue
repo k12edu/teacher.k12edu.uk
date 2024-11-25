@@ -136,9 +136,10 @@ export default {
         this.title=this.item.title;
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
-        let l=Object.keys(this.item.question_options).length;
+        let obj = this.item.question_options;
+        let l=Object.keys(obj).length;
         console.log(l);
-        console.log(this.item.question_options);
+        
         for(let i=0;i<l;i++){
           this.optionList.push({optionName:this.item.question_options[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
         }
