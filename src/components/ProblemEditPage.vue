@@ -145,13 +145,12 @@ export default {
           this.optionList.push({optionName:obj[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
         }
         if(this.problemType=='single'){
-          this.answerForSingle=obj[ans_obj[0]];
-          console.log(this.answerForSingle);
+          this.answerForSingle=obj[ans_obj[0]]+'_'+(ans_obj[0].charCodeAt(0)-'A'.charCodeAt(0)).toString();
         }
         else{
           let new_arr=[]
           for(let i=0;i<ans_obj.length;i++){
-            new_arr.push(obj[ans_obj[i]]);
+            new_arr.push(obj[ans_obj[i]]+'_'+(ans_obj[i].charCodeAt(0)-'A'.charCodeAt(0)).toString());
           }
           this.answerForMutiple=new_arr;
           console.log(this.answerForMutiple);
