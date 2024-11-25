@@ -7,9 +7,10 @@
         <div class="edit-item"> 
           <input class="title-input" type="text" v-model="title">
         </div>
+        <h3>題目狀態 {{ publish_status }}</h3>
       </div>
       <div class="edit-div">
-        <h3>科目 {{suject}}</h3>
+        <h3>科目 {{showSuject}}</h3>
       </div>
 
       <div class="edit-div">
@@ -107,6 +108,7 @@ export default {
   },
   data(){
     return {
+      showSuject:'',
       suject:'program',
       publish_status:'',
       itemId:-1,
@@ -125,6 +127,56 @@ export default {
     }
   },
   methods:{
+    changeData(){
+      if(this.suject=='program'){
+
+      }
+      else{
+        this.title=this.item.title;
+        this.describe=this.item.problem_description;
+        this.problemType=this.item.problem_type;
+        let l=Object.keys(this.item.question_options).length;
+        for(let i=0;i<l;i++){
+          this.optionList.push({optionName:this.item.question_options[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
+        }
+        if(this.problemType=='single'){
+          this.answerForSingle=this.item.answer[0];
+        }
+        else{
+          this.answerForSingle=this.item.answer;
+        }
+      }
+    },
+    async fetchData() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_id: this.$route.params.id,
+          }).toString();
+          const request_type = this.suject;
+          const token=this.access_token;
+          let keyword='problem';
+          if(this.publish_status=='draft'){
+            keyword='draft';
+          }
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-${keyword}-info-list/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
+          this.changeData();
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
     addAnswerOption(){
       if(this.suject!='program' && this.optionList.length<5){
         this.optionList.push({optionName:'新選項 '+String(this.optionList.length+1)});
@@ -284,7 +336,17 @@ export default {
   props: ['id'],
   inject:['access_token'],
   mounted(){
+    const mapForSuject = new Map([
+      ['program','程式'],
+      ['math','數學'],
+      ['science','自然'],
+    ]);
+    this.publish_status=this.$route.query.publish_status;
     this.suject=this.$route.query.suject;
+    this.showSuject=mapForSuject.get(this.suject);
+    if (this.item == undefined) {
+      this.fetchData();
+    }
   }
 }
 </script>

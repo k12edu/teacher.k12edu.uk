@@ -107,7 +107,7 @@
     inject:['access_token'],
     mounted(){
       this.suject = this.$route.query.suject;
-      if (this.items == undefined) {
+      if (this.item == undefined) {
         this.fetchData();
       }
     }
