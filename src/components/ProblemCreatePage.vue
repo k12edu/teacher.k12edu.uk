@@ -103,7 +103,7 @@
           </div>
         </div>
         <button @click="uploadProblem">上傳題目</button>
-        <button @click="uploadProblem2">暫存為草稿</button>
+        <button style="margin-top: 20px;" @click="uploadProblem2">暫存為草稿</button>
       </div>
     </div>
 </template>
