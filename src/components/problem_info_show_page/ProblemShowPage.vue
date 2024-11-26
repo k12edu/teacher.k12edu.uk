@@ -76,6 +76,8 @@
         showSuject:'none',
         showProblemType:'單選題',
         optionList:[],
+        testCaseInput:[],
+        testCaseOutput:[],
       }
     },
     methods:{
