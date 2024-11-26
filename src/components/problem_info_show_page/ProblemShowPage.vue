@@ -47,14 +47,14 @@
               <h3 style="margin-top: 16px;">標準輸入</h3>
             </div>
             <div contenteditable="false" class="edit-item" v-for="(item, index) in testCaseInput" :key="index">
-              <textarea v-model="testCaseInput[index]" class="problem-describe"></textarea>
+              <p class="problem-describe">{{ testCaseInput[index] }}</p>
             </div>
           </div>
 
           <div class="edit-div">
             <h3>標準輸出</h3>
             <div contenteditable="false" class="edit-item"  v-for="(item, index) in testCaseOutput" :key="index">
-              <textarea  v-model="testCaseOutput[index]" class="problem-describe"></textarea>
+              <p class="problem-describe">{{ testCaseOutput[index] }}</p>
             </div>
           </div>
         </div>
