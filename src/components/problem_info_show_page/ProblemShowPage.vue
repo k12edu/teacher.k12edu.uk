@@ -1,6 +1,6 @@
 <template>
     <div class="problem-edit-main">
-      <div class="problem-edit-body" v-if=" item && suject!='program'">
+      <div class="problem-edit-body" v-if="item">
         <div class="edit-div">
           <h3>題目編號: {{ item.problem_id }}</h3>
         </div>
@@ -17,31 +17,49 @@
             <p>{{item.problem_description}}</p>
           </div>
         </div>
-        
-        <div class="edit-div">
-          <h3>題目類型: {{ item.problem_type }}</h3>
-        </div>
-        <div class="edit-div">
-          <div class="edit-item">
-            <h3 style="margin-top: 16px;">選項</h3>
+        <div v-if="suject!='program'">
+          <div class="edit-div">
+            <h3>題目類型: {{ item.problem_type }}</h3>
+          </div>
+          <div class="edit-div">
+            <div class="edit-item">
+              <h3 style="margin-top: 16px;">選項</h3>
+            </div>
+            
+            <div class="edit-item2">
+              <div class="option-items">
+              <p>{{ item.question_options }}</p>
+              </div>
+            </div>
           </div>
           
-          <div class="edit-item2">
-            <div class="option-items">
-             <p>{{ item.question_options }}</p>
+          <div class="edit-div">
+            <h3>答案</h3>
+            <div class="edit-item2">
+              <p>{{ item.answer }}</p>
             </div>
           </div>
         </div>
-        
-        <div class="edit-div">
-          <h3>答案</h3>
-          <div class="edit-item2">
-            <p>{{ item.answer }}</p>
+
+        <div v-if="this.suject=='program'">
+          <div class="edit-div">
+            <div class="edit-item">
+              <h3 style="margin-top: 16px;">標準輸入</h3>
+            </div>
+            <div contenteditable="false" class="edit-item" v-for="(item, index) in testCaseInput" :key="index">
+              <textarea v-model="testCaseInput[index]" class="problem-describe"></textarea>
+            </div>
+          </div>
+
+          <div class="edit-div">
+            <h3>標準輸出</h3>
+            <div contenteditable="false" class="edit-item"  v-for="(item, index) in testCaseOutput" :key="index">
+              <textarea  v-model="testCaseOutput[index]" class="problem-describe"></textarea>
+            </div>
           </div>
         </div>
-        
-        
       </div>
+
     </div>
 </template>
   
@@ -83,6 +101,34 @@
           const result = await response.json();
           this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
           this.changeData();
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
+      async getTestCaseData() {
+        try {
+          const queryParams = new URLSearchParams({
+            request_id: this.$route.params.id,
+          }).toString();
+          const token=this.access_token;
+          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/program-problem-test-data/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.testCaseDataArray = result['data_list']; 
+          for(let i=0;i<this.testCaseDataArray.length;i++){
+          this.testCaseInput.push(this.testCaseDataArray[i]['stand_input']);
+          this.testCaseOutput.push(this.testCaseDataArray[i]['stand_output']);
+        }
         } catch (error) {
           console.error('發送請求時出錯：', error);
         }
