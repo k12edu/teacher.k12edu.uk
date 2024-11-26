@@ -47,7 +47,7 @@
               <h3 style="margin-top: 16px;">標準輸入</h3>
             </div>
             <div contenteditable="false" class="edit-item" v-for="(item, index) in testCaseInput" :key="index">
-              <p class="problem-describe">{{ testCaseInput[index] }}</p>
+              <p aclass="problem-describe">{{ testCaseInput[index] }}</p>
             </div>
           </div>
 
