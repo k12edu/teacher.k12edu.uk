@@ -155,6 +155,7 @@
       this.suject = this.$route.query.suject;
       if (this.item == undefined) {
         this.fetchData();
+        this.getTestCaseData();
       }
     }
   }
