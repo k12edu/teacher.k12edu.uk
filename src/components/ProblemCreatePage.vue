@@ -29,8 +29,8 @@
           </div>
         </div>
         
-        <div v-if="this.suject!='program'">
-          <div class="edit-div">
+        <div v-if="this.suject!='program'" style=" width: auto;">
+          <div class="edit-div" >
             <h3>題目類型</h3>
             <div class="edit-item">
               <label style="user-select: none;" v-for="option in problemTypeOptions" :key="option.value" class="radio-option">
