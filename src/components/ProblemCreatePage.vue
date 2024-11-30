@@ -341,8 +341,8 @@
     width: 100%;
   }
   .problem-describe{
-    width: 70%;
-    height: 40vh;
+    width: 100%;
+    height: 50vh;
     font-size: 18px;
   }
   input{

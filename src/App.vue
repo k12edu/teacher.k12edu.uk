@@ -142,6 +142,8 @@ export default {
       },
   },
   mounted(){
+    const currentDomain = window.location.hostname;
+    console.log(currentDomain);
     this.access_token = localStorage.getItem('jwt');
     if(this.access_token == undefined) this.access_token="";
     else this.isLogIn=true;
