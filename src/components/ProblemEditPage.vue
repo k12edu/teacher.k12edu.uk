@@ -20,7 +20,7 @@
         </div>
       </div>
       
-      <div v-if="this.suject!='program'">
+      <div v-if="this.suject!='program'" style="width: 100%;">
         <div class="edit-div">
           <h3>題目類型</h3>
           <div class="edit-item">
@@ -73,7 +73,7 @@
         </div>
       </div>
       
-      <div v-if="this.suject=='program'">
+      <div v-if="this.suject=='program'" style="width: 100%;">
         <div class="edit-div">
           <div class="edit-item">
             <h3 style="margin-top: 16px;">標準輸入</h3>
@@ -440,7 +440,7 @@ export default {
   width: 100%;
 }
 .problem-describe{
-  width: 70%;
+  width: 100%;
   height: 40vh;
   font-size: 18px;
 }
