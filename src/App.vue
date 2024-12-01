@@ -24,6 +24,8 @@ export default {
       userName: "",
       isLogIn:false,
       access_token:"",
+      api_url:"",
+      r_url:""
     }
   },
   provide(){
@@ -31,6 +33,7 @@ export default {
       isLogIn : computed(() => this.isLogIn),
       googleLogin : this.googleLogin,
       access_token:computed(() => this.access_token),
+      api_url:computed(() => this.api_url),
       logout: this.logout,
     }
   }, 
@@ -61,7 +64,8 @@ export default {
       this.loadGoogleAPI();
       const client = google.accounts.oauth2.initTokenClient({
         client_id: '63473080805-na5r3r5d4m3ibnk1f7kvjgp7n1grnaoe.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
-        redirect_uri: 'http://localhost:8080/',
+        //redirect_uri: 'http://localhost:8080/',
+        redirect_uri: this.r_url,
         scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
         callback: (response) => {
           if (response.access_token) {
@@ -144,6 +148,14 @@ export default {
   mounted(){
     const currentDomain = window.location.hostname;
     console.log(currentDomain);
+    if(currentDomain=='localhost'){
+      this.api_url='http://127.0.0.1:60000';
+      this.r_url='http://localhost:8080/';
+    }
+    else{
+      this.api_url='https://k12edu.us.kg';
+      this.r_url=' https://teacher.k12edu.us.kg/';
+    }
     this.access_token = localStorage.getItem('jwt');
     if(this.access_token == undefined) this.access_token="";
     else this.isLogIn=true;
