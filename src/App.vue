@@ -82,7 +82,7 @@ export default {
     },
 
     sendAccessTokenToBackend(accessToken) {
-      fetch('http://127.0.0.1:60000/accounts/api/google-login/', {
+      fetch(`${this.api_url}/accounts/api/google-login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
