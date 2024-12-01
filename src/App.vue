@@ -1,5 +1,4 @@
 <template>
-  {{ api_url }}
   <div id="main-app">
     <header><Header ></Header></header>
     <RouterView style="min-height: 100vh;"></RouterView>
