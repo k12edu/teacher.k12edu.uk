@@ -152,11 +152,14 @@ export default {
     if(currentDomain=='localhost'){
       this.api_url='http://127.0.0.1:60000';
       this.r_url='http://localhost:8080/';
+      console.log('test1');
     }
     else{
       this.api_url='https://k12edu.us.kg';
-      this.r_url=' https://teacher.k12edu.us.kg/';
+      this.r_url='https://teacher.k12edu.us.kg/';
+      console.log('test2');
     }
+    console.log(this.api_url);
     this.access_token = localStorage.getItem('jwt');
     if(this.access_token == undefined) this.access_token="";
     else this.isLogIn=true;
