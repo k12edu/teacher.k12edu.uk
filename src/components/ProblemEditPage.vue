@@ -288,7 +288,7 @@ export default {
         if(this.publish_status=='draft'){
           keyword='draft';
         }
-        const response = await fetch(`http://127.0.0.1:60000/teacher-platform/science-${keyword}-info-list/`, {
+        const response = await fetch(`${api_url}/teacher-platform/science-${keyword}-info-list/`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -327,7 +327,7 @@ export default {
         if(this.publish_status=='draft'){
           keyword='draft';
         }
-        const response = await fetch(`http://127.0.0.1:60000/teacher-platform/math-${keyword}-info-list/`, {
+        const response = await fetch(`${api_url}/teacher-platform/math-${keyword}-info-list/`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -359,7 +359,7 @@ export default {
         if(this.publish_status=='draft'){
           keyword='draft';
         }
-        const response = await fetch(`http://127.0.0.1:60000/teacher-platform/program-${keyword}-info-list/`, {
+        const response = await fetch(`${api_url}/teacher-platform/program-${keyword}-info-list/`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -382,7 +382,7 @@ export default {
     
   },
   props: ['id'],
-  inject:['access_token'],
+  inject:['access_token','api_url'],
   mounted(){
     const mapForSuject = new Map([
       ['program','程式'],

@@ -40,7 +40,7 @@ export default {
           request_id: this.$route.params.id,
         }).toString();
         const token=this.access_token;
-        const response = await fetch(`http://127.0.0.1:60000/teacher-platform/announcement/?${queryParams}`, {
+        const response = await fetch(`${api_url}/teacher-platform/announcement/?${queryParams}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export default {
   computed:{
   },
   props: {},
-  inject:['access_token'],
+  inject:['access_token','api_url'],
   mounted(){
     if (this.items == undefined) {
       this.fetchData();

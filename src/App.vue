@@ -108,7 +108,7 @@ export default {
     async updateOnlineTime() {
         try {
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/accounts/api/online-time/`, {
+          const response = await fetch(`${api_url}/accounts/api/online-time/`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ export default {
       async getOnlineTime() {
         try {
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/accounts/api/online-time/`, {
+          const response = await fetch(`${api_url}accounts/api/online-time/`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

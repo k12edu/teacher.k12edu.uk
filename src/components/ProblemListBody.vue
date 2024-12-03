@@ -169,7 +169,7 @@
           }).toString();
           const request_type = this.selectedOption;
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
+          const response = await fetch(`${api_url}/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -234,7 +234,7 @@
         this.isMobile = window.innerWidth <= 1050;
       }
     },
-    inject:['access_token','isLogIn'],
+    inject:['access_token','isLogIn','api_url'],
     mounted() {
       
       if (this.items.length === 0) {
