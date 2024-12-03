@@ -62,7 +62,7 @@
             request_count: this.itemPerPage,
           }).toString();
           const token = this.access_token;
-          const response = await fetch(`${api_url}/teacher-platform/announcement/?${queryParams}`, {
+          const response = await fetch(`${this.api_url}/teacher-platform/announcement/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
