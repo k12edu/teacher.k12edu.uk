@@ -154,7 +154,7 @@ export default {
       console.log('test1');
     }
     else{
-      this.api_url='https://k12edu.us.kg';
+      this.api_url='https://api.k12edu.us.kg';
       this.r_url='https://teacher.k12edu.us.kg/';
       console.log('test2');
     }
