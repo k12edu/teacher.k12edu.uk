@@ -288,7 +288,7 @@ export default {
         if(this.publish_status=='draft'){
           keyword='draft';
         }
-        const response = await fetch(`${api_url}/teacher-platform/science-${keyword}-info-list/`, {
+        const response = await fetch(`${this.api_url}/teacher-platform/science-${keyword}-info-list/`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -327,7 +327,7 @@ export default {
         if(this.publish_status=='draft'){
           keyword='draft';
         }
-        const response = await fetch(`${api_url}/teacher-platform/math-${keyword}-info-list/`, {
+        const response = await fetch(`${this.api_url}/teacher-platform/math-${keyword}-info-list/`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -359,7 +359,7 @@ export default {
         if(this.publish_status=='draft'){
           keyword='draft';
         }
-        const response = await fetch(`${api_url}/teacher-platform/program-${keyword}-info-list/`, {
+        const response = await fetch(`${this.api_url}/teacher-platform/program-${keyword}-info-list/`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

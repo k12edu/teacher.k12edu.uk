@@ -169,7 +169,7 @@
           }).toString();
           const request_type = this.selectedOption;
           const token=this.access_token;
-          const response = await fetch(`${api_url}/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
+          const response = await fetch(`${this.api_url}/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
