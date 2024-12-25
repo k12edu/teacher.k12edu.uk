@@ -1,0 +1,17 @@
+x-default-opts: &default-opts
+  restart: always
+  tty: true
+  stdin_open: true
+  privileged: false
+  ipc: private
+  
+services:
+  nginx:
+    <<: *default-opts
+    image: node:18
+    container_name: node-teacher
+    volumes:
+      - "./:/app"
+    ports:
+      - "58080:8080"
+    command: sh -c "cd /app && npm install && npm run serve"
