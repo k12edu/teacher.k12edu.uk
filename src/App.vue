@@ -1,5 +1,6 @@
 <template>
   <div id="main-app">
+    <p>token:</p>
     {{ access_token }}
     <header><Header ></Header></header>
     <RouterView style="min-height: 100vh;"></RouterView>
@@ -83,7 +84,7 @@ export default {
     },
 
     sendAccessTokenToBackend(accessToken) {
-      fetch(`${this.api_url}/accounts/api/google-login/`, {
+      fetch(`${this.api_url}/accounts/api/google-login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
