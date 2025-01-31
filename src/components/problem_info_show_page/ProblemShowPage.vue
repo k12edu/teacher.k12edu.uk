@@ -57,7 +57,11 @@
             <textarea readonly v-model="testCaseOutput[index]" class="problem-describe"></textarea>
           </div>
         </div>
+        
       </div>
+			<div v-if="isSuperAccount" class="edit-div">
+				<button @click="deleteProblem">刪除題目</button>
+			</div>
     </div>
 
   </div>
@@ -81,6 +85,42 @@ export default {
     }
   },
   methods:{
+    async deleteProblem() {
+	// 確認是否真的要刪除題目
+	if (!confirm("確定要刪除這個題目嗎？")) return;
+
+	try {
+		const token = this.access_token; // 獲取存儲在 localStorage 中的 token
+		const request_type = this.suject; // 題目類型，根據 suject 決定（如 program、math 等）
+		const queryParams = new URLSearchParams({
+		request_id: this.$route.params.id, // 取得當前問題的 ID
+		}).toString();
+
+		// 發送 DELETE 請求
+		const response = await fetch(`${this.api_url}/teacher-platform/${request_type}-problem-info-list/?${queryParams}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`,
+		},
+		});
+
+		// 檢查是否刪除成功
+		if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
+		// 顯示刪除成功的提示
+		alert("題目刪除成功！");
+
+		// 刪除成功後跳轉到選單頁面
+		this.$router.push({ name: 'MainPage2' }); // 跳轉到 MainPage2
+
+	} catch (error) {
+		console.error('刪除題目時發生錯誤：', error);
+		alert("刪除失敗，請稍後再試！");
+	}
+	},
     async fetchData() {
       try {
         const queryParams = new URLSearchParams({
@@ -152,7 +192,7 @@ export default {
   computed:{
   },
   props: {},
-  inject:['access_token','api_url'],
+  inject:['access_token','api_url','isSuperAccount'],
   mounted(){
     this.suject = this.$route.query.suject;
     if (this.item == undefined) {

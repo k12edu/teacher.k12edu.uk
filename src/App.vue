@@ -25,7 +25,8 @@ export default {
       isLogIn:false,
       access_token:"",
       api_url:"",
-      r_url:""
+      r_url:"",
+      isSuperAccount:false,
     }
   },
   provide(){
@@ -34,6 +35,7 @@ export default {
       googleLogin : this.googleLogin,
       access_token:computed(() => this.access_token),
       api_url:computed(() => this.api_url),
+      isSuperAccount:computed(() => this.isSuperAccount),
       logout: this.logout,
     }
   }, 
@@ -42,16 +44,19 @@ export default {
       if(this.isLogIn==false) return;
       localStorage.removeItem('jwt');
       localStorage.removeItem('refresh');
+      localStorage.removeItem('isSuperAccount');
       this.access_token="";
       this.isLogIn=false;
+      this.isSuperAccount=false;
       this.$router.push({ name: 'MainPage' });
       window.location.reload(); 
     },
     ChangeUserName(newUserName){
+      window.location.reload();
       this.userName = newUserName;
       this.isLogIn = true;
-      window.location.reload(); 
       this.updateOnlineTime();
+      this.checkSuperAccount();
     },
     loadGoogleAPI() {
       window.google = window.google || {};
@@ -95,15 +100,40 @@ export default {
           if (data.access) {
             this.$router.push({ name: 'MainPage' });
             this.access_token=data.access;
-            this.ChangeUserName('已登入帳號');
             localStorage.setItem('jwt', data.access);
             localStorage.setItem('refresh', data.refresh);
+            // this.checkSuperAccount();
+            this.ChangeUserName('已登入帳號');
             console.log('JWT token received and stored:', data);
           } else {
             console.error('JWT not received:', data);
           }
         })
         .catch(error => console.error('Error sending access token to backend:', error));
+    },
+    async checkSuperAccount() {
+      console.log("Super Account Status:", this.isSuperAccount);
+      try {
+        const response = await fetch(`${this.api_url}/accounts/is_super_account/`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.access_token}`
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if(data.result==true){
+          localStorage.setItem('isSuperAccount', 'true');
+        }
+        console.log("Super Account Status:", this.isSuperAccount);
+      } catch (error) {
+        console.error("Error fetching super account status:", error);
+      }
     },
     async updateOnlineTime() {
         try {
@@ -146,9 +176,10 @@ export default {
       },
   },
   mounted(){
+
     const currentDomain = window.location.hostname;
     console.log(currentDomain);
-    if(currentDomain=='localhost'){
+    if(currentDomain=='localhost' || currentDomain=="127.0.0.1"){
       this.api_url='http://127.0.0.1:60000';
       this.r_url='http://localhost:8080/';
       console.log('test1');
@@ -159,7 +190,10 @@ export default {
       console.log('test2');
     }
     console.log(this.api_url);
+    
     this.access_token = localStorage.getItem('jwt');
+    this.checkSuperAccount();
+    this.isSuperAccount = localStorage.getItem('isSuperAccount') === 'true';
     if(this.access_token == undefined) this.access_token="";
     else this.isLogIn=true;
     const script = document.createElement('script');
