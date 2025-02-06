@@ -68,9 +68,10 @@ export default {
         redirect_uri: this.r_url,
         scope: 'openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
         callback: (response) => {
+          console.log(response)
           if (response.access_token) {
             // 將 access_token 傳送到 Django 後端進行驗證
-            this.sendIdTokenToBackend(response.credential);
+            this.sendIdTokenToBackend(response.access_token);
           } else {
             console.error('Failed to obtain access token');
           }
@@ -81,13 +82,13 @@ export default {
       client.requestAccessToken();
     },
 
-    sendIdTokenToBackend(idToken) {
+    sendIdTokenToBackend(access_token) {
         fetch(`${this.api_url}/accounts/api/google-login/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id_token: idToken }), // 修改成傳 id_token
+            body: JSON.stringify({ access_token: access_token }), // 修改成傳 id_token
         })
         .then(response => response.json())
         .then(data => {
@@ -101,6 +102,7 @@ export default {
             } else {
                 console.error('JWT not received:', data);
             }
+            this.ChangeUserName('user')
         })
         .catch(error => console.error('Error sending id_token to backend:', error));
     },
