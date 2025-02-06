@@ -66,11 +66,11 @@ export default {
         client_id: '63473080805-na5r3r5d4m3ibnk1f7kvjgp7n1grnaoe.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
         //redirect_uri: 'http://localhost:8080/',
         redirect_uri: this.r_url,
-        scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
+        scope: 'openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
         callback: (response) => {
           if (response.access_token) {
             // 將 access_token 傳送到 Django 後端進行驗證
-            this.sendAccessTokenToBackend(response.access_token);
+            this.sendIdTokenToBackend(response.access_token);
           } else {
             console.error('Failed to obtain access token');
           }
@@ -81,30 +81,30 @@ export default {
       client.requestAccessToken();
     },
 
-    sendAccessTokenToBackend(accessToken) {
-      fetch(`${this.api_url}/accounts/api/google-login/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ access_token: accessToken }),
-      })
+    sendIdTokenToBackend(idToken) {
+        fetch(`${this.api_url}/accounts/api/google-login/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id_token: idToken }), // 修改成傳 id_token
+        })
         .then(response => response.json())
         .then(data => {
-          // 處理 Django 回傳的 JWT
-          if (data.access) {
-            this.$router.push({ name: 'MainPage' });
-            this.access_token=data.access;
-            this.ChangeUserName('已登入帳號');
-            localStorage.setItem('jwt', data.access);
-            localStorage.setItem('refresh', data.refresh);
-            console.log('JWT token received and stored:', data);
-          } else {
-            console.error('JWT not received:', data);
-          }
+            // 處理 Django 回傳的 JWT
+            if (data.access) {
+                this.access_token = data.access;
+                this.isLogin = true;
+                localStorage.setItem('jwt', data.access);
+                localStorage.setItem('refresh', data.refresh);
+                console.log('JWT token received and stored:', data);
+            } else {
+                console.error('JWT not received:', data);
+            }
         })
-        .catch(error => console.error('Error sending access token to backend:', error));
+        .catch(error => console.error('Error sending id_token to backend:', error));
     },
+
     async updateOnlineTime() {
         try {
           const token=this.access_token;
