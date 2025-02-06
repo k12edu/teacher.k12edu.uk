@@ -70,7 +70,7 @@ export default {
         callback: (response) => {
           if (response.access_token) {
             // 將 access_token 傳送到 Django 後端進行驗證
-            this.sendIdTokenToBackend(response.access_token);
+            this.sendIdTokenToBackend(response.credential);
           } else {
             console.error('Failed to obtain access token');
           }
