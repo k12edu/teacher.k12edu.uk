@@ -24,12 +24,14 @@ export default {
       userName: "",
       isLogIn:false,
       access_token:"",
+      isSuperAccount:false,
       api_url:"",
       r_url:""
     }
   },
   provide(){
     return {
+      isSuperAccount : computed(() => this.isSuperAccount),
       isLogIn : computed(() => this.isLogIn),
       googleLogin : this.googleLogin,
       access_token:computed(() => this.access_token),
@@ -42,6 +44,7 @@ export default {
       if(this.isLogIn==false) return;
       localStorage.removeItem('jwt');
       localStorage.removeItem('refresh');
+      localStorage.removeItem('isSuperAccount');
       this.access_token="";
       this.isLogIn=false;
       this.$router.push({ name: 'MainPage' });
@@ -98,6 +101,7 @@ export default {
                 this.isLogin = true;
                 localStorage.setItem('jwt', data.access);
                 localStorage.setItem('refresh', data.refresh);
+                localStorage.setItem('isSuperAccount', data.isSuperAccount);
                 console.log('JWT token received and stored:', data);
             } else {
                 console.error('JWT not received:', data);
@@ -162,6 +166,7 @@ export default {
     }
     console.log(this.api_url);
     this.access_token = localStorage.getItem('jwt');
+    this.isSuperAccount=localStorage.getItem('isSuperAccount');
     if(this.access_token == undefined) this.access_token="";
     else this.isLogIn=true;
     const script = document.createElement('script');

@@ -10,7 +10,7 @@
         <div class="edit-div">
           <h3>科目</h3>
           <div class="edit-item">
-            <label style="user-select: none;" v-for="option in sujectOptions" :key="option.value" class="radio-option">
+            <label style="user-select: none;" v-for="option in sujectOptions" :key="option.value" class="radio-option" @change="fetchCourses">
             <input
             type="radio"
             :value="option.value"
@@ -21,7 +21,20 @@
             </label>
           </div>
         </div>
-        
+        <div class="edit-div" v-if="this.suject!='program'">
+          <label for="dropdown">選擇課程：</label>
+          <select id="dropdown" v-model="SelectCourse" @change="fetchModules">
+            <option v-for="item in courses" :key="item.course_id" :value="item">
+              {{ item.name }}
+            </option>
+          </select>
+          <p>當前選擇: {{ SelectCourse ? SelectCourse.name : "無" }}</p>
+          
+          <label v-if="SelectCourse" for="multi-select">選擇單元：</label>
+          <CheckboxMultiSelect v-if="SelectCourse" v-model="SelectModule" :items="modules" />
+          <p v-if="SelectCourse">當前選擇: {{ SelectModule.map(item => item.name).join(", ") || "無" }}</p>
+
+  </div>
         <div class="edit-div">
           <h3>題目敘述</h3>
           <div class="edit-item">
@@ -109,14 +122,18 @@
 </template>
   
   <script>
-  
+  import CheckboxMultiSelect from "./CheckboxMultiSelect.vue";
   export default {
     name: 'ProblemEditPage',
     components:{
-      
+      CheckboxMultiSelect
     },
     data(){
       return {
+        modules:[],
+        courses:[],
+        SelectModule:[],
+        SelectCourse:null,
         publish_status:'',
         itemId:-1,
         title:'',
@@ -140,6 +157,73 @@
       }
     },
     methods:{
+      async fetchCourses() {
+        try {
+          let sj='';
+          if(this.suject=='math'){
+            sj='math';
+          }
+          else{
+            sj='science';
+          }
+          const queryParams = new URLSearchParams({
+            // request_page: this.page,
+            // request_count: this.itemPerPage,
+          }).toString();
+          const token=this.access_token;
+          const response = await fetch(`${this.api_url}/k12/${sj}/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.courses=result;
+          console.log('course:'+result);
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
+      async fetchModules() {
+        try {
+          let sj='';
+          if(this.suject=='math'){
+            sj='math';
+          }
+          else{
+            sj='science';
+          }
+          let id=this.SelectCourse.course_id;
+          const queryParams = new URLSearchParams({
+            // request_page: this.page,
+            // request_count: this.itemPerPage,
+          }).toString();
+          const token=this.access_token;
+          const response = await fetch(`${this.api_url}/k12/modules/${sj}/${id}/?${queryParams}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }, 
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          this.modules=result;
+          console.log('module:'+result);
+        } catch (error) {
+          console.error('發送請求時出錯：', error);
+        }
+      },
       addAnswerOption(){
         if(this.suject!='program' && this.optionList.length<5){
           this.optionList.push({optionName:'新選項 '+String(this.optionList.length+1)});
@@ -191,11 +275,14 @@
           else{
             answer=this.answerForMutiple;
           }
+          const moduleIds = this.SelectModule.map(item => item.module_id);
+          
           const data={
             'problem_description':this.describe,
             'question_options':this.optionList,
             'answer':answer,
             'problem_type':this.problemType,
+            'module_id':moduleIds,
           }
           const token=this.access_token;
           let keyword='problem';
@@ -229,11 +316,13 @@
           else{
             answer=this.answerForMutiple;
           }
+          const moduleIds = this.SelectModule.map(item => item.module_id);
           const data={
             'problem_description':this.describe,
             'question_options':this.optionList,
             'answer':answer,
             'problem_type':this.problemType,
+            'module_id':moduleIds,
           }
           const token=this.access_token;
           let keyword='problem';
@@ -248,7 +337,6 @@
             }, 
             body: JSON.stringify(data) 
           });
-
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
@@ -296,6 +384,7 @@
     props: {},
     inject:['access_token','api_url'],
     mounted(){
+      if(this.suject!='program') this.fetchCourses();
     }
   }
   </script>

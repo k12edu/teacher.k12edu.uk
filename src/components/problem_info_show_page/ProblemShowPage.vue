@@ -10,6 +10,9 @@
       <div class="edit-div">
         <h3>科目: {{ showSuject }}</h3>
       </div>
+      <div class="edit-div">
+        <h3>單元: {{ module_list }}</h3>
+      </div>
       
       <div class="edit-div">
         <h3>題目敘述</h3>
@@ -76,6 +79,7 @@ export default {
   },
   data(){
     return {
+      module_list:'',
       item:undefined,
       showSuject:'none',
       showProblemType:'單選題',
@@ -141,6 +145,8 @@ export default {
         }
 
         const result = await response.json();
+        this.module_list=result.module_list.join(", ")
+        console.log('module: '+result.module_list);
         this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
         this.changeData();
       } catch (error) {
