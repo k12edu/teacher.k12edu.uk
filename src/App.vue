@@ -110,26 +110,31 @@ export default {
         })
         .catch(error => console.error('Error sending id_token to backend:', error));
     },
-
-    async updateOnlineTime() {
-        try {
-          const token=this.access_token;
-          const response = await fetch(`${this.api_url}/accounts/api/online-time/`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            }, 
+    async getTokenFromCookie() {
+      
+      try {
+          const response = await fetch(`${this.api_url}/api/get_token_from_cookie/`, {
+              method: "GET",
+              credentials: "include",  // 確保請求攜帶 Cookie
           });
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+
+          const data = await response.json();
+
+          if (response.ok) {
+              console.log("已登入:", data.token);
+              return data.token;
+          } else {
+              console.log("未登入:", data.message);
+              console.warn("未登入:", data.message);
+              return null;
           }
-          const result = await response.json();
-          console.log(result.message);
-        } catch (error) {
-          console.error('發送請求時出錯：', error);
-        }
-      },
+      } catch (error) {
+          console.error("請求失敗:", error);
+          return null;
+      }
+    },
+
+    
       async getOnlineTime() {
         try {
           const token=this.access_token;
