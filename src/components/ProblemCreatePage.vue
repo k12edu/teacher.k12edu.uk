@@ -166,12 +166,8 @@
           else{
             sj='science';
           }
-          const queryParams = new URLSearchParams({
-            // request_page: this.page,
-            // request_count: this.itemPerPage,
-          }).toString();
           const token=this.access_token;
-          const response = await fetch(`${this.api_url}/k12/${sj}/?${queryParams}`, {
+          const response = await fetch(`${this.api_url}/k12/${sj}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
