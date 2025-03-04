@@ -167,7 +167,7 @@
             sj='science';
           }
           const token=this.access_token;
-          const response = await fetch(`${this.api_url}/k12/${sj}`, {
+          const response = await fetch(`${this.api_url}/k12/subject_courses/${sj}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -201,7 +201,7 @@
             // request_count: this.itemPerPage,
           }).toString();
           const token=this.access_token;
-          const response = await fetch(`${this.api_url}/k12/modules/${sj}/${id}/?${queryParams}`, {
+          const response = await fetch(`${this.api_url}/k12/course_modules/${sj}/${id}/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
