@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import MainPage from '../components/MainBody.vue'
 import MainPage2 from '../components/MainBody2.vue'
 import MainPage3 from '../components/MainBody3.vue'
@@ -136,7 +136,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 })
 
