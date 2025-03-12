@@ -1,4 +1,4 @@
-# vue_test
+# K12EDU-Teacher-Platform
 
 ## Project setup
 ```

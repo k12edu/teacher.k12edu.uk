@@ -29,7 +29,7 @@ jobs:
         run: npm run build
 
       - name: Copy CNAME file
-        run: echo 'teacher.k12edu.us.kg' > ./dist/CNAME # 定義的網域名稱
+        run: echo 'teacher.k12edu.uk' > ./dist/CNAME # 定義的網域名稱
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
