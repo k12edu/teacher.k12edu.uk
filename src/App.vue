@@ -66,7 +66,9 @@ export default {
     googleLogin() {
       this.loadGoogleAPI();
       const client = google.accounts.oauth2.initTokenClient({
-        client_id: '63473080805-na5r3r5d4m3ibnk1f7kvjgp7n1grnaoe.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
+        client_id: '917774825923-ki9dogspvhie7m0pfblhsec1mfa5guvi.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
+        // client_id: '63473080805-na5r3r5d4m3ibnk1f7kvjgp7n1grnaoe.apps.googleusercontent.com', // 替換成你的 Google OAuth 2.0 用戶端 ID
+        // 917774825923-ki9dogspvhie7m0pfblhsec1mfa5guvi.apps.googleusercontent.com
         //redirect_uri: 'http://localhost:8080/',
         redirect_uri: this.r_url,
         scope: 'openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
