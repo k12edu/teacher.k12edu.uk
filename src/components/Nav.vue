@@ -2,7 +2,7 @@
     <div class="nav">
       <ul>
         <RouterLink to="/Page2" class="no-style"><li><p>題目列表</p></li></RouterLink>
-        <RouterLink to="/Page3" class="no-style"><li><p>課程內容</p></li></RouterLink>
+        <!-- <RouterLink to="/Page3" class="no-style"><li><p>課程內容</p></li></RouterLink> -->
         <RouterLink to="/Page4" class="no-style"><li><p>使用者列表</p></li></RouterLink>
         <RouterLink to="/Page5" class="no-style"><li><p>常見問題</p></li></RouterLink>
         <RouterLink to="/Page6" class="no-style"><li><p>聯絡我們</p></li></RouterLink>

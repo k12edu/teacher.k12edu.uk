@@ -7,6 +7,7 @@ import MainPage5 from '../components/MainBody5.vue'
 import MainPage6 from '../components/MainBody6.vue'
 import MainPage7 from '../components/MainBody7.vue'
 import MainPage8 from '@/components/MainBody8.vue'
+import MainPage9 from '@/components/MainBody9.vue'
 import ProblemEditPage from '@/components/ProblemEditPage.vue'
 import ProblemCreatePage from '@/components/ProblemCreatePage.vue'
 import ProblemShowPage from '@/components/problem_info_show_page/ProblemShowPage.vue'
@@ -66,6 +67,13 @@ const routes = [
     name: 'MainPage8',
     components: {
       default: MainPage8,
+    }
+  },
+  {
+    path: '/Page9',
+    name: 'MainPage9',
+    components: {
+      default: MainPage9,
     }
   },
   {
