@@ -156,7 +156,7 @@
     
       <div v-if="generatedQuestion && (type=='是非題' || type=='填空題' || type=='簡答題')" class="question-container">
         <h2>Generated Question:</h2>
-        <p>{{ generatedQuestion.question }}</p>
+        <p>{{ generatedQuestion }}</p>
         <ul>
           <li v-for="(item, index) in generatedQuestion" :key="index">
             {{ item }}
@@ -164,8 +164,8 @@
         </ul>
       </div>
       <div v-else-if="generatedQuestion && (type=='單選題' || type=='多選題') " class="question-container">
-        <h2>Generated Question:</h2>
-        <p>{{ generatedQuestion.question }}</p>
+        <h2>Generated Question2:</h2>
+        <p>{{ generatedQuestion }}</p>
         <ul>
           <li v-for="(item, index) in generatedQuestion" :key="index">
             <p>問題:{{ item.question }}</p>
@@ -189,7 +189,7 @@
         character: '',
         situation: '',
         shot: '',
-        language: 'en-us',
+        language: '繁體中文',
         type: '單選題',
         generatedQuestion: null,
         modules:[],
@@ -241,6 +241,7 @@
         
         const data = await response.json();
         this.generatedQuestion = data.generate_question;
+        console.log(generatedQuestion);
       } catch (error) {
         console.error(error);
       }
