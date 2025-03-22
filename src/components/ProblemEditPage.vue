@@ -107,6 +107,12 @@ export default {
   },
   data(){
     return {
+      character: '',
+      situation: '',
+      shot: '',
+      language: 'en',
+      type: 'single',
+      generatedQuestion: null,
       showSuject:'',
       suject:'program',
       publish_status:'',
@@ -127,6 +133,32 @@ export default {
     }
   },
   methods:{
+    async generateQuestion() {
+      const requestData = {
+        character: this.character,
+        situation: this.situation,
+        shot: this.shot,
+        language: this.language,
+        type: this.type,
+      };
+      
+      try {
+        const response = await fetch(`${this.api_url}/ai/generate_question`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestData)
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to generate question');
+        }
+        
+        const data = await response.json();
+        this.generatedQuestion = data.generate_question;
+      } catch (error) {
+        console.error(error);
+      }
+    },
     changeData(){
       if(this.suject=='program'){
         this.title=this.item.title;
