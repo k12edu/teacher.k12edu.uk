@@ -578,7 +578,7 @@ label {
 }
 
 .input {
-  width: 90%;
+  width: 50%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
