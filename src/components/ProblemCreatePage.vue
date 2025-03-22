@@ -128,11 +128,11 @@
       </div>
       <div class="form-group">
         <label>Situation:</label>
-        <input v-model="situation" type="text" class="input" style="width: 70%; height: 100px;"/>
+        <textarea v-model="situation" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
       </div>
       <div class="form-group">
         <label>Shot:</label>
-        <input v-model="shot" type="text" class="input" style="width: 70%; height: 100px;" />
+        <textarea v-model="shot" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
       </div>
       <div class="form-group">
         <label>Language:</label>
