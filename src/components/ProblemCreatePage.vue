@@ -241,7 +241,7 @@
         
         const data = await response.json();
         this.generatedQuestion = data.generate_question;
-        console.log(generatedQuestion);
+        console.log(this.generatedQuestion);
       } catch (error) {
         console.error(error);
       }
