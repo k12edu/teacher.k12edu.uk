@@ -601,13 +601,10 @@ label {
 }
 
 .question-container {
-  margin-top: 20px;
-  margin: 10px 20px 10px 20px;
+  margin: 50px 20px 10px 20px;
   padding: 10px;
   background: rgb(107, 164, 184);
   border-radius: 5px;
-}
-.question-container {
   display: flex;
   flex-direction: column;
   align-items: center;
