@@ -137,26 +137,39 @@
       <div class="form-group">
         <label>Language:</label>
         <select v-model="language" class="input">
-          <option value="en">English</option>
-          <option value="zh">Chinese</option>
+          <option value="en">英文</option>
+          <option value="zh-tw">繁體中文</option>
+          <option value="zh-cn">簡體中文</option>
         </select>
       </div>
       <div class="form-group">
         <label>Type:</label>
         <select v-model="type" class="input">
-          <option value="single">Single Choice</option>
-          <option value="multiple">Multiple Choice</option>
-          <option value="fill">Fill in the Blank</option>
+          <option value="單選題">單選題</option>
+          <option value="多選題">多選題</option>
+          <option value="是非題">是非題</option>
+          <option value="填空題">填空題</option>
+          <option value="簡答題">簡答題</option>
         </select>
       </div>
       <button @click="generateQuestion" class="btn" style="margin-top: 20px;">Generate Question</button>
     
-      <div v-if="generatedQuestion" class="question-container">
+      <div v-if="generatedQuestion && (type=='是非題' || type=='填空題' || type=='簡答題')" class="question-container">
         <h2>Generated Question:</h2>
         <p>{{ generatedQuestion.question }}</p>
         <ul>
           <li v-for="(option, index) in generatedQuestion.options" :key="index">
             {{ option }}
+          </li>
+        </ul>
+      </div>
+      <div v-else-if="generatedQuestion && (type=='單選題' || type=='多選題') " class="question-container">
+        <h2>Generated Question:</h2>
+        <p>{{ generatedQuestion.question }}</p>
+        <ul>
+          <li v-for="(option, index) in generatedQuestion.options" :key="index">
+            <p>問題:{{ option.question }}</p>
+            <p>選項:{{ option.options }}</p>
           </li>
         </ul>
       </div>
@@ -176,8 +189,8 @@
         character: '',
         situation: '',
         shot: '',
-        language: 'en',
-        type: 'single',
+        language: 'en-us',
+        type: '單選題',
         generatedQuestion: null,
         modules:[],
         courses:[],
