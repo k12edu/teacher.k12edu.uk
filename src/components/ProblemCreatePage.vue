@@ -121,21 +121,21 @@
     </div>
 
     <div class="container">
-      <h1>Edit Problem</h1>
+      <h1>題目生成工具</h1>
       <div class="form-group">
-        <label>Character:</label>
+        <label>扮演角色:</label>
         <input v-model="character" type="text" class="input" style="width: 50%;"/>
       </div>
       <div class="form-group">
-        <label>Situation:</label>
+        <label>情境:</label>
         <textarea v-model="situation" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
       </div>
       <div class="form-group">
-        <label>Shot:</label>
+        <label>範例題目:</label>
         <textarea v-model="shot" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
       </div>
       <div class="form-group">
-        <label>Language:</label>
+        <label>語言:</label>
         <select v-model="language" class="input">
           <option value="en-us">英文</option>
           <option value="zh-tw">繁體中文</option>
@@ -143,7 +143,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Type:</label>
+        <label>題目類型:</label>
         <select v-model="type" class="input" @change="resetgeneratedQuestion">
           <option value="單選題">單選題</option>
           <option value="多選題">多選題</option>
