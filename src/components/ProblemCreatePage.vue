@@ -158,8 +158,8 @@
         <h2>Generated Question:</h2>
         <p>{{ generatedQuestion.question }}</p>
         <ul>
-          <li v-for="(option, index) in generatedQuestion.options" :key="index">
-            {{ option }}
+          <li v-for="(item, index) in generatedQuestion" :key="index">
+            {{ item }}
           </li>
         </ul>
       </div>
@@ -167,9 +167,9 @@
         <h2>Generated Question:</h2>
         <p>{{ generatedQuestion.question }}</p>
         <ul>
-          <li v-for="(option, index) in generatedQuestion.options" :key="index">
-            <p>問題:{{ option.question }}</p>
-            <p>選項:{{ option.options }}</p>
+          <li v-for="(item, index) in generatedQuestion" :key="index">
+            <p>問題:{{ item.question }}</p>
+            <p>選項:{{ item.options }}</p>
           </li>
         </ul>
       </div>
