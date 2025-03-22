@@ -137,7 +137,7 @@
       <div class="form-group">
         <label>Language:</label>
         <select v-model="language" class="input">
-          <option value="en">英文</option>
+          <option value="en-us">英文</option>
           <option value="zh-tw">繁體中文</option>
           <option value="zh-cn">簡體中文</option>
         </select>
@@ -189,7 +189,7 @@
         character: '',
         situation: '',
         shot: '',
-        language: '繁體中文',
+        language: 'zh-tw',
         type: '單選題',
         generatedQuestion: null,
         modules:[],
