@@ -152,7 +152,7 @@
           <option value="簡答題">簡答題</option>
         </select>
       </div>
-      <button @click="generateQuestion" class="btn" style="margin-top: 20px;">Generate Question</button>
+      <button @click="generateQuestion" class="btn" style="margin-top: 20px;">生成題目</button>
     
       <div v-if="generatedQuestion && (type=='是非題' || type=='填空題' || type=='簡答題')" class="question-container">
         <h2>生成題目列表:</h2>
