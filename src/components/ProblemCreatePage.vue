@@ -124,7 +124,7 @@
       <h1>題目生成工具</h1>
       <div class="form-group">
         <label>扮演角色:</label>
-        <input v-model="character" type="text" class="input" style="width: 50%;"/>
+        <input v-model="character" type="text" class="input" style="width: 70%;"/>
       </div>
       <div class="form-group">
         <label>情境:</label>
