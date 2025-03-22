@@ -144,7 +144,7 @@
       </div>
       <div class="form-group">
         <label>Type:</label>
-        <select v-model="type" class="input">
+        <select v-model="type" class="input" @change="resetgeneratedQuestion">
           <option value="單選題">單選題</option>
           <option value="多選題">多選題</option>
           <option value="是非題">是非題</option>
@@ -155,23 +155,23 @@
       <button @click="generateQuestion" class="btn" style="margin-top: 20px;">Generate Question</button>
     
       <div v-if="generatedQuestion && (type=='是非題' || type=='填空題' || type=='簡答題')" class="question-container">
-        <h2>Generated Question:</h2>
-        <p>{{ generatedQuestion }}</p>
-        <ul>
-          <li v-for="(item, index) in generatedQuestion" :key="index">
-            {{ item }}
-          </li>
-        </ul>
+        <h2>生成題目列表:</h2>
+        <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
+          {{ item }}
+        </div>
       </div>
-      <div v-else-if="generatedQuestion && (type=='單選題' || type=='多選題') " class="question-container">
-        <h2>Generated Question2:</h2>
-        <p>{{ generatedQuestion }}</p>
-        <ul>
-          <li v-for="(item, index) in generatedQuestion" :key="index">
-            <p>問題:{{ item.question }}</p>
-            <p>選項:{{ item.options }}</p>
-          </li>
-        </ul>
+
+      <div v-else-if="generatedQuestion && (type=='單選題' || type=='多選題')" class="question-container">
+        <h2>生成題目列表:</h2>
+        <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
+          <p><strong>問題:</strong> {{ item.question }}</p>
+          <div class="options">
+            <p><strong>選項:</strong></p>
+            <div v-for="(option, i) in item.options" :key="i" class="option-item">
+              {{ option }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>    
     
@@ -219,6 +219,9 @@
       }
     },
     methods:{
+      resetgeneratedQuestion(){
+        this.generatedQuestion=null;
+      },
       async generateQuestion() {
       const requestData = {
         character: this.character,
@@ -603,5 +606,36 @@ label {
   background: #e9ecef;
   border-radius: 5px;
 }
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.question-item {
+  background: #f1f1f1;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.options {
+  margin-top: 10px;
+}
+
+.option-item {
+  background: white;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
   </style>
   
