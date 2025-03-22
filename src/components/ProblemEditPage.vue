@@ -174,7 +174,7 @@ export default {
           if(this.publish_status=='draft'){
             keyword='draft';
           }
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/${request_type}-${keyword}-info-list/?${queryParams}`, {
+          const response = await fetch(`${this.api_url}/teacher-platform/${request_type}-${keyword}-info-list/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ export default {
             request_id: this.$route.params.id,
           }).toString();
           const token=this.access_token;
-          const response = await fetch(`http://127.0.0.1:60000/teacher-platform/program-problem-test-data/?${queryParams}`, {
+          const response = await fetch(`${this.api_url}/teacher-platform/program-problem-test-data/?${queryParams}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

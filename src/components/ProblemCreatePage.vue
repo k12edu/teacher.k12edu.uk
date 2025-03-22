@@ -96,7 +96,7 @@
           </div>
         </div>
         
-        <div v-if="this.suject=='program'" style="width: 100%;">
+        <div v-if="this.suject=='program'" style="width: 100%;" class="problem-edit-body">
           <div class="edit-div">
             <div class="edit-item">
               <h3 style="margin-top: 16px;">標準輸入</h3>
@@ -115,10 +115,53 @@
             </div>
           </div>
         </div>
-        <button @click="uploadProblem">上傳題目</button>
-        <button style="margin-top: 20px;" @click="uploadProblem2">暫存為草稿</button>
+        <button class="btn" @click="uploadProblem">上傳題目</button>
+        <button class="btn" style="margin-top: 20px;" @click="uploadProblem2">暫存為草稿</button>
       </div>
     </div>
+
+    <div class="container">
+      <h1>Edit Problem</h1>
+      <div class="form-group">
+        <label>Character:</label>
+        <input v-model="character" type="text" class="input" />
+      </div>
+      <div class="form-group">
+        <label>Situation:</label>
+        <input v-model="situation" type="text" class="input" />
+      </div>
+      <div class="form-group">
+        <label>Shot:</label>
+        <input v-model="shot" type="text" class="input" />
+      </div>
+      <div class="form-group">
+        <label>Language:</label>
+        <select v-model="language" class="input">
+          <option value="en">English</option>
+          <option value="zh">Chinese</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Type:</label>
+        <select v-model="type" class="input">
+          <option value="single">Single Choice</option>
+          <option value="multiple">Multiple Choice</option>
+          <option value="fill">Fill in the Blank</option>
+        </select>
+      </div>
+      <button @click="generateQuestion" class="btn">Generate Question</button>
+    
+      <div v-if="generatedQuestion" class="question-container">
+        <h2>Generated Question:</h2>
+        <p>{{ generatedQuestion.question }}</p>
+        <ul>
+          <li v-for="(option, index) in generatedQuestion.options" :key="index">
+            {{ option }}
+          </li>
+        </ul>
+      </div>
+    </div>    
+    
 </template>
   
   <script>
@@ -397,7 +440,7 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    width: 100%;
+    width: 90%;
     border: 3px solid rgb(147, 192, 207);
     border-radius: 5px;
     margin: 0px 0px 20px 0px;
@@ -411,7 +454,7 @@
   .problem-edit-body{
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     width: 65%;
   }
   .edit-item{
@@ -454,5 +497,64 @@
       width: 80%;
     }
   }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  max-width: 100%;
+  width: 60%;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  border-color: rgb(146, 198, 215);
+  border-width: 3px;
+  border-style: solid;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  display: block;
+  width: 50%;
+  padding: 10px;
+  background: rgb(146, 198, 215);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background: rgb(119, 170, 187);
+}
+
+.question-container {
+  margin-top: 20px;
+  padding: 10px;
+  background: #e9ecef;
+  border-radius: 5px;
+}
   </style>
   
