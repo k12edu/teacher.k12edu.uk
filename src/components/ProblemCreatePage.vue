@@ -602,8 +602,9 @@ label {
 
 .question-container {
   margin-top: 20px;
+  margin: 10px 20px 10px 20px;
   padding: 10px;
-  background: #e9ecef;
+  background: rgb(107, 164, 184);
   border-radius: 5px;
 }
 .question-container {
@@ -615,12 +616,12 @@ label {
 }
 
 .question-item {
-  background: #f1f1f1;
+  background: rgb(153, 204, 223);
   border-radius: 8px;
   padding: 15px;
   width: 100%;
   max-width: 600px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
