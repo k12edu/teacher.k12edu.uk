@@ -124,15 +124,15 @@
       <h1>Edit Problem</h1>
       <div class="form-group">
         <label>Character:</label>
-        <input v-model="character" type="text" class="input" />
+        <input v-model="character" type="text" class="input" style="width: 50%;"/>
       </div>
       <div class="form-group">
         <label>Situation:</label>
-        <input v-model="situation" type="text" class="input" />
+        <input v-model="situation" type="text" class="input" style="width: 70%; height: 100px;"/>
       </div>
       <div class="form-group">
         <label>Shot:</label>
-        <input v-model="shot" type="text" class="input" />
+        <input v-model="shot" type="text" class="input" style="width: 70%; height: 100px;" />
       </div>
       <div class="form-group">
         <label>Language:</label>
@@ -149,7 +149,7 @@
           <option value="fill">Fill in the Blank</option>
         </select>
       </div>
-      <button @click="generateQuestion" class="btn">Generate Question</button>
+      <button @click="generateQuestion" class="btn" style="margin-top: 20px;">Generate Question</button>
     
       <div v-if="generatedQuestion" class="question-container">
         <h2>Generated Question:</h2>
@@ -534,7 +534,7 @@
     flex-direction: column;
     align-items: center;
   max-width: 100%;
-  width: 60%;
+  width: 55%;
   margin: 40px auto;
   padding: 30px;
   background: #ffffff;
@@ -551,6 +551,7 @@ h1 {
 
 .form-group {
   margin-bottom: 15px;
+  width: 100%;
 }
 
 label {
