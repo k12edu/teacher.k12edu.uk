@@ -157,6 +157,7 @@
       <div v-if="generatedQuestion && (type=='是非題' || type=='填空題' || type=='簡答題')" class="question-container">
         <h2>生成題目列表:</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
+          <p><strong>問題</strong></p>
           {{ item }}
         </div>
       </div>
@@ -164,9 +165,10 @@
       <div v-else-if="generatedQuestion && (type=='單選題' || type=='多選題')" class="question-container">
         <h2>生成題目列表:</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
-          <p><strong>問題:</strong> {{ item.question }}</p>
+          <p><strong>問題</strong></p>
+          <p>{{ item.question }}</p>
           <div class="options">
-            <p><strong>選項:</strong></p>
+            <p><strong>選項</strong></p>
             <div v-for="(option, i) in item.options" :key="i" class="option-item">
               {{ option }}
             </div>
