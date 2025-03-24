@@ -212,7 +212,7 @@
       </div>
       <button @click="generateAnswer" class="btn" style="margin-top: 20px;">生成解答</button>
     
-      <div v-if="generatedAnswer && (type=='是非題' || type=='填空題' || type=='簡答題' || type=='單選題')" class="question-container">
+      <div v-if="generatedAnswer && (type_answer=='是非題' || type_answer=='填空題' || type_answer=='簡答題' || type_answer=='單選題')" class="question-container">
         <h2>生成結果</h2>
         <p><strong>思路</strong></p>
         {{ generatedAnswer.thinking }}
@@ -221,14 +221,14 @@
         {{ generatedAnswer.answer }}
       </div>
 
-      <div v-else-if="generatedAnswer && (type=='多選題')" class="question-container">
+      <div v-else-if="generatedAnswer && (type_answer=='多選題')" class="question-container">
         <h2>生成結果</h2>
         <p><strong>思路</strong></p>
         {{ generatedAnswer.thinking }}
         <p v-if="generatedAnswer.correct==false"><strong style="color: red;">此問題的正確性可能有疑慮</strong></p>
         <div class="options">
           <p><strong>答案</strong></p>
-          <div v-for="(option, i) in item.answer" :key="i" class="option-item">
+          <div v-for="(option, i) in generatedAnswer.answer" :key="i" class="option-item">
             {{ option }}
           </div>
         </div>
@@ -326,7 +326,7 @@
         shot: '',
         question: this.shot_answer,
         language: this.language_answer,
-        type: this.type,
+        type: this.type_asnwer,
       };
       
       try {
