@@ -326,7 +326,7 @@
         shot: '',
         question: this.shot_answer,
         language: this.language_answer,
-        type: this.type_asnwer,
+        type: this.type_answer,
       };
       
       try {
