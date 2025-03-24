@@ -179,7 +179,7 @@
     </div>    
     <div class="container">
       <h1>解答生成工具</h1>
-      <p>提供AI扮演的角色與情境，根據提供的生成思路與解答。</p>
+      <p>提供AI扮演的角色與情境，根據提供的題目生成思路與解答。</p>
       <div class="form-group">
         <label>扮演角色:</label>
         <input v-model="character_answer" type="text" class="input" style="width: 50%;"/>
