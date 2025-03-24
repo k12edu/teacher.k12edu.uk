@@ -217,7 +217,7 @@
         <p><strong>思路</strong></p>
         {{ generatedAnswer.thinking }}
         <h3 v-if="generatedAnswer.correct==false"><strong style="color: red;">此問題的正確性可能有疑慮</strong></h3>
-        <p><strong>答案</strong></p>
+        <p v-if="generatedAnswer.answer"><strong>答案</strong></p>
         {{ generatedAnswer.answer }}
       </div>
 
@@ -225,9 +225,9 @@
         <h2>生成結果</h2>
         <p><strong>思路</strong></p>
         {{ generatedAnswer.thinking }}
-        <p v-if="generatedAnswer.correct==false"><strong style="color: red;">此問題的正確性可能有疑慮</strong></p>
+        <p v-if="generatedAnswer.correct==false"><strong style="color: red; margin-top: 20px;">此問題的正確性可能有疑慮</strong></p>
         <div class="options">
-          <p><strong>答案</strong></p>
+          <p v-if="generatedAnswer.answer"><strong>答案</strong></p>
           <div v-for="(option, i) in generatedAnswer.answer" :key="i" class="option-item">
             {{ option }}
           </div>
