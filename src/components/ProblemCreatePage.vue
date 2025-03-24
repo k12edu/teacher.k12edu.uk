@@ -122,6 +122,7 @@
 
     <div class="container">
       <h1>題目生成工具</h1>
+      <p>提供AI扮演的角色與情境，根據範例題目生成相似的題型。</p>
       <div class="form-group">
         <label>扮演角色:</label>
         <input v-model="character" type="text" class="input" style="width: 50%;"/>
@@ -155,7 +156,7 @@
       <button @click="generateQuestion" class="btn" style="margin-top: 20px;">生成題目</button>
     
       <div v-if="generatedQuestion && (type=='是非題' || type=='填空題' || type=='簡答題')" class="question-container">
-        <h2>生成題目列表:</h2>
+        <h2>生成題目列表</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
           <p><strong>問題</strong></p>
           {{ item }}
@@ -163,7 +164,7 @@
       </div>
 
       <div v-else-if="generatedQuestion && (type=='單選題' || type=='多選題')" class="question-container">
-        <h2>生成題目列表:</h2>
+        <h2>生成題目列表</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
           <p><strong>問題</strong></p>
           <p>{{ item.question }}</p>
@@ -172,6 +173,63 @@
             <div v-for="(option, i) in item.options" :key="i" class="option-item">
               {{ option }}
             </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+    <div class="container">
+      <h1>解答生成工具</h1>
+      <p>提供AI扮演的角色與情境，根據提供的生成思路與解答。</p>
+      <div class="form-group">
+        <label>扮演角色:</label>
+        <input v-model="character_answer" type="text" class="input" style="width: 50%;"/>
+      </div>
+      <div class="form-group">
+        <label>情境:</label>
+        <textarea v-model="situation_answer" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
+      </div>
+      <div class="form-group">
+        <label>題目:</label>
+        <textarea v-model="shot_answer" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
+      </div>
+      <div class="form-group">
+        <label>語言:</label>
+        <select v-model="language_answer" class="input">
+          <option value="en-us">英文</option>
+          <option value="zh-tw">繁體中文</option>
+          <option value="zh-cn">簡體中文</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>題目類型:</label>
+        <select v-model="type_answer" class="input" @change="resetgeneratedAnswer">
+          <option value="單選題">單選題</option>
+          <option value="多選題">多選題</option>
+          <option value="是非題">是非題</option>
+          <option value="填空題">填空題</option>
+          <option value="簡答題">簡答題</option>
+        </select>
+      </div>
+      <button @click="generateAnswer" class="btn" style="margin-top: 20px;">生成解答</button>
+    
+      <div v-if="generatedAnswer && (type=='是非題' || type=='填空題' || type=='簡答題' || type=='單選題')" class="question-container">
+        <h2>生成結果</h2>
+        <p><strong>思路</strong></p>
+        {{ generatedAnswer.thinking }}
+        <h3 v-if="generatedAnswer.correct==false"><strong style="color: red;">此問題的正確性可能有疑慮</strong></h3>
+        <p><strong>答案</strong></p>
+        {{ generatedAnswer.answer }}
+      </div>
+
+      <div v-else-if="generatedAnswer && (type=='多選題')" class="question-container">
+        <h2>生成結果</h2>
+        <p><strong>思路</strong></p>
+        {{ generatedAnswer.thinking }}
+        <p v-if="generatedAnswer.correct==false"><strong style="color: red;">此問題的正確性可能有疑慮</strong></p>
+        <div class="options">
+          <p><strong>答案</strong></p>
+          <div v-for="(option, i) in item.answer" :key="i" class="option-item">
+            {{ option }}
           </div>
         </div>
       </div>
@@ -194,6 +252,13 @@
         language: 'zh-tw',
         type: '單選題',
         generatedQuestion: null,
+        character_answer: '',
+        situation_answer: '',
+        shot_answer: '',
+        language_answer: 'zh-tw',
+        type_answer: '單選題',
+        generatedAnswer: null,
+        
         modules:[],
         courses:[],
         SelectModule:[],
@@ -224,6 +289,9 @@
       resetgeneratedQuestion(){
         this.generatedQuestion=null;
       },
+      resetgeneratedAnswer(){
+        this.generatedAnswer=null;
+      },
       async generateQuestion() {
       const requestData = {
         character: this.character,
@@ -247,6 +315,34 @@
         const data = await response.json();
         this.generatedQuestion = data.generate_question;
         console.log(this.generatedQuestion);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async generateAnswer() {
+      const requestData = {
+        character: this.character_answer,
+        situation: this.situation_answer,
+        shot: '',
+        question: this.shot_answer,
+        language: this.language_answer,
+        type: this.type,
+      };
+      
+      try {
+        const response = await fetch(`${this.api_url}/ai/generate_answer/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestData)
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to generate answer');
+        }
+        
+        const data = await response.json();
+        this.generatedAnswer = data.generate_answer;
+        console.log(this.generatedAnswer);
       } catch (error) {
         console.error(error);
       }
