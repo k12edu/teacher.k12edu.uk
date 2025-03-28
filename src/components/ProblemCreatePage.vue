@@ -124,10 +124,6 @@
       <h1>題目生成工具</h1>
       <p>提供AI扮演的角色與情境，根據範例題目生成相似的題型。</p>
       <div class="form-group">
-        <label>扮演角色:</label>
-        <input v-model="character" type="text" class="input" style="width: 50%;"/>
-      </div>
-      <div class="form-group">
         <label>情境:</label>
         <textarea v-model="situation" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
       </div>
@@ -152,6 +148,34 @@
           <option value="填空題">填空題</option>
           <option value="簡答題">簡答題</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label>工具:</label>
+        <label>
+          <input type="checkbox" value="calculator" v-model="selectedTools" /> 計算機
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="radio" :value="false" v-model="is_rag" /> 知識庫搜尋
+        </label>
+      </div>
+      <div class="form-group">
+        <label>搜尋工具:</label>
+        <div style="display: flex;  justify-content: center; flex-direction: row;">
+          <label>
+            <input type="checkbox" value="web_search" v-model="selectedSearchTool" /> 網頁搜尋
+          </label>
+          <label>
+            <input type="checkbox" value="news_search" v-model="selectedSearchTool" /> 新聞搜尋
+          </label>
+          <label>
+            <input type="checkbox" value="science_search" v-model="selectedSearchTool" /> 論文搜尋
+          </label>
+          <label>
+            <input type="checkbox" value="social_search" v-model="selectedSearchTool" /> 社群搜尋
+          </label>
+        </div>
       </div>
       <button @click="generateQuestion" class="btn" style="margin-top: 20px;">生成題目</button>
     
@@ -180,10 +204,6 @@
     <div class="container">
       <h1>解答生成工具</h1>
       <p>提供AI扮演的角色與情境，根據提供的題目生成思路與解答。</p>
-      <div class="form-group">
-        <label>扮演角色:</label>
-        <input v-model="character_answer" type="text" class="input" style="width: 50%;"/>
-      </div>
       <div class="form-group">
         <label>情境:</label>
         <textarea v-model="situation_answer" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
@@ -246,19 +266,22 @@
     },
     data(){
       return {
-        character: '',
         situation: '',
         shot: '',
         language: 'zh-tw',
         type: '單選題',
         generatedQuestion: null,
-        character_answer: '',
         situation_answer: '',
         shot_answer: '',
         language_answer: 'zh-tw',
         type_answer: '單選題',
         generatedAnswer: null,
-        
+        selectedSearchTool:[],
+        selectedSearchTool_answer:[],
+        selectedTools:[],
+        selectedTools_answer:[],
+        is_rag:false,
+        is_rag_answer:false,
         modules:[],
         courses:[],
         SelectModule:[],
@@ -294,11 +317,13 @@
       },
       async generateQuestion() {
       const requestData = {
-        character: this.character,
         situation: this.situation,
         shot: this.shot,
         language: this.language,
         type: this.type,
+        tools: this.selectedTools,
+        is_rag: this.is_rag!="false",
+        search_tool:this.selectedSearchTool
       };
       
       try {
@@ -321,7 +346,6 @@
     },
     async generateAnswer() {
       const requestData = {
-        character: this.character_answer,
         situation: this.situation_answer,
         shot: '',
         question: this.shot_answer,
