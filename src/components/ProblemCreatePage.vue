@@ -848,11 +848,11 @@ label {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
-  border-width: 10px;
+  border-width: 3px;
   border-style: solid;
   border-image-slice: 6 fill;
   border-image-repeat: repeat;
-  color: white;
+  color: black;
 }
 
 .tag-option:hover {
