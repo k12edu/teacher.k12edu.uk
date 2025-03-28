@@ -37,19 +37,24 @@
         <h3>答題次數</h3>
         <h3>正確次數</h3>
       </div>
-      <div v-if="selectedOption!='program'" class="problemList-item" v-for="item in items" :key="item.id">
-        <p>{{ item.problem_id }}</p>
-        <p>{{ item.problem_type }}</p>
-        <p>{{ item.contributor_id }}</p>
-        <p>{{ item.submission_count }}</p>
-        <p>{{ item.correct_count }}</p>
+      <div  v-if="selectedOption!='program'">
+        <div class="problemList-item" v-for="item in items" :key="item.id">
+          <p>{{ item.problem_id }}</p>
+          <p>{{ item.problem_type }}</p>
+          <p>{{ item.contributor_id }}</p>
+          <p>{{ item.submission_count }}</p>
+          <p>{{ item.correct_count }}</p>
+        </div>
       </div>
-      <div v-else class="problemList-item2" v-for="item in items" :key="'non-program-'+item.id">
-        <p>{{ item.problem_id }}</p>
-        <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
-        <p>{{ item.author }}</p>
-        <p>{{ item.submit_count }}</p>
-        <p>{{ item.AC_count }}</p>
+      <div v-else class="problemList-item2" >
+        <div v-for="item in items" :key="'non-program-'+item.id">
+          <p>{{ item.problem_id }}</p>
+          <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
+          <p>{{ item.author }}</p>
+          <p>{{ item.submit_count }}</p>
+          <p>{{ item.AC_count }}</p>
+        </div>
+        
       </div>
     </div>
     <div class="switch-page-div">

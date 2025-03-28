@@ -157,7 +157,7 @@
       </div>
       <div class="form-group">
         <label>
-          <input type="radio" :value="false" v-model="is_rag" /> 知識庫搜尋
+          <input type="checkbox" v-model="is_rag" /> 知識庫搜尋
         </label>
       </div>
       <div class="form-group">
@@ -229,6 +229,34 @@
           <option value="填空題">填空題</option>
           <option value="簡答題">簡答題</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label>工具:</label>
+        <label>
+          <input type="checkbox" value="calculator" v-model="selectedTools_answer" /> 計算機
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" v-model="is_rag_answer" /> 知識庫搜尋
+        </label>
+      </div>
+      <div class="form-group">
+        <label>搜尋工具:</label>
+        <div style="display: flex;  justify-content: center; flex-direction: row;">
+          <label>
+            <input type="checkbox" value="web_search" v-model="selectedSearchTool_answer" /> 網頁搜尋
+          </label>
+          <label>
+            <input type="checkbox" value="news_search" v-model="selectedSearchTool_answer" /> 新聞搜尋
+          </label>
+          <label>
+            <input type="checkbox" value="science_search" v-model="selectedSearchTool_answer" /> 論文搜尋
+          </label>
+          <label>
+            <input type="checkbox" value="social_search" v-model="selectedSearchTool_answer" /> 社群搜尋
+          </label>
+        </div>
       </div>
       <button @click="generateAnswer" class="btn" style="margin-top: 20px;">生成解答</button>
     
@@ -322,7 +350,7 @@
         language: this.language,
         type: this.type,
         tools: this.selectedTools,
-        is_rag: this.is_rag!="false",
+        is_rag: this.is_rag,
         search_tool:this.selectedSearchTool
       };
       
@@ -351,6 +379,9 @@
         question: this.shot_answer,
         language: this.language_answer,
         type: this.type_answer,
+        tools: this.selectedTools_answer,
+        is_rag: this.is_rag_answer,
+        search_tool:this.selectedSearchTool_answer
       };
       
       try {
