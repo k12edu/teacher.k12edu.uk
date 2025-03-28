@@ -21,6 +21,20 @@
             </label>
           </div>
         </div>
+        <div class="tag-filter" v-if="this.suject=='program'">
+          <label for="tags" style="margin-bottom: 20px;">選擇標籤:</label>
+          <div class="tags">
+            <label v-for="tag in tags" :key="tag" class="tag-option">
+              <input
+                type="checkbox"
+                :value="tag"
+                v-model="selectedTags"
+                class="checkbox-input"
+              />
+              <span class="tag-text">{{ tag }}</span>
+            </label>
+          </div>
+        </div>
         <div class="edit-div" v-if="this.suject!='program'">
           <label for="dropdown">選擇課程：</label>
           <select id="dropdown" v-model="SelectCourse" @change="fetchModules">
@@ -317,6 +331,8 @@
         publish_status:'',
         itemId:-1,
         title:'',
+        tags: [],      // 標籤選項
+        selectedTags: [],  // 用來存儲選中的標籤
         suject:'program',
         sujectOptions: [
           { value: 'program', text: '程式' },
@@ -337,6 +353,25 @@
       }
     },
     methods:{
+      async fetchTags() {
+        this.loading = true;
+        try {
+          const defaultParams = {};
+
+          const queryParams = new URLSearchParams(defaultParams)
+          const response = await fetch(`${this.api_url}/onlinejudge/api/tags/list?${queryParams.toString()}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.access_token}`,
+            },
+          });
+          const data = await response.json();
+          this.tags = data.tags;  // 假設回應資料包含一個問題列表
+        } catch (error) {
+          console.error('獲取tag資料錯誤:', error);
+        }
+      },
       resetgeneratedQuestion(){
         this.generatedQuestion=null;
       },
@@ -594,6 +629,7 @@
             'title':this.title,
             'testcase_input':this.testCaseInput,
             'testcase_output':this.testCaseOutput,
+            'tag_list': this.selectedTags
           }
           const token=this.access_token;
           let keyword='problem';
@@ -625,6 +661,9 @@
     props: {},
     inject:['access_token','api_url'],
     mounted(){
+      if(this.tags.length==0){
+        this.fetchTags();
+      }
       if(this.suject!='program') this.fetchCourses();
     }
   }
@@ -785,6 +824,44 @@ label {
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+.tag-filter {
+  margin-bottom: 20px;
+  border-width: 10px;
+  border-style: solid;
+  border-image-slice: 6 fill;
+  border-image-repeat: repeat;
+}
 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.tag-option {
+  display: flex;
+  align-items: center;
+  /* align-content: center; */
+  padding: 5px 10px;
+  border: 2px solid lightblue;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  border-width: 10px;
+  border-style: solid;
+  border-image-slice: 6 fill;
+  border-image-repeat: repeat;
+  color: white;
+}
+
+.tag-option:hover {
+  background-color: lightblue;
+  border-color: lightblue;
+}
+
+.checkbox-input {
+  margin-right: 10px;
+}
   </style>
   

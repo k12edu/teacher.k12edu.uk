@@ -363,7 +363,7 @@
   }
   .problemList-item2 {
     display: grid;
-    grid-template-columns: 2fr 2fr 4fr 2fr 2fr;
+    grid-template-columns: 1fr 6fr 3fr 1fr 1fr;
     min-height: 40px;
     border-bottom: 1px solid rgb(175, 175, 175);
     align-items: center;
