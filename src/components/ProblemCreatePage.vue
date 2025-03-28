@@ -827,8 +827,9 @@ label {
 .tag-filter {
   margin-bottom: 20px;
   border-width: 3px;
-  border-color: 3px;
+  border-color: lightblue;
   border-style: solid;
+  width: 90%;
 }
 
 .tags {

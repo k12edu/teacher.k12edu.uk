@@ -10,7 +10,10 @@
       <div class="edit-div">
         <h3>科目: {{ showSuject }}</h3>
       </div>
-      <div class="edit-div">
+      <div v-if="suject=='program'" class="edit-div">
+        <h3>標籤: {{ module_list }}</h3>
+      </div>
+      <div v-else class="edit-div">
         <h3>單元: {{ module_list }}</h3>
       </div>
       
@@ -146,6 +149,7 @@ export default {
 
         const result = await response.json();
         if(result.module_list) this.module_list=result.module_list.join(", ");
+        if(result.tag_list) this.module_list=result.module_list.join(", ");
         console.log('module: '+result.module_list);
         this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
         this.changeData();
