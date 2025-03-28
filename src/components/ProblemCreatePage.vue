@@ -826,10 +826,9 @@ label {
 }
 .tag-filter {
   margin-bottom: 20px;
-  border-width: 10px;
+  border-width: 3px;
+  border-color: 3px;
   border-style: solid;
-  border-image-slice: 6 fill;
-  border-image-repeat: repeat;
 }
 
 .tags {
@@ -852,12 +851,13 @@ label {
   border-style: solid;
   border-image-slice: 6 fill;
   border-image-repeat: repeat;
-  color: black;
+  color: lightblue;
 }
 
 .tag-option:hover {
   background-color: lightblue;
   border-color: lightblue;
+  color: white;
 }
 
 .checkbox-input {
