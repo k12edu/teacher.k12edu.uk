@@ -46,8 +46,8 @@
           <p>{{ item.correct_count }}</p>
         </div>
       </div>
-      <div v-else class="problemList-item2" >
-        <div v-for="item in items" :key="'non-program-'+item.id">
+      <div v-else >
+        <div v-for="item in items" class="problemList-item2" :key="'non-program-'+item.id">
           <p>{{ item.problem_id }}</p>
           <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
           <p>{{ item.author }}</p>
