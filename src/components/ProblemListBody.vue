@@ -98,7 +98,6 @@
       </div>
       <div class="problemList-item" v-for="item in items" :key="item.id">
         <p>{{ item.problem_id }}</p>
-        <p>{{ item.problem_type }}</p>
         <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
         <p>{{ item.author }}</p>
       </div>
@@ -364,7 +363,7 @@
   }
   .problemList-item2 {
     display: grid;
-    grid-template-columns: 2fr 6fr 4fr 2fr 2fr;
+    grid-template-columns: 2fr 2fr 4fr 2fr 2fr;
     min-height: 40px;
     border-bottom: 1px solid rgb(175, 175, 175);
     align-items: center;

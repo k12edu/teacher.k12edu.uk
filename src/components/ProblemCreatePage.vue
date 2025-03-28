@@ -2,7 +2,7 @@
     <div class="problem-edit-main">
       <div class="problem-edit-body">
         <div class="edit-div">
-          <h3>題目名稱</h3>
+          <h3 v-if="this.suject=='program'">題目名稱</h3>
           <div class="edit-item"> 
             <input class="title-input" type="text" v-model="title">
           </div>
