@@ -764,6 +764,7 @@ label {
   margin: 50px 20px 10px 20px;
   padding: 10px;
   border-radius: 5px;
+  border-color: rgb(153, 204, 223);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -771,7 +772,7 @@ label {
 }
 
 .question-item {
-  background: rgb(153, 204, 223);
+  /* background: rgb(153, 204, 223); */
   border-radius: 8px;
   padding: 15px;
   width: 100%;
