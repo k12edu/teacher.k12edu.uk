@@ -206,11 +206,11 @@
         <h2>生成題目列表</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
           <p><strong>問題</strong></p>
-          {{ item.question }}
+          <p>{{ item.question }}</p>
           <p><strong>思路</strong></p>
-          {{ item.thinking }}
+          <p>{{ item.thinking }}</p>
           <p><strong>答案</strong></p>
-          {{ item.answer }}
+          <p>{{ item.answer }}</p>
         </div>
       </div>
 
@@ -226,9 +226,9 @@
             </div>
           </div>
           <p><strong>思路</strong></p>
-          {{ item.thinking }}
+          <p>{{ item.thinking }}</p>
           <p><strong>答案</strong></p>
-          {{ item.answer }}
+          <p>{{ item.answer }}</p>
         </div>
       </div>
     </div>    
