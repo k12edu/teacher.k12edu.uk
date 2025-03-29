@@ -232,7 +232,7 @@
         </div>
       </div>
     </div>    
-    <div class="container">
+    <!-- <div class="container">
     
       <div v-if="generatedAnswer && (type_answer=='是非題' || type_answer=='填空題' || type_answer=='簡答題' || type_answer=='單選題')" class="question-container">
         <h2>生成結果</h2>
@@ -243,7 +243,7 @@
         {{ generatedAnswer.answer }}
       </div>
 
-      <!-- <div v-else-if="generatedAnswer && (type_answer=='多選題')" class="question-container">
+      <div v-else-if="generatedAnswer && (type_answer=='多選題')" class="question-container">
         <h2>生成結果</h2>
         <p><strong>思路</strong></p>
         {{ generatedAnswer.thinking }}
@@ -254,8 +254,8 @@
             {{ option }}
           </div>
         </div>
-      </div> -->
-    </div>    
+      </div>
+    </div>     -->
     
 </template>
   
@@ -798,7 +798,7 @@ label {
   border-radius: 8px;
   border-style: solid;
   border-color: rgb(153, 204, 223);
-  width: 100%;
+  width: 90%;
 }
 
 .tags {
