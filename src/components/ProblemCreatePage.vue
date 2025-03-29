@@ -836,13 +836,15 @@ label {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: center;
 }
 button {
-  padding: 5px 10px;
+  height: 10px;
+  width: 10px;
   font-size: 16px;
   cursor: pointer;
   border: none;
-  background-color: #007bff;
+  background-color: lightblue;
   color: white;
   border-radius: 5px;
 }

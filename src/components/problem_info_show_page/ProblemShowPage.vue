@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div v-if="this.suject=='program'">
+      <div v-if="suject=='program'">
         <div class="edit-div">
           <div class="edit-item">
             <h3 style="margin-top: 16px;">標準輸入</h3>
