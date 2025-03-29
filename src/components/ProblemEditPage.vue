@@ -4,7 +4,7 @@
       <div class="edit-div">
         <h3>題目編號 {{id}}</h3>
         <div style="display: flex; flex-direction: row; width: 80%; justify-content: start;">
-            <div style="margin-right: 20px; width: 15%;"><h3 >題目名稱</h3></div>
+            <div style="margin-right: 20px; width: 15%; margin-bottom: 0px;"><h3 >題目名稱</h3></div>
             <div class="edit-item"> 
               <input class="title-input" type="text" v-model="title">
             </div>
