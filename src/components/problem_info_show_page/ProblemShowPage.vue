@@ -149,7 +149,7 @@ export default {
 
         const result = await response.json();
         if(result.module_list) this.module_list=result.module_list.join(", ");
-        if(result.tag_list) this.module_list=result.module_list.join(", ");
+        if(result.tag_list) this.module_list=result.tag_list.join(", ");
         console.log('module: '+result.module_list);
         this.item = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
         this.changeData();
