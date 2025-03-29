@@ -125,6 +125,7 @@
     data(){
       return {
         items:[],
+        max_page:1,
         itemsWithType:[],
         page:1,
         inputPage:1,
@@ -188,8 +189,9 @@
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-
+          
           const result = await response.json();
+          this.max_page=result.max_page;
           this.items = result.problem_list; // 將獲取的問題列表存儲到 itemsWithType
         } catch (error) {
           console.error('發送請求時出錯：', error);
@@ -223,7 +225,7 @@
         this.applyInput();
       },
       toLastPage(){
-        //暫時沒有功能，之後跟後端請求頁數
+        this.inputPage=this.max_page;
         this.applyInput();
       },
       switchToShowPage(item){
