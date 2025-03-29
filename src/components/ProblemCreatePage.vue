@@ -191,13 +191,26 @@
           </label>
         </div>
       </div>
+      <div class="form-group">
+        <label>生成題數:</label>
+        <div class="number-selector">
+          <button @click="decrease" :disabled="number === 1">-</button>
+          <span>{{ number }}</span>
+          <button @click="increase" :disabled="number === 3">+</button>
+        </div>
+      </div>
+      
       <button @click="generateQuestion" class="btn" style="margin-top: 20px;">生成題目</button>
     
       <div v-if="generatedQuestion && (type=='是非題' || type=='填空題' || type=='簡答題')" class="question-container">
         <h2>生成題目列表</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
           <p><strong>問題</strong></p>
-          {{ item }}
+          {{ item.question }}
+          <p><strong>思路</strong></p>
+          {{ item.thinking }}
+          <p><strong>答案</strong></p>
+          {{ item.answer }}
         </div>
       </div>
 
@@ -212,67 +225,14 @@
               {{ option }}
             </div>
           </div>
+          <p><strong>思路</strong></p>
+          {{ item.thinking }}
+          <p><strong>答案</strong></p>
+          {{ item.answer }}
         </div>
       </div>
     </div>    
     <div class="container">
-      <h1>解答生成工具</h1>
-      <p>提供AI扮演的角色與情境，根據提供的題目生成思路與解答。</p>
-      <div class="form-group">
-        <label>情境:</label>
-        <textarea v-model="situation_answer" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
-      </div>
-      <div class="form-group">
-        <label>題目:</label>
-        <textarea v-model="shot_answer" type="text" class="input" style="width: 70%; height: 100px;"></textarea>
-      </div>
-      <div class="form-group">
-        <label>語言:</label>
-        <select v-model="language_answer" class="input">
-          <option value="en-us">英文</option>
-          <option value="zh-tw">繁體中文</option>
-          <option value="zh-cn">簡體中文</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>題目類型:</label>
-        <select v-model="type_answer" class="input" @change="resetgeneratedAnswer">
-          <option value="單選題">單選題</option>
-          <option value="多選題">多選題</option>
-          <option value="是非題">是非題</option>
-          <option value="填空題">填空題</option>
-          <option value="簡答題">簡答題</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>工具:</label>
-        <label>
-          <input type="checkbox" value="calculator" v-model="selectedTools_answer" /> 計算機
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" v-model="is_rag_answer" /> 知識庫搜尋
-        </label>
-      </div>
-      <div class="form-group">
-        <label>搜尋工具:</label>
-        <div style="display: flex;  justify-content: center; flex-direction: row;">
-          <label>
-            <input type="checkbox" value="web_search" v-model="selectedSearchTool_answer" /> 網頁搜尋
-          </label>
-          <label>
-            <input type="checkbox" value="news_search" v-model="selectedSearchTool_answer" /> 新聞搜尋
-          </label>
-          <label>
-            <input type="checkbox" value="science_search" v-model="selectedSearchTool_answer" /> 論文搜尋
-          </label>
-          <label>
-            <input type="checkbox" value="social_search" v-model="selectedSearchTool_answer" /> 社群搜尋
-          </label>
-        </div>
-      </div>
-      <button @click="generateAnswer" class="btn" style="margin-top: 20px;">生成解答</button>
     
       <div v-if="generatedAnswer && (type_answer=='是非題' || type_answer=='填空題' || type_answer=='簡答題' || type_answer=='單選題')" class="question-container">
         <h2>生成結果</h2>
@@ -283,7 +243,7 @@
         {{ generatedAnswer.answer }}
       </div>
 
-      <div v-else-if="generatedAnswer && (type_answer=='多選題')" class="question-container">
+      <!-- <div v-else-if="generatedAnswer && (type_answer=='多選題')" class="question-container">
         <h2>生成結果</h2>
         <p><strong>思路</strong></p>
         {{ generatedAnswer.thinking }}
@@ -294,7 +254,7 @@
             {{ option }}
           </div>
         </div>
-      </div>
+      </div> -->
     </div>    
     
 </template>
@@ -308,6 +268,7 @@
     },
     data(){
       return {
+        num: 1,
         situation: '',
         shot: '',
         language: 'zh-tw',
@@ -353,6 +314,12 @@
       }
     },
     methods:{
+      increase(){
+        if(this.num<3) this.num+=1;
+      },
+      decrease(){
+        if(this.num>1) this.num-=1;
+      },
       async fetchTags() {
         this.loading = true;
         try {
@@ -863,6 +830,25 @@ label {
 
 .checkbox-input {
   margin-right: 10px;
+}
+
+.number-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+button {
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
   </style>
   

@@ -39,7 +39,7 @@
       </div>
       <div  v-if="selectedOption!='program'">
         <div class="problemList-item" v-for="item in items" :key="item.id" @click="switchToShowPage(item)">
-          <p>{{ item.problem_id }}</p>
+          <p class="title">{{ item.problem_id }}</p>
           <p>{{ item.problem_type }}</p>
           <p>{{ item.contributor_id }}</p>
           <p>{{ item.submission_count }}</p>
