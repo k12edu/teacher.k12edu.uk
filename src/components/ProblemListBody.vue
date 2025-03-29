@@ -96,7 +96,7 @@
         <h3>答題次數</h3>
         <h3>正確次數</h3>
       </div>
-      <div class="problemList-item3" v-for="item in items" :key="item.id">
+      <div class="problemList-item3" v-for="item in items" :key="item.id"  @click="switchToShowPage(item)">
         <p>{{ item.problem_id }}</p>
         <p>{{ item.submit_count }}</p>
         <p>{{ item.AC_count }}</p>
