@@ -794,9 +794,10 @@ label {
 .tag-filter {
   margin-bottom: 20px;
   border-width: 3px;
-  border-color: lightblue;
+  background: rgb(153, 204, 223);
+  border-radius: 8px;
   border-style: solid;
-  width: 90%;
+  width: 100%;
 }
 
 .tags {
