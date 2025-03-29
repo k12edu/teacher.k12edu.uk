@@ -206,11 +206,11 @@
         <h2>生成題目列表</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
           <p><strong>問題</strong></p>
-          <pre>{{ item.question }}</pre>
+          <pre style="white-space: pre-wrap;">{{ item.question }}</pre>
           <p><strong>思路</strong></p>
-          <pre>{{ item.thinking }}</pre>
+          <pre style="white-space: pre-wrap;">{{ item.thinking }}</pre>
           <p><strong>答案</strong></p>
-          <pre>{{ item.answer }}</pre>
+          <pre style="white-space: pre-wrap;">{{ item.answer }}</pre>
         </div>
       </div>
 
@@ -218,7 +218,7 @@
         <h2>生成題目列表</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
           <p><strong>問題</strong></p>
-          <pre>{{ item.question }}</pre>
+          <pre style="white-space: pre-wrap;">{{ item.question }}</pre>
           <div class="options">
             <p><strong>選項</strong></p>
             <div v-for="(option, i) in item.options" :key="i" class="option-item">
@@ -226,9 +226,9 @@
             </div>
           </div>
           <p><strong>思路</strong></p>
-          <pre>{{ item.thinking }}</pre>
+          <pre style="white-space: pre-wrap;">{{ item.thinking }}</pre>
           <p><strong>答案</strong></p>
-          <pre>{{ item.answer }}</pre>
+          <pre style="white-space: pre-wrap;">{{ item.answer }}</pre>
         </div>
       </div>
     </div>    
