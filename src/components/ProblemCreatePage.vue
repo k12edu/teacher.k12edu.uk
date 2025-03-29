@@ -194,9 +194,9 @@
       <div class="form-group">
         <label>生成題數:</label>
         <div class="number-selector">
-          <button @click="decrease" :disabled="number === 1">-</button>
-          <p>{{ number }}</p>
-          <button @click="increase" :disabled="number === 3">+</button>
+          <button @click="decrease">-</button>
+          <p>{{ num }}</p>
+          <button @click="increase">+</button>
         </div>
       </div>
       
