@@ -353,7 +353,8 @@
         type: this.type,
         tools: this.selectedTools,
         is_rag: this.is_rag,
-        search_tool:this.selectedSearchTool
+        search_tool:this.selectedSearchTool,
+        max_question: this.num
       };
       
       try {
