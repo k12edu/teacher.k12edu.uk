@@ -91,15 +91,15 @@
       </select>
     </div>
     <div class="problemList-list">
-      <div class="problemList-item">
+      <div class="problemList-item3">
         <h3>題號</h3>
-        <h3>標題</h3>
-        <h3>作者</h3>
+        <h3>答題次數</h3>
+        <h3>正確次數</h3>
       </div>
-      <div class="problemList-item" v-for="item in items" :key="item.id">
+      <div class="problemList-item3" v-for="item in items" :key="item.id">
         <p>{{ item.problem_id }}</p>
-        <p class="title" @click="switchToShowPage(item)">{{ item.title }}</p>
-        <p>{{ item.author }}</p>
+        <p>{{ item.submit_count }}</p>
+        <p>{{ item.AC_count }}</p>
       </div>
     </div>
     <div class="switch-page-div">
@@ -364,6 +364,13 @@
   .problemList-item2 {
     display: grid;
     grid-template-columns: 1fr 6fr 3fr 1fr 1fr;
+    min-height: 40px;
+    border-bottom: 1px solid rgb(175, 175, 175);
+    align-items: center;
+  }
+  .problemList-item3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     min-height: 40px;
     border-bottom: 1px solid rgb(175, 175, 175);
     align-items: center;
