@@ -195,7 +195,7 @@
         <label>生成題數:</label>
         <div class="number-selector">
           <button @click="decrease" :disabled="number === 1">-</button>
-          <span>{{ number }}</span>
+          <p>{{ number }}</p>
           <button @click="increase" :disabled="number === 3">+</button>
         </div>
       </div>
@@ -820,7 +820,7 @@ label {
   border-style: solid;
   border-image-slice: 6 fill;
   border-image-repeat: repeat;
-  color: lightblue;
+  color: black;
 }
 
 .tag-option:hover {
@@ -840,8 +840,7 @@ label {
   justify-content: center;
 }
 button {
-  height: 10px;
-  width: 10px;
+  padding: 10px 10px;
   font-size: 16px;
   cursor: pointer;
   border: none;
