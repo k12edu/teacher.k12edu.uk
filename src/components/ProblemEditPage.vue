@@ -3,7 +3,7 @@
     <div class="problem-edit-body">
       <div class="edit-div">
         <h3>題目編號 {{id}}</h3>
-        <div style="display: flex; flex-direction: row;">
+        <div style="display: flex; flex-direction: row; width: 80%;">
           <h3>題目名稱</h3>
             <div class="edit-item"> 
               <input class="title-input" type="text" v-model="title">
