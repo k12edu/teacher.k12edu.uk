@@ -201,7 +201,7 @@
       </div>
       
       <button @click="generateQuestion" class="btn" style="margin-top: 20px;">生成題目</button>
-    
+      <p>生成題目時，請勿關閉網頁分頁，這可能導致無法正常獲取結果</p>
       <div v-if="generatedQuestion && (type=='是非題' || type=='填空題' || type=='簡答題')" class="question-container">
         <h2>生成題目列表</h2>
         <div v-for="(item, index) in generatedQuestion" :key="index" class="question-item">
