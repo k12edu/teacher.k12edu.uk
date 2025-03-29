@@ -3,10 +3,12 @@
     <div class="problem-edit-body">
       <div class="edit-div">
         <h3>題目編號 {{id}}</h3>
-        <h3>題目名稱</h3>
-        <div class="edit-item"> 
-          <input class="title-input" type="text" v-model="title">
-        </div>
+        <div style="display: flex; flex-direction: row;">
+          <h3>題目名稱</h3>
+            <div class="edit-item"> 
+              <input class="title-input" type="text" v-model="title">
+            </div>
+          </div>
         <h3>題目狀態 {{ publish_status }}</h3>
       </div>
       <div class="edit-div">
