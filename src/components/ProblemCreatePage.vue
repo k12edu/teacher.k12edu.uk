@@ -800,6 +800,7 @@ label {
   border-style: solid;
   border-color: rgb(153, 204, 223);
   width: 90%;
+  padding: 20px;
 }
 
 .tags {
