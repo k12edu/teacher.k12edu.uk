@@ -1,26 +1,8 @@
 <template>
     <div class="body">
       <h1>{{Title}}</h1>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
-      <p>測試內容</p>
+      <p>email: tsukisama9292@gmail.com</p>
+      <a href="https://www.instagram.com/taiwan_k12edu/"><p>IG</p></a>
     </div>
   </template>
   
