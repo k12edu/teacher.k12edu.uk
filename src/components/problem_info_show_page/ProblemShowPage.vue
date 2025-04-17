@@ -4,7 +4,7 @@
       <div class="edit-div">
         <h3>題目編號: {{ item.problem_id }}</h3>
       </div>
-      <div class="edit-div">
+      <div v-if="suject=='program'" class="edit-div">
         <h3>題目名稱: {{ item.title }}</h3>
       </div>
       <div class="edit-div">
