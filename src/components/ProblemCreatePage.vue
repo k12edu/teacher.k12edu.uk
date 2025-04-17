@@ -785,7 +785,6 @@ label {
 .question-item {
   /* background: rgb(153, 204, 223); */
   border-radius: 8px;
-  padding: 15px;
   width: 100%;
   max-width: 600px;
   margin-bottom: 25px;
