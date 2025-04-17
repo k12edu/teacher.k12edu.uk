@@ -147,7 +147,7 @@ export default {
       }
       else{
         this.problemType=this.item.problem_type;
-        if(this.problemType=='noc-choice') this.nc_answer=this.item.answer.correct[0];
+        if(this.problemType=='non-choice') this.nc_answer=this.item.answer.correct[0];
         this.item.answer=this.item.answer.correct;
         this.title=this.item.title;
         this.describe=this.item.problem_description;
