@@ -72,6 +72,9 @@
             {{ item.optionName }}
             </label>
           </div>
+          <div class="edit-item2" v-if="problemType=='non-choice'">
+              <input v-model="nc_answer" type="text" placeholder="請輸入答案" />
+            </div>
         </div>
       </div>
       
@@ -109,6 +112,7 @@ export default {
   },
   data(){
     return {
+      nc_answer: '',
       showSuject:'',
       suject:'program',
       publish_status:'',
@@ -117,6 +121,7 @@ export default {
       problemTypeOptions:[
         { value: 'single', text: '單選題' },
         { value: 'multiple', text: '多選題' },
+        { value: 'non-choice', text: '非選題' },
       ],
       problemType:'single',
       describe:'',
@@ -139,6 +144,7 @@ export default {
         this.title=this.item.title;
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
+        if(this.problemType=='noc-choice') this.nc_answer=this.item.answer[0];
         let obj,ans_obj;
         if(typeof this.item.question_options === 'object'){
           obj = this.item.question_options;
@@ -147,6 +153,7 @@ export default {
         else{
           obj = JSON.parse(this.item.question_options);
           ans_obj = JSON.parse(this.item.answer);
+
         }
         let l=Object.keys(obj).length;
         for(let i=0;i<l;i++){
@@ -275,9 +282,12 @@ export default {
         if(this.problemType=='single'){
           answer=this.answerForSingle;
         }
-        else{
-          answer=this.answerForMutiple;
-        }
+        else if(this.problemType=='multiple'){
+            answer=this.answerForMutiple;
+          }
+          else{
+            answer=[this.nc_answer];
+          }
         const data={
           'id':this.id,
           'problem_description':this.describe,
@@ -314,9 +324,12 @@ export default {
         if(this.problemType=='single'){
           answer=this.answerForSingle;
         }
-        else{
-          answer=this.answerForMutiple;
-        }
+        else if(this.problemType=='multiple'){
+            answer=this.answerForMutiple;
+          }
+          else{
+            answer=[this.nc_answer];
+          }
         const data={
           'id':this.id,
           'problem_description':this.describe,

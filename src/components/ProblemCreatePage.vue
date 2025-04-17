@@ -107,6 +107,9 @@
               {{ item.optionName }}
               </label>
             </div>
+            <div class="edit-item2" v-if="problemType=='non-choice'">
+              <input v-model="nc_answer" type="text" placeholder="請輸入答案" />
+            </div>
           </div>
         </div>
         
@@ -268,6 +271,7 @@
     },
     data(){
       return {
+        nc_answer: '',
         num: 1,
         situation: '',
         shot: '',
@@ -303,6 +307,7 @@
         problemTypeOptions:[
           { value: 'single', text: '單選題' },
           { value: 'multiple', text: '多選題' },
+          { value: 'non-choice', text: '非選題' },
         ],
         problemType:'single',
         describe:'',
@@ -516,8 +521,11 @@
           if(this.problemType=='single'){
             answer=this.answerForSingle;
           }
-          else{
+          else if(this.problemType=='multiple'){
             answer=this.answerForMutiple;
+          }
+          else{
+            answer=[this.nc_answer];
           }
           const moduleIds = this.SelectModule.map(item => item.module_id);
           
@@ -557,8 +565,11 @@
           if(this.problemType=='single'){
             answer=this.answerForSingle;
           }
-          else{
+          else if(this.problemType=='multiple'){
             answer=this.answerForMutiple;
+          }
+          else{
+            answer=[this.nc_answer];
           }
           const moduleIds = this.SelectModule.map(item => item.module_id);
           const data={
