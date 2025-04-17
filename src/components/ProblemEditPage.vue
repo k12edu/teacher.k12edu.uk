@@ -155,19 +155,32 @@ export default {
           ans_obj = JSON.parse(this.item.answer);
 
         }
-        let l=Object.keys(obj).length;
-        for(let i=0;i<l;i++){
-          this.optionList.push({optionName:obj[String.fromCharCode('A'.charCodeAt(0) + (i % 26))]});
+        let l = Object.keys(obj).length;
+        this.optionList = []; // 確保初始化
+
+        // 產生選項 A, B, C, ...
+        for (let i = 0; i < l; i++) {
+          const key = String.fromCharCode('A'.charCodeAt(0) + i);
+          this.optionList.push({ optionName: obj[key] });
         }
-        if(this.problemType=='single'){
-          this.answerForSingle=obj[ans_obj[0]]+'_'+(ans_obj[0].charCodeAt(0)-'A'.charCodeAt(0)).toString();
-        }
-        else{
-          let new_arr=[]
-          for(let i=0;i<ans_obj.length;i++){
-            new_arr.push(obj[ans_obj[i]]+'_'+(ans_obj[i].charCodeAt(0)-'A'.charCodeAt(0)).toString());
+
+        // 建立答案陣列（根據 true/false 決定是否選取）
+        let answerList = [];
+        for (let i = 0; i < ans_obj.length; i++) {
+          if (ans_obj[i]) {
+            const key = String.fromCharCode('A'.charCodeAt(0) + i);
+            const value = obj[key] + '_' + i.toString();
+            answerList.push(value);
           }
-          this.answerForMutiple=new_arr;
+        }
+
+        // 根據題型設定答案
+        if (this.problemType === 'single') {
+          // 單選只取第一個為 true 的答案
+          this.answerForSingle = answerList.length > 0 ? answerList[0] : '';
+        } else {
+          // 多選全部記錄
+          this.answerForMutiple = answerList;
           console.log(this.answerForMutiple);
         }
       }
