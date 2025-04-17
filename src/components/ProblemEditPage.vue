@@ -135,13 +135,13 @@ export default {
   },
   methods:{
     changeData(){
-      this.item.answer=this.item.answer.correct;
       if(this.suject=='program'){
         this.title=this.item.title;
         this.describe=this.item.problem_description;
         this.getTestCaseData();
       }
       else{
+        this.item.answer=this.item.answer.correct;
         this.title=this.item.title;
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
