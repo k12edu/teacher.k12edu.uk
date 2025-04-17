@@ -42,7 +42,7 @@
         <div class="edit-div">
           <h3>答案</h3>
           <div class="edit-item2">
-            <p>{{ item.answer }}</p>
+            <p>{{ item.answer.correct }}</p>
           </div>
         </div>
       </div>
