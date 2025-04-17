@@ -71,13 +71,13 @@
               </label>
             </div>
           </div>
-          <div v-if="problemType!='non-choice'" class="problem-edit-body">
+          <div v-if="problemType!='non-choice'" class="edit-div">
             <div class="edit-item">
               <h3 style="margin-top: 16px;">選項(最多五項)</h3>
               <button @click="addAnswerOption" style="margin-left: 10px"> <h3 style="margin: 0;">+</h3></button>
             </div>
             
-            <div class="problem-edit-body">
+            <div class="edit-item2">
               <div v-for="(item,idx) in optionList" :key="idx" class="option-items">
               <input type="text" v-model="item.optionName">
               <button style="margin-left: 10px; width: 30px; height: 30px;" @click="removeAnswerOption(idx)"><h3 style="margin: 0;">-</h3></button>
@@ -85,7 +85,7 @@
             </div>
           </div>
           
-          <div class="problem-edit-body">
+          <div class="edit-div">
             <h3>答案</h3>
             <div class="edit-item2" v-if="problemType=='single'">
               <label v-for="(item,idx) in optionList" :key="idx" class="option-items">
@@ -785,7 +785,8 @@ label {
 .question-item {
   /* background: rgb(153, 204, 223); */
   border-radius: 8px;
-  width: 100%;
+  padding: 15px;
+  width: 90%;
   max-width: 600px;
   margin-bottom: 25px;
   text-align: center;
