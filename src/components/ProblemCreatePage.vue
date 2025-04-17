@@ -56,7 +56,7 @@
           </div>
         </div>
         
-        <div v-if="this.suject!='program'" style="width: 100%;">
+        <div v-if="this.suject!='program'" style="width: 100%; display: flex; justify-content: center;">
           <div class="edit-div" >
             <h3>題目類型</h3>
             <div class="edit-item">
