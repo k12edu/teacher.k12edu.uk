@@ -25,9 +25,9 @@
       </div>
       <div v-if="suject!='program'">
         <div class="edit-div">
-          <h3>題目類型: {{ item.problem_type }}</h3>
+          <h3>題目類型: {{ showProblemType }}</h3>
         </div>
-        <div class="edit-div">
+        <div v-if="this.item.problem_type!='non-choice'" class="edit-div">
           <div class="edit-item">
             <h3 style="margin-top: 16px;">選項</h3>
           </div>
@@ -41,10 +41,10 @@
         
         <div class="edit-div">
           <h3>答案</h3>
-          <div v-if="this.suject!='non-choice'" class="edit-item2">
+          <div v-if="this.item.problem_type!='non-choice'" class="edit-item2">
             <p>{{ item.answer.correct }}</p>
           </div>
-          <div v-if="this.suject=='non-choice'" class="edit-item2">
+          <div v-if="this.item.problem_type=='non-choice'" class="edit-item2">
             <p>{{ item.answer.correct[0] }}</p>
           </div>
           
