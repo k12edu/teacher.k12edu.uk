@@ -28,6 +28,7 @@
           <div class="edit-item">
             <label style="user-select: none;" v-for="option in problemTypeOptions" :key="option.value" class="radio-option">
             <input
+            @change="changeType"
             type="radio"
             :value="option.value"
             v-model="problemType"
@@ -134,6 +135,10 @@ export default {
     }
   },
   methods:{
+    changeType(){
+      this.answerForSingle='';
+      this.answerForMutiple=[];
+    },  
     changeData(){
       if(this.suject=='program'){
         this.title=this.item.title;
