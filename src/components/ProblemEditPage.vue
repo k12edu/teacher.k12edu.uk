@@ -37,7 +37,7 @@
             </label>
           </div>
         </div>
-        <div class="edit-div">
+        <div v-if="problemType!='non-choice'" class="edit-div">
           <div class="edit-item">
             <h3 style="margin-top: 16px;">選項(最多五項)</h3>
             <button @click="addAnswerOption" style="margin-left: 10px"> <h3 style="margin: 0;">+</h3></button>
