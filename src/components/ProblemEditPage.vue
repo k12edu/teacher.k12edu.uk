@@ -135,6 +135,7 @@ export default {
   },
   methods:{
     changeData(){
+      this.item.answer=this.item.answer.correct;
       if(this.suject=='program'){
         this.title=this.item.title;
         this.describe=this.item.problem_description;
