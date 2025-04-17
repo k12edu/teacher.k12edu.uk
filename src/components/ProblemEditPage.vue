@@ -146,11 +146,12 @@ export default {
         this.getTestCaseData();
       }
       else{
+        if(this.problemType=='noc-choice') this.nc_answer=this.item.answer.correct[0];
         this.item.answer=this.item.answer.correct;
         this.title=this.item.title;
         this.describe=this.item.problem_description;
         this.problemType=this.item.problem_type;
-        if(this.problemType=='noc-choice') this.nc_answer=this.item.answer[0];
+        
         let obj,ans_obj;
         if(typeof this.item.question_options === 'object'){
           obj = this.item.question_options;

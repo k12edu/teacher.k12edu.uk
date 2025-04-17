@@ -41,9 +41,13 @@
         
         <div class="edit-div">
           <h3>答案</h3>
-          <div class="edit-item2">
+          <div v-if="this.suject!='non-choice'" class="edit-item2">
             <p>{{ item.answer.correct }}</p>
           </div>
+          <div v-if="this.suject=='non-choice'" class="edit-item2">
+            <p>{{ item.answer.correct[0] }}</p>
+          </div>
+          
         </div>
       </div>
 
@@ -194,6 +198,7 @@ export default {
       const mapForProblemType = new Map([
         ['single','單選題'],
         ['multiple','多選題'],
+        ['non-choice','非選題'],
       ])
       this.showSuject=mapForSuject.get(this.suject);
       this.showProblemType=mapForProblemType.get(this.item.problem_type);
