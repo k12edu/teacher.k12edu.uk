@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-      <h4>&copy; 2024 NovaEDU</h4>
+      <h4>&copy; 2024-2025 NovaEDU</h4>
     </div>
   </template>
   
